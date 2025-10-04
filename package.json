@@ -1,0 +1,44 @@
+{
+  "name": "github-trending-api",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker API for GitHub trending repositories",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "deploy:dev": "wrangler deploy --env development",
+    "setup": "node scripts/setup-deployment.js",
+    "setup:bash": "bash scripts/setup-deployment.sh",
+    "deploy:script": "node scripts/deploy.js",
+    "deploy:bash": "bash scripts/deploy.sh",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run test/integration.test.ts test/error-scenarios.test.ts",
+    "test:e2e": "vitest run test/integration.test.ts",
+    "test:errors": "vitest run test/error-scenarios.test.ts",
+    "test:all": "vitest run --reporter=verbose",
+    "type-check": "tsc --noEmit",
+    "logs": "wrangler tail",
+    "logs:staging": "wrangler tail --env staging",
+    "logs:production": "wrangler tail --env production",
+    "secrets:list": "wrangler secret list",
+    "kv:list": "wrangler kv:namespace list"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240129.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0",
+    "vitest-environment-miniflare": "^2.14.4",
+    "wrangler": "^3.25.0"
+  },
+  "keywords": [
+    "cloudflare-worker",
+    "github-api",
+    "trending-repositories"
+  ],
+  "author": "",
+  "license": "MIT"
+}

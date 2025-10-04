@@ -1,0 +1,31 @@
+# HarmonyOS specific
+/build/
+/node_modules/
+/.hvigor/
+/oh_modules/
+/local.properties
+/.idea/
+*.hap
+*.app
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp

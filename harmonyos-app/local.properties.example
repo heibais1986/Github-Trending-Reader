@@ -1,0 +1,11 @@
+# HarmonyOS SDK路径配置示例
+# 复制此文件为 local.properties 并配置正确的SDK路径
+
+# HarmonyOS SDK路径
+sdk.dir=/path/to/harmonyos/sdk
+
+# Node.js路径（可选）
+nodejs.dir=/path/to/nodejs
+
+# 构建工具路径（可选）
+hvigor.dir=/path/to/hvigor

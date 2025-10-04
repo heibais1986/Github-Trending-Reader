@@ -1,0 +1,3 @@
+registry=https://ohpm.openharmony.cn/ohpm/
+cache=${env:HOME}/.ohpm/cache
+globalconfig=${env:HOME}/.ohpm/.ohpmrc

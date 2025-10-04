@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "GitHub热门仓库展示应用"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "GitHub热门仓库展示应用主入口"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "GitHub Trending"
+    },
+    {
+      "name": "app_name",
+      "value": "GitHub Trending"
+    },
+    {
+      "name": "app_description",
+      "value": "展示GitHub热门仓库的鸿蒙应用"
+    },
+    {
+      "name": "internet_permission_reason",
+      "value": "需要网络权限来获取GitHub热门仓库数据"
+    },
+    {
+      "name": "loading_text",
+      "value": "加载中..."
+    },
+    {
+      "name": "refresh_text",
+      "value": "下拉刷新"
+    },
+    {
+      "name": "error_network",
+      "value": "网络连接失败，请检查网络设置"
+    },
+    {
+      "name": "error_server",
+      "value": "服务器暂时不可用，请稍后重试"
+    },
+    {
+      "name": "error_unknown",
+      "value": "未知错误，请稍后重试"
+    },
+    {
+      "name": "retry_button",
+      "value": "重试"
+    },
+    {
+      "name": "stars_count",
+      "value": "⭐ %s"
+    }
+  ]
+}

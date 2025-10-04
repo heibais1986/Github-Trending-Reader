@@ -1,0 +1,213 @@
+{
+  "options": {
+    "version": {
+      "name": "version",
+      "flag": "-v, --version",
+      "description": "Shows the version of Hvigor."
+    },
+    "usage": {
+      "name": "hvigor",
+      "flag": "hvigor",
+      "description": "[taskNames...] <options...>"
+    },
+    "basicOptions": [
+      {
+        "name": "error",
+        "flag": "-e, --error",
+        "description": "Sets the log level to error."
+      },
+      {
+        "name": "warn",
+        "flag": "-w, --warn",
+        "description": "Sets the log level to warn."
+      },
+      {
+        "name": "info",
+        "flag": "-i, --info",
+        "description": "Sets the log level to info."
+      },
+      {
+        "name": "debug",
+        "flag": "-d, --debug",
+        "description": "Sets the log level to debug."
+      },
+      {
+        "name": "config",
+        "flag": "-c, --config <config>",
+        "description": "Sets properties in the hvigor-config.json5 file. The settings will overwrite those in the file.",
+        "back": "array"
+      },
+      {
+        "name": "prop",
+        "flag": "-p, --prop <value>",
+        "description": "Defines extra properties. (default: [])",
+        "back": "array"
+      },
+      {
+        "name": "mode",
+        "flag": "-m, --mode <string>",
+        "description": "Sets the mode in which the command is executed."
+      },
+      {
+        "name": "sync",
+        "flag": "-s, --sync",
+        "description": "Syncs the information in plugin for other platforms."
+      },
+      {
+        "name": "nodeHome",
+        "flag": "--node-home, <string>",
+        "description": "Sets the Node.js location."
+      },
+      {
+        "name": "stopDaemon",
+        "flag": "--stop-daemon",
+        "description": "Stops the current project's daemon process."
+      },
+      {
+        "name": "stopDaemonAll",
+        "flag": "--stop-daemon-all",
+        "description": "Stops all projects' daemon process."
+      },
+      {
+        "name": "statusDaemon",
+        "flag": "--status-daemon",
+        "description": "Shows the daemon process status of the current project."
+      },
+      {
+        "name": "verboseAnalyze",
+        "flag": "--verbose-analyze",
+        "description": "Enables detailed mode for build analysis."
+      },
+      {
+        "name": "watch",
+        "flag": "--watch",
+        "description": "Enables watch mode."
+      },
+      {
+        "name": "hotCompile",
+        "flag": "--hot-compile",
+        "description": "HotReload watch mode to compile."
+      },
+      {
+        "name": "hotBuild",
+        "flag": "--hot-reload-build",
+        "description": "HotReload build"
+      },
+      {
+        "name": "maxOldSpaceSize",
+        "flag": "--max-old-space-size <integer>",
+        "description": "Sets the maximum memory size of V8's old memory section.",
+        "back": "number"
+      },
+      {
+        "name": "maxSemiSpaceSize",
+        "flag": "--max-semi-space-size <integer>",
+        "description": "Sets the maximum memory size of V8's new space memory section."
+      }
+    ],
+    "otherOptions": [
+      {
+        "name": "xmx",
+        "flag": "--Xmx <integer>",
+        "description": "Sets the maximum JVM heap size, in MB.",
+        "back": "number"
+      },
+      {
+        "name": "optimizationStrategy",
+        "flag": "--optimization-strategy <string>",
+        "description": "Sets the optimization strategy: memory, performance."
+      },
+      {
+        "name": "enableTypeCheck",
+        "flag": "--enable-build-script-type-check",
+        "deprecated": true,
+        "recommendedFlags": "type-check",
+        "description": "['--enable-build-script-type-check' deprecated: use 'type-check' instead] Enables the build script hvigorfile.ts type check. This option is deprecated. Use 'type-check' instead."
+      },
+      {
+        "name": "stacktrace",
+        "flag": "stacktrace",
+        "description": "the printing of stack traces for all exceptions.",
+        "flagPair": true
+      },
+      {
+        "name": "typeCheck",
+        "flag": "type-check",
+        "description": "the build script hvigorfile.ts type check.",
+        "flagPair": true
+      },
+      {
+        "name": "parallel",
+        "flag": "parallel",
+        "description": "parallel building mode.",
+        "flagPair": true
+      },
+      {
+        "name": "incremental",
+        "flag": "incremental",
+        "description": "incremental building mode.",
+        "flagPair": true
+      },
+      {
+        "name": "daemon",
+        "flag": "daemon",
+        "description": "building with daemon process.",
+        "flagPair": true
+      },
+      {
+        "name": "generateBuildProfile",
+        "flag": "generate-build-profile",
+        "description": "the generation of BuildProfile.ets files.",
+        "flagPair": true
+      },
+      {
+        "name": "analyze",
+        "flag": "analyze",
+        "description": "build analysis.",
+        "flagPair": true
+      },
+      {
+        "name": "analysisMode",
+        "flag": "--analyze=<analysisMode>",
+        "description": "Sets the build analysis mode: normal (default), advanced, false."
+      }
+    ]
+  },
+  "command": [
+    {
+      "name": "version",
+      "description": "Shows the version of Hvigor."
+    },
+    {
+      "name": "tasks",
+      "description": "Shows all available tasks of specific modules."
+    },
+    {
+      "name": "taskTree",
+      "description": "Shows all available task trees of specific modules."
+    },
+    {
+      "name": "prune",
+      "description": "Cleans up Hvigor cache files and removes unreferenced packages from store."
+    },
+    {
+      "name": "collectCoverage",
+      "description": "Generates coverage statistics reports based on instrumentation test data."
+    }
+  ],
+  "help": {
+    "name": "",
+    "flag": "-h, --help",
+    "description": "Displays help information."
+  },
+  "after": [
+    {
+      "position": "after",
+      "text": "\nExamples:\n  hvigor assembleApp  Do assembleApp task\n"
+    },
+    {
+      "position": "after",
+      "text": "copyright 2023"
+    }
+  ]
+}

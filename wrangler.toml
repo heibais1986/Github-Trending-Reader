@@ -1,0 +1,36 @@
+name = "github-trending-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Scheduled triggers for daily data scraping
+[triggers]
+crons = ["0 0 * * *"]  # Daily at UTC 00:00
+
+# KV namespace binding for data storage
+[[kv_namespaces]]
+binding = "TRENDING_KV"
+id = "5d4ceda61c554109ae1173bf41a0a758"  # Replace with actual KV namespace ID
+preview_id = "8f8fa25788c64d738135c0447a91d683"  # Replace with preview KV namespace ID
+
+# Environment variables (secrets should be set via wrangler secret)
+[vars]
+# Public environment variables
+API_VERSION = "v1"
+CORS_MAX_AGE = "86400"
+RATE_LIMIT_REQUESTS = "100"
+RATE_LIMIT_WINDOW = "60"
+
+# Production environment configuration
+[env.production]
+name = "github-trending-api-prod"
+vars = { ENVIRONMENT = "production", LOG_LEVEL = "info" }
+
+# Staging environment configuration  
+[env.staging]
+name = "github-trending-api-staging"
+vars = { ENVIRONMENT = "staging", LOG_LEVEL = "debug" }
+
+# Development environment configuration
+[env.development]
+name = "github-trending-api-dev"
+vars = { ENVIRONMENT = "development", LOG_LEVEL = "debug" }
