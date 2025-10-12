@@ -10,9 +10,38 @@ import {
   NetworkErrorType,
   RetryConfig,
   DEFAULT_REQUEST_CONFIG,
-  DEFAULT_RETRY_CONFIG,
-  NETWORK_TIMEOUTS
+  DEFAULT_RETRY_CONFIG
 } from '../models/NetworkModels';
+
+/**
+ * HTTP status text mapping interface
+ */
+interface HttpStatusText {
+  statusCode: number;
+  text: string;
+}
+
+/**
+ * Request configuration interface for object literals
+ */
+interface RequestConfigOptions {
+  url: string;
+  method: string;
+  timeout: number;
+  retryCount: number;
+  headers: Record<string, string>;
+}
+
+/**
+ * Error data interface for JSON parsing
+ */
+interface ErrorData {
+  type: NetworkErrorType;
+  message: string;
+  statusCode?: number;
+}
+
+
 
 /**
  * HTTP client class for making network requests
@@ -31,11 +60,22 @@ export class HttpClient {
    * @returns Promise with HTTP response
    */
   async get<T>(url: string, config?: Partial<RequestConfig>): Promise<HttpResponse<T>> {
+    const customHeaders: Record<string, string> = config?.headers ? config.headers as Record<string, string> : {};
+    const defaultHeaders: Record<string, string> = DEFAULT_REQUEST_CONFIG.headers || {};
+    const mergedHeaders: Record<string, string> = this.mergeHeaders(defaultHeaders, customHeaders);
+
+    const defaultTimeout: number = DEFAULT_REQUEST_CONFIG.timeout || 10000;
+    const defaultRetryCount: number = DEFAULT_REQUEST_CONFIG.retryCount || 3;
+    
+    const timeoutValue: number = config?.timeout !== undefined ? config.timeout as number : defaultTimeout;
+    const retryCountValue: number = config?.retryCount !== undefined ? config.retryCount as number : defaultRetryCount;
+
     const requestConfig: RequestConfig = {
-      url,
-      method: 'GET',
-      ...DEFAULT_REQUEST_CONFIG,
-      ...config
+      url: url,
+      method: 'GET' as 'GET',
+      timeout: timeoutValue,
+      retryCount: retryCountValue,
+      headers: mergedHeaders
     };
 
     return this.executeRequest<T>(requestConfig);
@@ -48,12 +88,23 @@ export class HttpClient {
    * @param config - Optional request configuration
    * @returns Promise with HTTP response
    */
-  async post<T>(url: string, data?: any, config?: Partial<RequestConfig>): Promise<HttpResponse<T>> {
+  async post<T>(url: string, data?: Record<string, string | number | boolean>, config?: Partial<RequestConfig>): Promise<HttpResponse<T>> {
+    const customHeaders: Record<string, string> = config?.headers ? config.headers as Record<string, string> : {};
+    const defaultHeaders: Record<string, string> = DEFAULT_REQUEST_CONFIG.headers || {};
+    const mergedHeaders: Record<string, string> = this.mergeHeaders(defaultHeaders, customHeaders);
+
+    const defaultTimeout: number = DEFAULT_REQUEST_CONFIG.timeout || 10000;
+    const defaultRetryCount: number = DEFAULT_REQUEST_CONFIG.retryCount || 3;
+    
+    const timeoutValue: number = config?.timeout !== undefined ? config.timeout as number : defaultTimeout;
+    const retryCountValue: number = config?.retryCount !== undefined ? config.retryCount as number : defaultRetryCount;
+
     const requestConfig: RequestConfig = {
-      url,
-      method: 'POST',
-      ...DEFAULT_REQUEST_CONFIG,
-      ...config
+      url: url,
+      method: 'POST' as 'POST',
+      timeout: timeoutValue,
+      retryCount: retryCountValue,
+      headers: mergedHeaders
     };
 
     return this.executeRequestWithData<T>(requestConfig, data);
@@ -72,25 +123,46 @@ export class HttpClient {
         const response = await this.makeHttpRequest<T>(config);
         return response;
       } catch (error) {
-        lastError = error as NetworkError;
+        const errorObj = error as Error;
+        let errorData: ErrorData;
+        try {
+          errorData = JSON.parse(errorObj.message || '{}') as ErrorData;
+        } catch (parseError) {
+          const fallbackError: ErrorData = { type: NetworkErrorType.UNKNOWN_ERROR, message: 'Parse error' };
+          errorData = fallbackError;
+        }
+        lastError = {
+          type: errorData.type as NetworkErrorType,
+          message: errorData.message as string,
+          statusCode: errorData.statusCode as number,
+          originalError: errorObj
+        };
         
         // Don't retry on client errors (4xx)
-        if (lastError.statusCode && lastError.statusCode >= 400 && lastError.statusCode < 500) {
-          throw lastError;
+        if (lastError && lastError.statusCode && lastError.statusCode >= 400 && lastError.statusCode < 500) {
+          throw errorObj;
         }
-        
+
         // If this is the last attempt, throw the error
         if (attempt === this.retryConfig.maxRetries) {
-          throw lastError;
+          throw errorObj;
         }
         
         // Wait before retrying
-        const delay = this.retryConfig.retryDelay * Math.pow(this.retryConfig.backoffMultiplier, attempt);
+        const backoffMultiplier = this.retryConfig.backoffMultiplier;
+        let delay = this.retryConfig.retryDelay;
+        for (let i = 0; i < attempt; i++) {
+          delay = delay * backoffMultiplier;
+        }
         await this.sleep(delay);
       }
     }
-    
-    throw lastError;
+
+   const finalError: NetworkError = lastError || {
+     type: NetworkErrorType.UNKNOWN_ERROR,
+     message: 'Request failed after all retry attempts'
+   };
+   throw new Error(JSON.stringify(finalError));
   }
 
   /**
@@ -99,10 +171,15 @@ export class HttpClient {
    * @param data - Request body data
    * @returns Promise with HTTP response
    */
-  private async executeRequestWithData<T>(config: RequestConfig, data?: any): Promise<HttpResponse<T>> {
+  private async executeRequestWithData<T>(config: RequestConfig, data?: Record<string, string | number | boolean>): Promise<HttpResponse<T>> {
     // For POST requests, we'll implement this when needed
     // For now, focus on GET requests for the trending API
-    throw new Error('POST requests not implemented yet');
+    const errorObj: NetworkError = {
+      type: NetworkErrorType.UNKNOWN_ERROR,
+      message: 'POST requests not implemented yet'
+    };
+    const error = new Error(JSON.stringify(errorObj));
+    return Promise.reject(error);
   }
 
   /**
@@ -116,9 +193,9 @@ export class HttpClient {
       
       const requestOptions: http.HttpRequestOptions = {
         method: config.method as http.RequestMethod,
-        header: config.headers || {},
-        connectTimeout: config.timeout || NETWORK_TIMEOUTS.DEFAULT,
-        readTimeout: config.timeout || NETWORK_TIMEOUTS.DEFAULT
+        header: config.headers,
+        connectTimeout: config.timeout || 10000,
+        readTimeout: config.timeout || 10000
       };
 
       httpRequest.request(config.url, requestOptions)
@@ -136,7 +213,7 @@ export class HttpClient {
               data: parsedData,
               status: response.responseCode,
               statusText: this.getStatusText(response.responseCode),
-              headers: response.header || {}
+              headers: response.header ? response.header as Record<string, string> : {}
             };
 
             // Check if response indicates an error
@@ -146,7 +223,7 @@ export class HttpClient {
                 message: `HTTP ${response.responseCode}: ${this.getStatusText(response.responseCode)}`,
                 statusCode: response.responseCode
               };
-              reject(error);
+              reject(new Error(JSON.stringify(error)));
             } else {
               resolve(httpResponse);
             }
@@ -156,18 +233,18 @@ export class HttpClient {
               message: 'Failed to parse response data',
               originalError: parseError as Error
             };
-            reject(error);
+            reject(new Error(JSON.stringify(error)));
           } finally {
             httpRequest.destroy();
           }
         })
-        .catch((error) => {
+        .catch((error: Error) => {
           const networkError: NetworkError = {
             type: NetworkErrorType.CONNECTION_ERROR,
             message: 'Network request failed',
             originalError: error
           };
-          reject(networkError);
+          reject(new Error(JSON.stringify(networkError)));
           httpRequest.destroy();
         });
     });
@@ -179,19 +256,20 @@ export class HttpClient {
    * @returns Status text
    */
   private getStatusText(statusCode: number): string {
-    const statusTexts: Record<number, string> = {
-      200: 'OK',
-      400: 'Bad Request',
-      401: 'Unauthorized',
-      403: 'Forbidden',
-      404: 'Not Found',
-      500: 'Internal Server Error',
-      502: 'Bad Gateway',
-      503: 'Service Unavailable',
-      504: 'Gateway Timeout'
-    };
+    const statusTexts: HttpStatusText[] = [
+      { statusCode: 200, text: 'OK' },
+      { statusCode: 400, text: 'Bad Request' },
+      { statusCode: 401, text: 'Unauthorized' },
+      { statusCode: 403, text: 'Forbidden' },
+      { statusCode: 404, text: 'Not Found' },
+      { statusCode: 500, text: 'Internal Server Error' },
+      { statusCode: 502, text: 'Bad Gateway' },
+      { statusCode: 503, text: 'Service Unavailable' },
+      { statusCode: 504, text: 'Gateway Timeout' }
+    ];
     
-    return statusTexts[statusCode] || 'Unknown Status';
+    const statusText = statusTexts.find(item => item.statusCode === statusCode);
+    return statusText ? statusText.text : 'Unknown Status';
   }
 
   /**
@@ -215,6 +293,53 @@ export class HttpClient {
    * @returns Promise that resolves after the delay
    */
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => {
+      // ArkTS-compatible delay implementation
+      const start = this.getCurrentTime();
+      while (this.getCurrentTime() - start < ms) {
+        // Busy wait - this is a simple implementation for ArkTS compatibility
+      }
+      resolve();
+    });
+  }
+
+  /**
+   * Get current time in milliseconds (ArkTS compatible)
+   * @returns Current time in milliseconds
+   */
+  private getCurrentTime(): number {
+    // Use system time API for ArkTS compatibility
+    // This is a placeholder implementation
+    const time = new Date().getTime();
+    return time;
+  }
+
+  /**
+   * Merge headers from default and custom configurations
+   * @param defaultHeaders - Default headers
+   * @param customHeaders - Custom headers to merge
+   * @returns Merged headers object
+   */
+  private mergeHeaders(defaultHeaders: Record<string, string>, customHeaders?: Record<string, string>): Record<string, string> {
+    // Always create a new object to ensure type safety
+    const mergedHeaders: Record<string, string> = {};
+
+    // Copy default headers
+    const defaultKeys = Object.keys(defaultHeaders);
+    for (let i = 0; i < defaultKeys.length; i++) {
+      const key = defaultKeys[i];
+      mergedHeaders[key] = defaultHeaders[key];
+    }
+
+    // Override with custom headers if provided
+    if (customHeaders) {
+      const customKeys = Object.keys(customHeaders);
+      for (let i = 0; i < customKeys.length; i++) {
+        const key = customKeys[i];
+        mergedHeaders[key] = customHeaders[key];
+      }
+    }
+
+    return mergedHeaders;
   }
 }

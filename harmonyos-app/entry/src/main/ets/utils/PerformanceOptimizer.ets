@@ -6,12 +6,12 @@
 /**
  * Debounce function type
  */
-export type DebouncedFunction<T extends (...args: any[]) => any> = (...args: Parameters<T>) => void;
+export type DebouncedFunction<T extends (...args: Array<unknown>) => unknown> = (...args: Parameters<T>) => void;
 
 /**
  * Throttle function type
  */
-export type ThrottledFunction<T extends (...args: any[]) => any> = (...args: Parameters<T>) => void;
+export type ThrottledFunction<T extends (...args: Array<unknown>) => unknown> = (...args: Parameters<T>) => void;
 
 /**
  * Performance optimizer class
@@ -27,7 +27,7 @@ export class PerformanceOptimizer {
    * @param key - Unique key for the debounced function
    * @returns Debounced function
    */
-  static debounce<T extends (...args: any[]) => any>(
+  static debounce<T extends (...args: Array<unknown>) => unknown>(
     func: T,
     delay: number,
     key: string
@@ -56,7 +56,7 @@ export class PerformanceOptimizer {
    * @param key - Unique key for the throttled function
    * @returns Throttled function
    */
-  static throttle<T extends (...args: any[]) => any>(
+  static throttle<T extends (...args: Array<unknown>) => unknown>(
     func: T,
     delay: number,
     key: string

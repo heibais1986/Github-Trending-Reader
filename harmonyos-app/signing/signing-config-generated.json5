@@ -1,0 +1,13 @@
+{
+    "default":  {
+                    "material":  {
+                                     "keyPassword":  "RedditAppSecurePassword1234567890!@#",
+                                     "storePassword":  "RedditAppSecurePassword1234567890!@#",
+                                     "profile":  "signing/reddit.p7b",
+                                     "certpath":  "signing/reddit.p12",
+                                     "signAlg":  "SHA256withECDSA",
+                                     "keyAlias":  "reddit"
+                                 },
+                    "type":  "harmony"
+                }
+}

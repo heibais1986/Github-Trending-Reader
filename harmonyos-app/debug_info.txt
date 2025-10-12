@@ -1,0 +1,374 @@
+10-10 07:33:07.361   9891-9891     C03900/ACE_UIContent            com.github.trending   I     [69]AceForwardCompatibility [com.github.trending] force:1 newpipe:1
+10-10 07:33:07.361   9891-9891     C01317/AppKit                   com.github.trending   I     [main_thread.cpp:223]nativeLibraryPath is empty
+10-10 07:33:07.362   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] Set large heap: 0
+10-10 07:33:07.362   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] asmint: 1, aot: 0, jit: 1, baseline jit: 0, bundle name: com.github.trending
+10-10 07:33:07.363   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] multi-thread check enabled: 0
+10-10 07:33:07.363   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [pgo] reset pgo profiler, pgo profiler is disabled
+10-10 07:33:07.375   9891-9891     C01707/CONCUR                   com.github.trending   E     [Interface] task 10013 apply qos failed, errno = 4
+10-10 07:33:07.375   9891-9891     C03301/LIBUV                    com.github.trending   I     init:2107716608
+10-10 07:33:07.376   9891-9891     C03301/LIBUV                    com.github.trending   I     init:2107716608, backend_fd:4
+10-10 07:33:07.376   9891-9891     C03301/LIBUV                    com.github.trending   I     open:2107716608, pipefd[0]:34
+10-10 07:33:07.377   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] can not find aot file
+10-10 07:33:07.377   9891-9891     C01305/Base                     com.github.trending   E     [zip_file.cpp(ExtractToBufByName:933)]GetEntry failed hapPath pkgContextInfo.json
+10-10 07:33:07.393   9891-10017    C01719/ffrt                     com.github.trending   W     2:FFRTQosApplyForOther:249 tid 10017, Interrupted system call, ret:-1, eno:4
+10-10 07:33:07.393   9891-10018    C01719/ffrt                     com.github.trending   W     3:operator():111 [1791167264] set priority warn ret[1] eno[0]
+10-10 07:33:07.395   9891-9891     C01321/JsRuntime                com.github.trending   E     [hdc_register.cpp:58]null registerLocalHandler_
+10-10 07:33:07.395   9891-9891     C01321/JsRuntime                com.github.trending   W     [connect_server_manager.cpp:163]not Connected
+10-10 07:33:07.395   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] JSNApi::NotifyDebugMode, tid = 9891, debugApp = 0, isDebugMode = 0, instanceId = 0
+10-10 07:33:07.397   9891-10019    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.hdc.jdwp remoteWatcherId 65 success
+10-10 07:33:07.411   9891-10021    C01719/ffrt                     com.github.trending   W     4:FFRTQosApplyForOther:249 tid 10021, Interrupted system call, ret:-1, eno:4
+10-10 07:33:07.411   9891-9891     C01e00/ResourceManager          com.github.trending   W     update userId, currentUserId_= 0, userId= 100
+10-10 07:33:07.411   9891-10021    C01317/AppKit                   com.github.trending   I     [dump_runtime_helper.cpp:352]File existed. dir: /data/storage/el2/base/cache/rawheap
+10-10 07:33:07.412   9891-9891     C01e00/ResourceManager          com.github.trending   E     LoadThemesRes failed, userId = 100, bundleName = com.github.trending
+10-10 07:33:07.412   9891-9891     C01336/AMS                      com.github.trending   E     [main_thread.cpp:3799]empty config
+10-10 07:33:07.412   9891-9891     C01317/AppKit                   com.github.trending   W     [main_thread.cpp:3869]reason Error loading shared library /system/lib64/liblayered_parameters_manager.z.so: No such file or directoryn
+10-10 07:33:07.412   9891-10021    C01317/AppKit                   com.github.trending   I     [dump_runtime_helper.cpp:332]success to AclSetAccess, path: /data/storage/el2/base/cache/rawheap
+10-10 07:33:07.413   9891-10022    C01653/NativePreferences        com.github.trending   W     LoadFromDisk: The settingXml /***/el1/***/i18*** load failed.
+10-10 07:33:07.413   9891-9891     C01301/Ability                  com.github.trending   W     [resource_config_helper.cpp:173]invalid source:
+10-10 07:33:07.413   9891-9891     C01301/Ability                  com.github.trending   W     [resource_config_helper.cpp:173]invalid source:
+10-10 07:33:07.413   9891-9891     C01317/AppKit                   com.github.trending   I     [application_cleaner.cpp:94]ClearTempData
+10-10 07:33:07.419   9891-10023    C01719/ffrt                     com.github.trending   W     5:FFRTQosApplyForOther:249 tid 10023, Interrupted system call, ret:-1, eno:4
+10-10 07:33:07.421   9891-9891     C01317/AppKit                   com.github.trending   E     [js_ability_stage.cpp:206]null stage
+10-10 07:33:07.421   9891-9891     C01317/AppKit                   com.github.trending   W     [js_ability_stage.cpp:218]Not found AbilityStage.js
+10-10 07:33:07.422   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:263]called
+10-10 07:33:07.423   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [ecmascript] start to execute module buffer with secure memory: /data/storage/el1/bundle/entry/ets/entryability/EntryAbility.abc
+10-10 07:33:07.423   9891-10014    C03f00/ArkCompiler              com.github.trending   W     [ecmascript] set label failed! level: s1, file: /data/storage/ark-profile/rt_entry.ap
+10-10 07:33:07.423   9891-10014    C03f00/ArkCompiler              com.github.trending   I     [pgo] will save profiler to file /data/storage/ark-profile/rt_entry.ap
+10-10 07:33:07.423   9891-9891     C03f00/ArkCompiler              com.github.trending   E     [ecmascript] Can not open xpm proc file, do not check secure memory anymore.
+10-10 07:33:07.425   9891-9891     C01320/JsEnv                    com.github.trending   I     [js_environment.cpp:271]timing: 1
+10-10 07:33:07.425   9891-9891     C01320/JSENV                    com.github.trending   I     Callee constructor is OK string
+10-10 07:33:07.425   9891-9891     C01320/JSENV                    com.github.trending   I     Ability::constructor callee is object [object Object]
+10-10 07:33:07.428   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:316]End
+10-10 07:33:07.428   9891-9891     C01332/UIAbility                com.github.trending   I     [ui_ability_thread.cpp:168]Lifecycle:Attach
+10-10 07:33:07.431   9891-9891     C01317/AppKit                   com.github.trending   I     [main_thread.cpp:2529]called
+10-10 07:33:07.431   9891-9891     C03f00/ArkCompiler              com.github.trending   I     [gc] app is not inBackground
+10-10 07:33:07.435   9891-9891     C01707/CONCUR                   com.github.trending   E     [Interface] task 10014 apply qos failed, errno = 4
+10-10 07:33:07.439   9891-9891     C01707/CONCUR                   com.github.trending   E     [Interface] task 10015 apply qos failed, errno = 4
+10-10 07:33:07.443   9891-9891     C01707/CONCUR                   com.github.trending   E     [Interface] task 10016 apply qos failed, errno = 4
+10-10 07:33:07.446   9891-10003    C01332/UIAbility                com.github.trending   I     [ui_ability_thread.cpp:315]name:EntryAbility,targeState:5,isNewWant:0
+10-10 07:33:07.447   9891-9891     C01332/UIAbility                com.github.trending   I     [ui_ability_thread.cpp:234]Lifecycle:name EntryAbility
+10-10 07:33:07.447   9891-9891     C01332/UIAbility                com.github.trending   E     [ui_ability.cpp:599]appRecovery not recovery restart
+10-10 07:33:07.447   9891-9891     C04201/DisplayManager           com.github.trending   I     (907)AddDisplayIdFromAms: abilityToken and display[0] has been added.
+10-10 07:33:07.449   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.449   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.449   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.451   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1585]JsUIAbility call js, name: onCreate
+10-10 07:33:07.451   9891-9891     A00000/testTag                  com.github.trending   I     Ability onCreate
+10-10 07:33:07.451   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1630]end, name: onCreate, time: 0
+10-10 07:33:07.451   9891-9891     C01332/UIAbility                com.github.trending   E     [ui_ability_impl.cpp:301]hasSaveData_: false
+10-10 07:33:07.452   9891-9891     C01332/UIAbility                com.github.trending   W     [js_ui_ability.cpp:932]formatRegex: []
+10-10 07:33:07.452   9891-9891     C04202/WMSMain                  com.github.trending   I     [] Init(93): WindowScene with window session!
+10-10 07:33:07.452   9891-9891     C04202/WMSMain                  com.github.trending   I     [] Init(103): set isModuleAbilityHookEnd
+10-10 07:33:07.454   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSLogManager init log flag: 0x0(0)
+10-10 07:33:07.454   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSFrameRateLinker::Create id: 42481521524736
+10-10 07:33:07.454   9891-9891     C04202/WMSMain                  com.github.trending   I     [] VsyncStation(55): id 42481521524737 created
+10-10 07:33:07.454   9891-9891     C04200/WindowSceneSessionImpl   com.github.trending   I     (147)WindowSceneSessionImpl: [WMSCom] Constructor trending0
+10-10 07:33:07.456   9891-9891     C04200/WMS                      com.github.trending   E     [] SetWindowType(2253): permission denied!
+10-10 07:33:07.457   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Create(580): Window Create name:trending0, state:0, mode:0
+10-10 07:33:07.458   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Create(594): SetIsAbilityHookOff 0
+10-10 07:33:07.458   9891-9891     C0420a/WMSLife                  com.github.trending   W     [] IsWindowSessionInvalid(406): already destroyed or not created! id: 0 state_: 0
+10-10 07:33:07.458   9891-9891     C04200/WindowSceneSessionImpl   com.github.trending   W     (4570)AdjustWindowAnimationFlag: session invalid!
+10-10 07:33:07.458   9891-9891     C04200/WindowSceneSessionImpl   com.github.trending   I     (599)Remove window flag WINDOW_FLAG_SHOW_WHEN_LOCKED
+10-10 07:33:07.459   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Connect(556): in
+10-10 07:33:07.459   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:0
+10-10 07:33:07.460   9891-10003    C0421d/WMSRotation              com.github.trending   I     [] SetCurrentRotation(6018): currentRotation: 0
+10-10 07:33:07.464   9891-10003    C04208/WMSLayout                com.github.trending   I     [] UpdateRect(845): [0 0 1260 2720], preRect:[0 0 0 0], reason:23, hasRSTransaction:0, duration:400, [name:trending0, id:0], clientDisplayId: 0
+10-10 07:33:07.464   9891-10003    C04208/WMSLayout                com.github.trending   W     [] NotifySingleHandTransformChange(5600): id:0, uiContent is nullptr
+10-10 07:33:07.464   9891-10025    C057c1/IPCWorkThread            com.github.trending   I     ThreadHandler 119: proto:0 policy:0 name:OS_IPC_2_10025 invoker:3462224
+10-10 07:33:07.464   9891-9891     C04208/WMSLayout                com.github.trending   I     [] Connect(307): updateRect when connect.preRect:[0,0,1260,2720]rect:[0,0,1260,2720]
+10-10 07:33:07.464   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Connect(574): Window Connect [name:trending0, id:33, type:1], ret:0
+10-10 07:33:07.465   9891-9891     C04218/WMSPc                    com.github.trending   I     [] MakeSubOrDialogWindowDragableAndMoveble(316): Called 33.
+10-10 07:33:07.467   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:33
+10-10 07:33:07.467   9891-9891     C04208/WMSLayout                com.github.trending   I     [] GetSystemSizeLimits(1222): maxWidth: 6240, minWidth: 1040, maxHeight: 6240, minHeight: 780, maxFloatingWindowSize: 1920, vpr: 3.250000
+10-10 07:33:07.468   9891-9891     C0421a/WMSLayoutPc              com.github.trending   I     [] GetConfigurationFromAbilityInfo(1159): winId: 33, windowModeSupportType: 15
+10-10 07:33:07.468   9891-9891     C0420f/WMSRecover               com.github.trending   I     [] RegisterSessionRecoverCallbackFunc(346): persistentId=33
+10-10 07:33:07.468   9891-9891     C04209/WMSImms                  com.github.trending   I     [] UpdateDefaultStatusBarColor(851): win 33 type 1 hasDarkRes 0 colorMode light
+10-10 07:33:07.468   9891-9891     C04209/WMSImms                  com.github.trending   I     [] SetSpecificBarProperty(2678): win [33 trending0] type 2108 1 ffffff ff000000 0 4
+10-10 07:33:07.468   9891-9891     C04200/WMS                      com.github.trending   I     [] IsMainHandlerAvailable(414): id:33, isAvailable:1
+10-10 07:33:07.468   9891-9891     C04200/WMS                      com.github.trending   I     [] IsMainHandlerAvailable(414): id:33, isAvailable:1
+10-10 07:33:07.468   9891-9891     C02800/InputManagerImpl         com.github.trending   I     [][SetWindowInputEventConsumer:368] enter
+10-10 07:33:07.469   9891-9891     C02801/Multimo...tConnectProxy  com.github.trending   I     [][MultimodalInputConnectProxy:92] Construct MMI proxy
+10-10 07:33:07.471   9891-9891     C02801/Multimo...onnectManager  com.github.trending   I     [][ConnectMultimodalInputService:590] Get multimodalinput service successful
+10-10 07:33:07.472   9891-9891     C02800/MMIClient                com.github.trending   I     [][OnConnected:264] Connection to server succeeded, fd:78
+10-10 07:33:07.472   9891-9891     C02800/MMIClient                com.github.trending   I     [][AddFdListener:163] Server was listening
+10-10 07:33:07.472   9891-9891     C02800/MMIClient                com.github.trending   I     [][StartEventRunner:124] reuse current event handler, thread name:
+10-10 07:33:07.472   9891-9891     C02800/MMIClient                com.github.trending   I     [][StartEventRunner:127] File fd is in listening
+10-10 07:33:07.472   9891-9891     C02800/InputManagerImpl         com.github.trending   I     [][SetWindowInputEventConsumer] leave
+10-10 07:33:07.472   9891-9891     C0420c/WMSEvent                 com.github.trending   I     [] AddInputWindow(184): SetWindowInputEventConsumer success, wid:33
+10-10 07:33:07.472   9891-9891     C0420c/WMSEvent                 com.github.trending   I     [] LoadGameController(132): in
+10-10 07:33:07.473   9891-9891     C04732/GameController           com.github.trending   I     [(RegisterEntryModule:26)]begin load gamecontroller_event
+10-10 07:33:07.473   9891-9891     C04732/GameController           com.github.trending   I     [(SubscribeEvent:24)]SubscribePublicEvent success
+10-10 07:33:07.473   9891-9891     C0420c/WMSEvent                 com.github.trending   I     [] LoadGameController(136): dlopen GameController success
+10-10 07:33:07.473   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] ConnectServer(68): start connect
+10-10 07:33:07.474   9891-9891     C04217/WMSAttribute             com.github.trending   W     [] ConnectServer(72): noload fail: libark_connect_inspector.z.so
+10-10 07:33:07.474   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] ConnectServer(93): end connect
+10-10 07:33:07.474   9891-9891     C04217/WMSAttribute             com.github.trending   W     [] RegisterGetWMSWindowListCallback(111): callback has registered
+10-10 07:33:07.474   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] RegisterGetWMSWindowListCallback(113): winId: 33
+10-10 07:33:07.474   9891-9891     C04200/SingletonContainer       com.github.trending   E     (82)GetSingleton: can not get OHOS::Rosen::WindowInfoReporter
+10-10 07:33:07.474   9891-9891     C01332/UIAbility                com.github.trending   E     [ui_ability.cpp:324]appRecovery not recovery restart
+10-10 07:33:07.474   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1585]JsUIAbility call js, name: onWindowStageCreate
+10-10 07:33:07.474   9891-9891     A00000/testTag                  com.github.trending   I     Ability onWindowStageCreate
+10-10 07:33:07.475   9891-9891     C04200/JsWindowStage            com.github.trending   I     (109)LoadContent: [NAPI]
+10-10 07:33:07.475   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1630]end, name: onWindowStageCreate, time: 1
+10-10 07:33:07.475   9891-9891     C04202/WMSMain                  com.github.trending   I     [] GoForeground(159): reason: 4
+10-10 07:33:07.475   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Show(1396): Window show [name: trending0, id: 33, type: 1], reason: 4, state:1, requestState:1
+10-10 07:33:07.476   9891-9891     C04208/WMSLayout                com.github.trending   I     [] GetSystemSizeLimits(1222): maxWidth: 6240, minWidth: 1040, maxHeight: 6240, minHeight: 780, maxFloatingWindowSize: 1920, vpr: 3.250000
+10-10 07:33:07.476   9891-9891     C04208/WMSLayout                com.github.trending   I     [] UpdateNewSize(4967): fullscreen or compatible mode could not update new size, Id: 33
+10-10 07:33:07.476   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] IsSystemDensityChanged(5830): windowId: 33, lastDensity: -1.000000, currDensity: 3.250000
+10-10 07:33:07.476   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:33
+10-10 07:33:07.477   9891-9891     C04200/WindowSessionImpl        com.github.trending   W     (1414)UpdateViewportConfig: uiContent is null!
+10-10 07:33:07.477   9891-9891     C01332/UIAbility                com.github.trending   I     [ui_ability_impl.cpp:426]wnd call, AfterForeground
+10-10 07:33:07.477   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSFrameRateLinker::Create id: 42481521524737
+10-10 07:33:07.479   9891-9891     C01706/rtg_interface            com.github.trending   I     rtg Open fail, errno = 2(No such file or directory), dev = /proc/self/sched_rtg_ctrl
+10-10 07:33:07.479   9891-9891     C01706/RsFrameReportExt         com.github.trending   I     RsFrameReportExt:[LoadLibrary] load library success!
+10-10 07:33:07.479   9891-9891     C01706/RsFrameReportExt         com.github.trending   I     RsFrameReportExt:[Init] dlopen libframe_ui_intf.so success!
+10-10 07:33:07.479   9891-9891     C01706/ueaClient-RmeCoreSched   com.github.trending   E     [Init]: do not enabled!ret: -1
+10-10 07:33:07.479   9891-9891     C01706/ueaClient-FrameMsgMgr    com.github.trending   I     [Init]:inited success!
+10-10 07:33:07.479   9891-9891     C01706/ueaClient-FrameUiIntf    com.github.trending   I     [Init]:ret:1, inited:1
+10-10 07:33:07.479   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] InitWaterfallMode(3328): winId: 33
+10-10 07:33:07.479   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] NotifyWaterfallModeChange(3361): winId: 33, waterfall: 0, stat: 2
+10-10 07:33:07.479   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] NotifyAfterDidForeground(3756): reason: 4
+10-10 07:33:07.479   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] Show(1467): Window show success [name:trending0, id:33, type:1]
+10-10 07:33:07.479   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:33
+10-10 07:33:07.479   9891-9891     C04201/DMS                      com.github.trending   W     [] OnDisplayInfoChange(91): not need notify display info, data is not changed.
+10-10 07:33:07.480   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.480   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.480   9891-9891     C01324/JsNapi                   com.github.trending   W     [napi_common_want.cpp:1132]not wantpram
+10-10 07:33:07.480   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1585]JsUIAbility call js, name: onForeground
+10-10 07:33:07.480   9891-9891     A00000/testTag                  com.github.trending   I     Ability onForeground
+10-10 07:33:07.480   9891-9891     C01332/UIAbility                com.github.trending   I     [js_ui_ability.cpp:1630]end, name: onForeground, time: 0
+10-10 07:33:07.482   9891-10025    C04207/WMSFocus                 com.github.trending   I     [] UpdateFocus(1237): focus: 1, id: 33
+10-10 07:33:07.483   9891-10025    C04207/WMSFocus                 com.github.trending   I     [] NotifyHighlightChange(1995): windowId: 33, isHighlight: 1,
+10-10 07:33:07.483   9891-10025    C04208/WMSLayout                com.github.trending   W     [] NotifySingleHandTransformChange(5600): id:33, uiContent is nullptr
+10-10 07:33:07.494   9891-9891     C0420a/WMSLife                  com.github.trending   I     []: NotifyAfterDidForeground execute
+10-10 07:33:07.494   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] SetUIContentInner(1725): pages/Index, state:2, persistentId: 33
+10-10 07:33:07.494   9891-9891     C0420a/WMSLife                  com.github.trending   I     [] SetUIContentComplete(5737): persistentId=33
+10-10 07:33:07.494   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:33
+10-10 07:33:07.494   9891-9891     C03900/Ace                      com.github.trending   I     [(-1:-1:undefined)] CreateUIContent.
+10-10 07:33:07.494   9891-9891     C03934/AceUIEvent               com.github.trending   I     [(-1:-1:undefined)] report ace loaded
+10-10 07:33:07.495   9891-9891     C01719/ffrt                     com.github.trending   I     6:QueueMonitor:39 QueueMonitor ctor enter
+10-10 07:33:07.495   9891-9891     C01719/ffrt                     com.github.trending   I     7:QueueMonitor:47 QueueMonitor ctor leave, watchdog timeout of 30000000 us has been set
+10-10 07:33:07.495   9891-9891     C01719/ffrt                     com.github.trending   I     8:QueueHandler:70 construct sq_EventHandler_QUEUE_1 succ, qos[2]
+10-10 07:33:07.495   9891-9891     C04707/HaAceEngine              com.github.trending   I     OnAceLoaded end
+10-10 07:33:07.495   9891-9891     C0391f/AceImage                 com.github.trending   W     [(-2:-1:undefined)] mkdir cache file path failed.
+10-10 07:33:07.495   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] Create ace bg threads pool.
+10-10 07:33:07.499   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] Init RenderService UniRender Type:0
+10-10 07:33:07.499   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] [com.github.trending][entry][-1]: UIContent: apiCompatibleVersion: 40100011, apiTargetVersion: 50101019, and apiReleaseType: Release, useNewPipe: 1
+10-10 07:33:07.501   9891-9891     C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.sys.arkui.animationscale remoteWatcherId 65 success
+10-10 07:33:07.504   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] SetLocale language tag: zh-CN, select language: zh-CN
+10-10 07:33:07.504   9891-10021    C04707/HaClient                 com.github.trending   W     =========Invalid Client=========
+10-10 07:33:07.504   9891-10021    C04707/HaAceEngine              com.github.trending   I     UTG state is not on.
+10-10 07:33:07.504   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] [com.github.trending][entry][-1]: SetLanguage: zh, colorMode: light, deviceAccess: 1
+10-10 07:33:07.504   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:-1:undefined)] [com.github.trending][entry][-1]: Initialize UIContent isModelJson:true
+10-10 07:33:07.506   9891-10032    C01201/EventQueue               com.github.trending   I     SetVsyncFirst(1)
+10-10 07:33:07.510   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] SetHapPath, Use hap path to load resource
+10-10 07:33:07.510   9891-9891     C04217/WMSAttribute             com.github.trending   I     [] RegisterWaterfallModeChangeListener(3336): winId: 33
+10-10 07:33:07.511   9891-9891     C04200/WMS                      com.github.trending   I     [] GetSurfaceNode(1918): name:trending0, id:33
+10-10 07:33:07.511   9891-9891     C04200/WMS                      com.github.trending   I     [] GetSurfaceNode(1918): name:trending0, id:33
+10-10 07:33:07.511   9891-9891     C01406/OHOS::RS                 com.github.trending   E     RSRenderNodeDrawableAdapter::OnGenerate, node type 1 is not supported
+10-10 07:33:07.511   9891-9891     C01406/OHOS::RS                 com.github.trending   E     RSRenderNode::InitRenderParams failed
+10-10 07:33:07.513   9891-9891     C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.sys.graphic.animationscale remoteWatcherId 65 success
+10-10 07:33:07.514   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSSurfaceNode::SetAbilityState, surfaceNodeId:[42481521524737], ability state: foreground
+10-10 07:33:07.514   9891-10041    C02c03/PARAM_WATCHER            com.github.trending   E     [watcher_manager_kits.cpp:165]Failed to add callback for persist.sys.graphic.animationscale 
+10-10 07:33:07.514   9891-10041    C02c03/PARAM_WATCHER            com.github.trending   E     [watcher_manager_kits.cpp:345]SystemWatchParameter is failed! keyPrefix is:persist.sys.graphic.animationscale, errNum is:110
+10-10 07:33:07.514   9891-10041    C02c0b/BEGET                    com.github.trending   E     [service_watcher.c:83]WatchParameter failed! the errNum is 110
+10-10 07:33:07.515   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] CleanUpIdleTask is a valid function
+10-10 07:33:07.516   9891-9891     C03900/Ace                      com.github.trending   W     [(100000:100000:scope)] Invalid config:zh_CN-long-notround-vertical-light-phone-xxhdpi
+10-10 07:33:07.516   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSSurfaceNode::SetAbilityState, surfaceNodeId:[42481521524737], ability state: background
+10-10 07:33:07.516   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] set translateManager to pipeline, instanceId:100000
+10-10 07:33:07.516   9891-9891     C0421d/WMSRotation              com.github.trending   I     [] RegisterOrientationChangeListener(5554): in
+10-10 07:33:07.516   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] AddPersistAfterLayoutTask size: 1
+10-10 07:33:07.517   9891-9891     C03937/AceResource              com.github.trending   I     [(100000:100000:scope)] ResourceAdapter UpdateResConfig with colorMode light
+10-10 07:33:07.517   9891-9891     C03900/Ace                      com.github.trending   W     [(100000:100000:scope)] not found systemTheme in HapModuleInfo, loading default OHOS_THEME
+10-10 07:33:07.517   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Cannot Get File List from resources/styles/
+10-10 07:33:07.517   9891-9891     C03900/Ace                      com.github.trending   W     [(100000:100000:scope)] GetAsset failed: resources/styles/default.json
+10-10 07:33:07.533   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] root node OnAttachToFrameNode, id:0
+10-10 07:33:07.533   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Rosenwindow set root frame node
+10-10 07:33:07.534   9891-9891     C02220/IntentionClient          com.github.trending   I     in Connect, enter
+10-10 07:33:07.534   9891-9891     C02220/IntentionClient          com.github.trending   I     in Connect, Connecting IntentionService success
+10-10 07:33:07.534   9891-9891     C02220/IntentionClient          com.github.trending   I     in Connect, leave
+10-10 07:33:07.538   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   E     [(AccessibilitySystemAbilityClientImpl:57)]accessibility service is ready.
+10-10 07:33:07.541   9891-9891     C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix accessibility.config.ready remoteWatcherId 65 success
+10-10 07:33:07.541   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] focusWindowId: 0, realHostWindowId: 0
+10-10 07:33:07.542   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] [com.github.trending][entry][100000]: window focus
+10-10 07:33:07.543   9891-9891     C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix debug.graphic.frame remoteWatcherId 65 success
+10-10 07:33:07.543   9891-9891     C03900/Ace                      com.github.trending   E     [(100000:100000:scope)] ERROR EACCES
+10-10 07:33:07.543   9891-9891     C03900/Ace                      com.github.trending   E     [(100000:100000:scope)] ERROR EACCES
+10-10 07:33:07.543   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] ArkUIInvisibleFreeze: 0
+10-10 07:33:07.543   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] [com.github.trending][entry][100000]: SetMinPlatformVersion is 40100011
+10-10 07:33:07.543   9891-9891     C04209/WMSImms                  com.github.trending   I     [] RegisterAvoidAreaChangeListener(4242): win 33
+10-10 07:33:07.546   9891-10025    C04208/WMSLayout                com.github.trending   I     [] UpdateRect(845): [0 0 1260 2720], preRect:[0 0 1260 2720], reason:23, hasRSTransaction:0, duration:400, [name:trending0, id:33], clientDisplayId: 0
+10-10 07:33:07.547   9891-9891     C04209/WMSImms                  com.github.trending   I     [] GetAvoidAreaByType(2424): win [33 trending0] type 0 times 1 area top [0 0 1260 126] 
+10-10 07:33:07.549   9891-9891     C04209/WMSImms                  com.github.trending   I     [] GetAvoidAreaByType(2424): win [33 trending0] type 1 times 2 area top [494 36 273 72] 
+10-10 07:33:07.549   9891-9891     C04209/WMSImms                  com.github.trending   I     [] GetAvoidAreaByType(2424): win [33 trending0] type 4 times 3 area bottom [409 2629 442 91] 
+10-10 07:33:07.550   9891-9891     C03959/AceLayout                com.github.trending   I     [(100000:100000:scope)] InitializeSafeArea systemInsets:SafeAreaInsets left_: [start: 0, end: 0], top_: [start: 0, end: 126], right_: [start: 0, end: 0], bottom_: [start: 0, end: 0], cutoutInsets:SafeAreaInsets left_: [start: 0, end: 0], top_: [start: 36, end: 108], right_: [start: 0, end: 0], bottom_: [start: 0, end: 0], navInsets:SafeAreaInsets left_: [start: 0, end: 0], top_: [start: 0, end: 0], right_: [start: 0, end: 0], bottom_: [start: 2629, end: 2720]
+10-10 07:33:07.550   9891-9891     C0394e/AceWindow                com.github.trending   I     [(100000:100000:scope)] Initialize displayId: 0, availableRect: [0, 0, 1260, 2720]
+10-10 07:33:07.551   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Failed to open libthp_extra_innerapi.z.so, reason: Error loading shared library /system/lib64/libthp_extra_innerapi.z.so: No such file or directory
+10-10 07:33:07.551   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: Initialize: pages/Index
+10-10 07:33:07.551   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] RunPage:pages/Index
+10-10 07:33:07.553   9891-9891     C03900/Ace                      com.github.trending   W     [(100000:100000:scope)] GetAsset failed: manifest.json
+10-10 07:33:07.554   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending]: UIContentImpl::RegisterLinkJumpCallback
+10-10 07:33:07.554   9891-10038    C03951/InputKeyFlow             com.github.trending   I     [(-1:100000:singleton)] Subscribe touch.events.pass.through Event
+10-10 07:33:07.555   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.ace.trace.layout.enabled remoteWatcherId 65 success
+10-10 07:33:07.555   9891-9891     C03900/Ace                      com.github.trending   W     [(-2:100000:singleton)] UIContentImpl::RegisterLinkJumpCallback, errorNo: 39845889
+10-10 07:33:07.555   9891-9891     C04200/WindowSessionImpl        com.github.trending   I     (1619)InitUIContent: Initialized, isUIExtensionSubWindow:0, isUIExtensionAbilityProcess:0
+10-10 07:33:07.555   9891-9891     C04208/WMSLayout                com.github.trending   I     [] SetUIContentInner(1742): single hand, id:33, posX:0, posY:0, scaleX:1.000000, scaleY:1.000000
+10-10 07:33:07.556   9891-10038    C01719/ffrt                     com.github.trending   I     9:QueueHandler:70 construct sq_cesResubMain_2 succ, qos[2]
+10-10 07:33:07.557   9891-9891     C04200/WMS                      com.github.trending   I     [] GetContext(1925): name:trending0, id:33
+10-10 07:33:07.557   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: UpdateWindowVisible: 1, hasDecor: 0
+10-10 07:33:07.557   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: NotifyWindowMode mode = 1
+10-10 07:33:07.557   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.ace.trace.inputevent.enabled remoteWatcherId 65 success
+10-10 07:33:07.558   9891-10047    C057c1/IPCWorkThread            com.github.trending   I     ThreadHandler 119: proto:0 policy:0 name:OS_IPC_3_10047 invoker:3467408
+10-10 07:33:07.560   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix const.security.developermode.state remoteWatcherId 65 success
+10-10 07:33:07.560   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.ace.debug.statemgr.enabled remoteWatcherId 65 success
+10-10 07:33:07.560   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.ace.debug.boundary.enabled remoteWatcherId 65 success
+10-10 07:33:07.560   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: window foreground
+10-10 07:33:07.561   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Update application state , state: ON_SHOW
+10-10 07:33:07.561   9891-9891     C01406/OHOS::RS                 com.github.trending   I     RSSurfaceNode::SetAbilityState, surfaceNodeId:[42481521524737], ability state: foreground
+10-10 07:33:07.561   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] ArkUI requests first Vsync.
+10-10 07:33:07.561   9891-9891     C04202/WMSMain                  com.github.trending   I     [] RequestVsync(130): First vsync has requested, nodeId: 42481521524737
+10-10 07:33:07.561   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.ace.performance.monitor.enabled remoteWatcherId 65 success
+10-10 07:33:07.561   9891-9891     C03959/AceLayout                com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: UpdateViewportConfig Viewport config: size: (1260, 2720) orientation: 0 density: 3.250000 position: (0, 0) transformHint: 270 displayId: 0, windowSizeChangeReason 0, is rsTransaction nullptr 1, 
+10-10 07:33:07.562   9891-9891     C04208/WMSLayout                com.github.trending   I     [] UpdateViewportConfig(1431): Id: 33, reason: 0, windowRect: [0 0 1260 2720], displayOrientation: 0, config[0, 270, 270, 3.250000]
+10-10 07:33:07.562   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]: window focus
+10-10 07:33:07.562   9891-9891     C03900/Ace                      com.github.trending   I     [(-2:100000:singleton)] [com.github.trending][entry][100000]:window active
+10-10 07:33:07.563   9891-9891     C01320/JsEnv                    com.github.trending   W     [source_map.cpp:145]the stack without line info
+10-10 07:33:07.563   9891-9891     A00000/testTag                  com.github.trending   I     Succeeded in loading the content. Data: 
+10-10 07:33:07.563   9891-9891     C04200/JsWindowStage            com.github.trending   I     (416)Window [33, trending0] load content end, ret=0
+10-10 07:33:07.563   9891-9891     C04209/WMSImms                  com.github.trending   I     [] NotifyAvoidAreaChange(4336): win 33 api 19 type 0 area top [0 0 1260 126] 
+10-10 07:33:07.563   9891-9891     C04209/WMSImms                  com.github.trending   I     [] NotifyAvoidAreaChange(4336): win 33 api 19 type 1 area top [494 36 273 72] 
+10-10 07:33:07.563   9891-9891     C04209/WMSImms                  com.github.trending   I     [] NotifyAvoidAreaChange(4336): win 33 api 19 type 2 area empty
+10-10 07:33:07.563   9891-9891     C04209/WMSImms                  com.github.trending   I     [] NotifyAvoidAreaChange(4336): win 33 api 19 type 3 area empty
+10-10 07:33:07.563   9891-9891     C04209/WMSImms                  com.github.trending   I     [] NotifyAvoidAreaChange(4336): win 33 api 19 type 4 area bottom [409 2629 442 91] 
+10-10 07:33:07.563   9891-9891     C03959/AceLayout                com.github.trending   I     [(-1:100000:singleton)] [com.github.trending][entry][100000]: UpdateViewportConfig Viewport config: size: (1260, 2720) orientation: 0 density: 3.250000 position: (0, 0) transformHint: 270 displayId: 0, windowSizeChangeReason 23, is rsTransaction nullptr 1, updateAvoidAreas size: 5[(0,top [0 0 1260 126] )(1,top [494 36 273 72] )(2,empty)(3,empty)(4,bottom [409 2629 442 91] )]
+10-10 07:33:07.563   9891-9891     C04208/WMSLayout                com.github.trending   I     [] UpdateViewportConfig(1431): Id: 33, reason: 23, windowRect: [0 0 1260 2720], displayOrientation: 0, config[0, 270, 270, 3.250000]
+10-10 07:33:07.564   9891-10039    C02c03/PARAM_WATCHER            com.github.trending   I     [watcher_manager_kits.cpp:171]Add watcher keyPrefix persist.gesture.smart_gesture_enable remoteWatcherId 65 success
+10-10 07:33:07.564   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Update application state , state: ON_ACTIVE
+10-10 07:33:07.564   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.564   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.564   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] Window: 33 get focus.
+10-10 07:33:07.564   9891-9891     C0391c/AceFocus                 com.github.trending   W     [(100000:100000:scope)] Current focus view can not found!
+10-10 07:33:07.564   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] Request focus on rootFocusHub: root/0
+10-10 07:33:07.565   9891-9891     C03959/AceLayout                com.github.trending   I     [(-1:100000:singleton)] [com.github.trending][entry][100000]: UpdateViewportConfig Viewport config: size: (1260, 2720) orientation: 0 density: 3.250000 position: (0, 0) transformHint: 270 displayId: 0, windowSizeChangeReason 23, is rsTransaction nullptr 1, updateAvoidAreas size: 5[(0,top [0 0 1260 126] )(1,top [494 36 273 72] )(2,empty)(3,empty)(4,bottom [409 2629 442 91] )]
+10-10 07:33:07.565   9891-9891     C04208/WMSLayout                com.github.trending   I     [] UpdateViewportConfig(1431): Id: 33, reason: 23, windowRect: [0 0 1260 2720], displayOrientation: 0, config[0, 270, 270, 3.250000]
+10-10 07:33:07.565   9891-9891     C03925/AceRouter                com.github.trending   I     [(100000:100000:scope)] Page router manager is creating page[1]: url: pages/Index path: pages/Index.js, recoverable: yes, namedRouter: no
+10-10 07:33:07.567   9891-9891     C03925/AceRouter                com.github.trending   I     [(100000:100000:scope)] add named router record, name: , bundleName: com.github.trending, moduleName: entry, pagePath: pages/Index, pageFullPath: entry/src/main/ets/pages/Index, ohmUrl: @bundle:com.github.trending/entry/ets/pages/Index
+10-10 07:33:07.573   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel ViewModel初始化
+10-10 07:33:07.573   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 开始加载数据（来源=zread.ai）
+10-10 07:33:07.576   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style text_pattern not contains linear_split_child_min_size!
+10-10 07:33:07.579   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style 125829872 not contains scrollable_pattern!
+10-10 07:33:07.580   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style 125829872 not contains scroll_bar_pattern!
+10-10 07:33:07.581   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style 125829872 not contains list_pattern!
+10-10 07:33:07.582   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] view: page/2 show
+10-10 07:33:07.582   9891-9891     C03922/AceNavigation            com.github.trending   I     [(100000:100000:scope)] can't find inner navigation
+10-10 07:33:07.582   9891-9891     C01311/AppMS                    com.github.trending   I     [app_mgr_client.cpp:87]get AppMgrRemote object
+10-10 07:33:07.584   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] StageManager FrameNode notNeedSoftKeyboard.
+10-10 07:33:07.584   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] Container not SceneBoardWindow.
+10-10 07:33:07.584   9891-9891     C03925/AceRouter                com.github.trending   I     [(100000:100000:scope)] LoadPage Success
+10-10 07:33:07.584   9891-9891     C0392a/AceUiExtensionComponent  com.github.trending   I     [(-1:100000:singleton)] NotifyWindowMode aliveUIExtensions = 0
+10-10 07:33:07.584   9891-9891     C0394e/AceWindow                com.github.trending   I     [(100000:100000:scope)] Update displayWindowRect in UpdateViewportConfig to : Rect (0.00, 0.00) - [1260.00 x 2720.00]
+10-10 07:33:07.584   9891-9891     C03959/AceLayout                com.github.trending   I     [(100000:100000:scope)] SetIsFullScreen 1
+10-10 07:33:07.585   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Root node request first frame.
+10-10 07:33:07.585   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Update application state , state: ON_ACTIVE
+10-10 07:33:07.585   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.585   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.585   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] Window: 33 get focus.
+10-10 07:33:07.585   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] Update application state , state: ON_ACTIVE
+10-10 07:33:07.585   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.585   9891-9891     C01d02/accessibility_asacfwk    com.github.trending   I     [(SubscribeStateObserver:515)]Observer has subscribed!
+10-10 07:33:07.585   9891-9891     C04202/WMSMain                  com.github.trending   I     [] VsyncCallbackInner(186): First vsync has come back, nodeId: 42481521524737
+10-10 07:33:07.591   9891-10048    C01719/ffrt                     com.github.trending   W     10:FFRTQosApplyForOther:249 tid 10048, Interrupted system call, ret:-1, eno:4
+10-10 07:33:07.594   9891-9891     C01408/Text                     com.github.trending   I     InitTextBundleConfig: Adapter text height enabled: 0
+10-10 07:33:07.610   9891-9891     C03900/Ace                      com.github.trending   I     [(100000:100000:scope)] ArkUi flush first frame messages.
+10-10 07:33:07.611   9891-10052    C01719/ffrt                     com.github.trending   W     11:FFRTQosApplyForOther:249 tid 10052, Interrupted system call, ret:-1, eno:4
+10-10 07:33:07.612   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] Request focus on focusView: page/2.
+10-10 07:33:07.612   9891-9891     C0391c/AceFocus                 com.github.trending   I     [(100000:100000:scope)] WinFocusMove end, root/secure_field onBlur, Column/secure_field onFocus, start: 2, end: 1, update: 2
+10-10 07:33:07.612   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] current focus node info : (Column/5).
+10-10 07:33:07.612   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] Normal Window focus first, set focus flag to window.
+10-10 07:33:07.612   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] Trigger Window Focus Callback
+10-10 07:33:07.612   9891-9891     C03933/AceKeyboard              com.github.trending   I     [(100000:100000:scope)] need keyboard : 0.
+10-10 07:33:07.612   9891-9891     C0420b/WMSKeyboard              com.github.trending   I     []: id: 33, isNeedKeyboard: 0, keepKeyboardFlag: 0
+10-10 07:33:07.612   9891-9891     C0420b/WMSKeyboard              com.github.trending   I     [] RequestInputMethodCloseKeyboard(3834): Notify InputMethod framework close keyboard start.
+10-10 07:33:07.612   9891-9891     C01c10/ImsaKit                  com.github.trending   I     line: 160, function: GetSystemAbilityProxy,get input method service proxy.
+10-10 07:33:07.615   9891-9891     C0420b/WMSKeyboard              com.github.trending   I     [] RequestInputMethodCloseKeyboard(3837): Notify InputMethod framework close keyboard end.
+10-10 07:33:07.615   9891-9891     C03903/AceSubWindow             com.github.trending   I     [(100000:100000:scope)] hide menu ng exit, window not exist
+10-10 07:33:07.615   9891-9891     C04216/WMSPattern               com.github.trending   I     [] FlushLayoutSize(1106): NotifyFrameLayoutFinishFromApp, id: 33, rect: [0 0 1260 2720], notifyListener: 0
+10-10 07:33:07.618   9891-9891     C01406/OHOS::RS                 com.github.trending   E     FlushImplicitTransaction return, [renderServiceClient_:1, transactionData empty:1]
+10-10 07:33:08.424   9891-9891     C01356/Recovery                 com.github.trending   I     [app_recovery.cpp:468]fileDir: /data/storage/el2/base/files
+10-10 07:33:08.574   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingRepository 开始获取趋势仓库数据
+10-10 07:33:08.574   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 成功获取 3 个仓库
+10-10 07:33:08.590   9891-9891     C03913/AceText                  com.github.trending   W     [(100000:100000:scope)] destroy TxtParagraph with placeholderCnt_ 0, textAlign_ 0, count 0
+10-10 07:33:08.591   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style 125829872 not contains image_pattern!
+10-10 07:33:08.591   9891-9891     C03926/AceTheme                 com.github.trending   W     [(100000:100000:scope)] style 125829872 not contains app_theme_pattern!
+10-10 07:33:08.604   9891-9891     C01719/ffrt                     com.github.trending   W     12:onSkip:64 skip task [9] faild
+10-10 07:33:09.420   9891-10067    C01317/AppKit                   com.github.trending   W     [main_thread.cpp:1888]can not get file_stat
+10-10 07:33:09.461   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [][OnPointerEvent:210] ac: down: 656
+10-10 07:33:09.462   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [P:D:656][OnPointerEvent:646] id:656 recv
+10-10 07:33:09.462   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] HandleInputEvent(88): eid:0,InputId:656,wid:33,ac:2
+10-10 07:33:09.462   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:656, fingerId:0, type=0, inject=0, isPrivacyMode=0
+10-10 07:33:09.462   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:656, touch test hitted node info: fingerId: 0{ tag: Button, depth: 8 };
+10-10 07:33:09.463   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:656, touch test hitted recognizer type info: recognizer type ClickRecognizer node info: { tag: Button };
+10-10 07:33:09.463   9891-9891     C03945/AceStateStyle            com.github.trending   I     [(100000:100000:scope)] Handle TouchDown event node: Button
+10-10 07:33:09.463   9891-9891     C03919/AceInputTracking         com.github.trending   I     [(100000:100000:scope)] Consumed new event id=656 in ace_container, lastEventInfo: id:-1
+10-10 07:33:09.463   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] ConsumePointerEventInner(1049): InputId:656,wid:33,pointId:0,srcType:2,rect:[0,0,1260,2720],notify:1
+10-10 07:33:09.465   9891-10070    C01719/ffrt                     com.github.trending   W     13:FFRTQosApplyForOther:249 tid 10070, Interrupted system call, ret:-1, eno:4
+10-10 07:33:09.470   9891-10069    C01719/ffrt                     com.github.trending   W     14:FFRTQosApplyForOther:249 tid 10069, Interrupted system call, ret:-1, eno:4
+10-10 07:33:09.473   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [][OnPointerEvent:210] ac: move: 657
+10-10 07:33:09.564   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [][OnPointerEvent:210] ac: move, first: 658-(2025-10-10 07:33:09.550ms), count: 1, last: ac: up: 659
+10-10 07:33:09.564   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [P:U:659][OnPointerEvent:646] id:659 recv
+10-10 07:33:09.564   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] HandleInputEvent(88): eid:1,InputId:659,wid:33,ac:4
+10-10 07:33:09.565   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:659, fingerId:0, type=1, inject=0, isPrivacyMode=0
+10-10 07:33:09.565   9891-9891     C03945/AceStateStyle            com.github.trending   I     [(100000:100000:scope)] Handle TouchUp or Cancel event node: Button
+10-10 07:33:09.565   9891-9891     C0391e/AceGesture               com.github.trending   I     [(100000:100000:scope)] Click try accept
+10-10 07:33:09.565   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] Click accepted, tag: Button
+10-10 07:33:09.566   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 开始刷新数据（来源=zread.ai）
+10-10 07:33:09.567   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] id: 0, log: {types: Click, tag: Button, prcd: Down, state: READY, prcd: Up, state: SUCCEED}
+10-10 07:33:09.567   9891-9891     C03919/AceInputTracking         com.github.trending   I     [(100000:100000:scope)] Consumed new event id=659 in ace_container, lastEventInfo: id:658
+10-10 07:33:09.567   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] ConsumePointerEventInner(1049): InputId:659,wid:33,pointId:0,srcType:2,rect:[0,0,1260,2720],notify:1
+10-10 07:33:09.579   9891-10047    C01406/OHOS::RS                 com.github.trending   I     Post messageId:1, cmdCount:1, instanceId:100000
+10-10 07:33:09.581   9891-9891     C01406/OHOS::RS                 com.github.trending   I     Process messageId:1, cmdCount:1, instanceId:100000
+10-10 07:33:09.582   9891-9891     C01406/OHOS::RS                 com.github.trending   I     multi-instance, create RSUIContextManager, isMultiInstanceOpen_ 1
+10-10 07:33:09.679   9891-10047    C01406/OHOS::RS                 com.github.trending   I     Post messageId:2, cmdCount:1, instanceId:100000
+10-10 07:33:09.680   9891-9891     C01406/OHOS::RS                 com.github.trending   I     Process messageId:2, cmdCount:1, instanceId:100000
+10-10 07:33:10.568   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingRepository 开始获取趋势仓库数据
+10-10 07:33:10.569   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 刷新成功: 3 个仓库
+10-10 07:33:12.285   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [][OnPointerEvent:210] ac: down: 660
+10-10 07:33:12.285   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [P:D:660][OnPointerEvent:646] id:660 recv
+10-10 07:33:12.285   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] HandleInputEvent(88): eid:2,InputId:660,wid:33,ac:2
+10-10 07:33:12.286   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:660, fingerId:0, type=0, inject=0, isPrivacyMode=0
+10-10 07:33:12.286   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:660, touch test hitted node info: fingerId: 0{ tag: Button, depth: 8 };
+10-10 07:33:12.286   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:660, touch test hitted recognizer type info: recognizer type ClickRecognizer node info: { tag: Button };
+10-10 07:33:12.286   9891-9891     C03945/AceStateStyle            com.github.trending   I     [(100000:100000:scope)] Handle TouchDown event node: Button
+10-10 07:33:12.287   9891-9891     C03919/AceInputTracking         com.github.trending   I     [(100000:100000:scope)] Consumed new event id=660 in ace_container, lastEventInfo: id:658
+10-10 07:33:12.287   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] ConsumePointerEventInner(1049): InputId:660,wid:33,pointId:0,srcType:2,rect:[0,0,1260,2720],notify:1
+10-10 07:33:12.339   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [][OnPointerEvent:210] ac: up: 661
+10-10 07:33:12.339   9891-9891     C02805/InputKeyFlow             com.github.trending   I     [P:U:661][OnPointerEvent:646] id:661 recv
+10-10 07:33:12.339   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] HandleInputEvent(88): eid:3,InputId:661,wid:33,ac:4
+10-10 07:33:12.341   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] InputTracking id:661, fingerId:0, type=1, inject=0, isPrivacyMode=0
+10-10 07:33:12.341   9891-9891     C03945/AceStateStyle            com.github.trending   I     [(100000:100000:scope)] Handle TouchUp or Cancel event node: Button
+10-10 07:33:12.341   9891-9891     C0391e/AceGesture               com.github.trending   I     [(100000:100000:scope)] Click try accept
+10-10 07:33:12.341   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] Click accepted, tag: Button
+10-10 07:33:12.341   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 开始刷新数据（来源=zread.ai）
+10-10 07:33:12.342   9891-9891     C03951/InputKeyFlow             com.github.trending   I     [(100000:100000:scope)] id: 0, log: {types: Click, tag: Button, prcd: Down, state: READY, prcd: Up, state: SUCCEED}
+10-10 07:33:12.342   9891-9891     C03919/AceInputTracking         com.github.trending   I     [(100000:100000:scope)] Consumed new event id=661 in ace_container, lastEventInfo: id:658
+10-10 07:33:12.342   9891-9891     C04213/InputKeyFlow             com.github.trending   I     [] ConsumePointerEventInner(1049): InputId:661,wid:33,pointId:0,srcType:2,rect:[0,0,1260,2720],notify:1
+10-10 07:33:12.403   9891-10025    C01406/OHOS::RS                 com.github.trending   I     Post messageId:3, cmdCount:1, instanceId:100000
+10-10 07:33:12.404   9891-9891     C01406/OHOS::RS                 com.github.trending   I     Process messageId:3, cmdCount:1, instanceId:100000
+10-10 07:33:12.423   9891-10023    C01719/ffrt                     com.github.trending   I     15:~CPUWorker:84 to exit, qos[0]
+10-10 07:33:12.454   9891-10025    C01406/OHOS::RS                 com.github.trending   I     Post messageId:4, cmdCount:1, instanceId:100000
+10-10 07:33:12.457   9891-9891     C01406/OHOS::RS                 com.github.trending   I     Process messageId:4, cmdCount:1, instanceId:100000
+10-10 07:33:12.504   9891-10021    C01719/ffrt                     com.github.trending   I     16:~CPUWorker:84 to exit, qos[2]
+10-10 07:33:13.343   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingRepository 开始获取趋势仓库数据
+10-10 07:33:13.343   9891-9891     A03d00/JSAPP                    com.github.trending   I     TrendingViewModel 刷新成功: 3 个仓库
+10-10 07:33:13.610   9891-10048    C01719/ffrt                     com.github.trending   I     17:~CPUWorker:84 to exit, qos[5]
+10-10 07:33:13.621   9891-10052    C01719/ffrt                     com.github.trending   I     18:~CPUWorker:84 to exit, qos[5]
+10-10 07:33:17.344   9891-10069    C01719/ffrt                     com.github.trending   I     19:~CPUWorker:84 to exit, qos[4]
+10-10 07:33:17.560   9891-10070    C01719/ffrt                     com.github.trending   I     20:~CPUWorker:84 to exit, qos[3]
+10-10 07:33:18.458   9891-10017    C01719/ffrt                     com.github.trending   I     21:~CPUWorker:84 to exit, qos[3]
+10-10 07:33:26.296   9891-10172    C01719/ffrt                     com.github.trending   W     22:FFRTQosApplyForOther:249 tid 10172, Interrupted system call, ret:-1, eno:4
+10-10 07:33:31.343   9891-10172    C01719/ffrt                     com.github.trending   I     23:~CPUWorker:84 to exit, qos[3]
+10-10 07:33:38.295   9891-10257    C01719/ffrt                     com.github.trending   W     24:FFRTQosApplyForOther:249 tid 10257, Interrupted system call, ret:-1, eno:4
+10-10 07:33:43.344   9891-10257    C01719/ffrt                     com.github.trending   I     25:~CPUWorker:84 to exit, qos[3]
+10-10 07:33:50.295   9891-10349    C01719/ffrt                     com.github.trending   W     26:FFRTQosApplyForOther:249 tid 10349, Interrupted system call, ret:-1, eno:4
+10-10 07:33:55.343   9891-10349    C01719/ffrt                     com.github.trending   I     27:~CPUWorker:84 to exit, qos[3]
+10-10 07:34:02.297   9891-10445    C01719/ffrt                     com.github.trending   W     28:FFRTQosApplyForOther:249 tid 10445, Interrupted system call, ret:-1, eno:4

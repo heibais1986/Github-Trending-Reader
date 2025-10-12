@@ -1,0 +1,14 @@
+{
+  "default": {
+    "type": "harmony",
+    "material": {
+      "certpath": "signing/reddit.p12",
+      "storePassword": "123456",
+      "keyAlias": "reddit",
+      "keyPassword": "123456",
+      "signAlg": "SHA256withECDSA",
+      "profile": "signing/reddit.p7b",
+      "path": "signing/reddit.p7b"
+    }
+  }
+}

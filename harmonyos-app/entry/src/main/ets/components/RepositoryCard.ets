@@ -6,8 +6,10 @@ import { Repository } from '../models';
 import webview from '@ohos.web.webview';
 import common from '@ohos.app.ability.common';
 import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 import { FeedbackUtils } from '../utils/FeedbackManager';
 import { AnimationOptimizer, ResponsivenessUtils } from '../utils/PerformanceOptimizer';
+import { LinkConverter } from '../utils/LinkConverter';
 
 @Component
 export struct RepositoryCard {
@@ -15,30 +17,41 @@ export struct RepositoryCard {
   @State isPressed: boolean = false;
 
   /**
-   * Handle repository card click - open GitHub repository in browser
+   * Handle repository card click - navigate to appropriate page based on URL
    */
   private async onCardClick() {
     try {
       // Provide haptic feedback for item selection
       FeedbackUtils.onItemClick();
       
-      // Get the current ability context
-      const context = getContext(this) as common.UIAbilityContext;
+      // Convert GitHub URL to zread.ai URL
+      const convertedUrl = LinkConverter.convertGitHubToZread(this.repository.url);
       
-      // Create want info for opening browser
-      const want = {
-        action: 'ohos.want.action.viewData',
-        entities: ['entity.system.browsable'],
-        uri: this.repository.url
-      };
-
-      // Start browser activity
-      await context.startAbility(want);
+      // Check if target is zread article (contains zread.ai and overview pattern)
+      const isZreadArticle = convertedUrl.includes('zread.ai') && 
+        /\/.*\/\d+-overview$/.test(convertedUrl);
       
-      // Show success feedback
-      FeedbackUtils.showInfo(`正在打开 ${this.repository.name}`);
+      if (isZreadArticle) {
+        // Navigate to article detail page
+        router.pushUrl({
+          url: 'pages/ArticleDetailPage',
+          params: {
+            url: convertedUrl,
+            title: this.repository.name
+          }
+        });
+      } else {
+        // Open in webview for other URLs
+        router.pushUrl({
+          url: 'pages/WebViewPage',
+          params: {
+            url: convertedUrl,
+            title: this.repository.name
+          }
+        });
+      }
     } catch (error) {
-      console.error('Failed to open repository URL:', error);
+      console.error('Failed to handle repository click:', error);
       
       // Show error feedback
       FeedbackUtils.showError(`无法打开链接: ${this.repository.name}`);

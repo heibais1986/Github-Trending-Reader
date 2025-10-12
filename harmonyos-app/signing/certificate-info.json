@@ -1,0 +1,7 @@
+{
+    "validity":  "365 days",
+    "created":  "2025-10-09 23:44:57",
+    "keystorePath":  "signing/reddit.p12",
+    "keyAlias":  "reddit",
+    "algorithm":  "SHA256withECDSA"
+}

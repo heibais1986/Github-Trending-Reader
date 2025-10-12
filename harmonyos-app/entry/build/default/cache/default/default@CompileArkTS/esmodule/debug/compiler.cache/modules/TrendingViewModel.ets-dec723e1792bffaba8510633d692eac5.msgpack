@@ -1,0 +1,520 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚkimport { TrendingRepository } from '../models/TrendingRepository';
+import { LinkConverter } from '../utils/LinkConverter';
+export class TrendingViewModel {
+    constructor(repository, linkConverter) {
+        // UIçŠ¶æ€ç®¡ç†
+        this.uiState = new TrendingUiState();
+        this.uiStateChangeListeners = [];
+        // å½“å‰åŠ è½½ä»»åŠ¡
+        this.currentLoadTask = null;
+        this.currentRefreshTask = null;
+        this.repository = repository;
+        this.linkConverter = linkConverter;
+        console.info('TrendingViewModel', 'ViewModelåˆå§‹åŒ–');
+        this.loadTrendingRepositories();
+    }
+    // æ·»åŠ çŠ¶æ€ç›‘å¬å™¨
+    addStateChangeListener(listener) {
+        this.uiStateChangeListeners.push(listener);
+    }
+    // ç§»é™¤çŠ¶æ€ç›‘å¬å™¨
+    removeStateChangeListener(listener) {
+        const index = this.uiStateChangeListeners.indexOf(listener);
+        if (index > -1) {
+            this.uiStateChangeListeners.splice(index, 1);
+        }
+    }
+    // é€šçŸ¥çŠ¶æ€å˜åŒ–
+    notifyStateChange() {
+        const stateCopy = {
+            isLoading: this.uiState.isLoading,
+            isRefreshing: this.uiState.isRefreshing,
+            repositories: this.uiState.repositories.slice(),
+            error: this.uiState.error,
+            openBrowserEvent: this.uiState.openBrowserEvent
+        };
+        this.uiStateChangeListeners.forEach(listener => {
+            listener(stateCopy);
+        });
+    }
+    // æ›´æ–°UIçŠ¶æ€
+    updateUiState(updates) {
+        this.uiState.isLoading = updates.isLoading ?? this.uiState.isLoading;
+        this.uiState.isRefreshing = updates.isRefreshing ?? this.uiState.isRefreshing;
+        this.uiState.error = updates.error ?? this.uiState.error;
+        this.uiState.openBrowserEvent = updates.openBrowserEvent ?? this.uiState.openBrowserEvent;
+        if (updates.repositories) {
+            this.uiState.repositories = updates.repositories.slice();
+        }
+        this.notifyStateChange();
+    }
+    // è·å–è°ƒè¯•ä¿¡æ¯
+    getDebugInfo() {
+        return `UI State: loading=${this.uiState.isLoading}, ` +
+            `refreshing=${this.uiState.isRefreshing}, ` +
+            `repositories=${this.uiState.repositories.length}, ` +
+            `error=${this.uiState.error}`;
+    }
+    // åŠ è½½è¶‹åŠ¿ä»“åº“æ•°æ®
+    loadTrendingRepositories() {
+        console.info('TrendingViewModel', 'å¼€å§‹åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+        // å–æ¶ˆä¹‹å‰çš„åŠ è½½ä»»åŠ¡
+        if (this.currentLoadTask) {
+            clearTimeout(this.currentLoadTask);
+        }
+        this.updateUiState({ isLoading: true, error: null });
+        // æ¨¡æ‹Ÿå¼‚æ­¥åŠ è½½
+        this.currentLoadTask = setTimeout(async () => {
+            try {
+                const repositories = await this.repository.getTrendingRepositories();
+                console.info('TrendingViewModel', `æˆåŠŸè·å– ${repositories.length} ä¸ªä»“åº“`);
+                this.updateUiState({
+                    isLoading: false,
+                    repositories: repositories,
+                    error: null
+                });
+            }
+            catch (error) {
+                console.error('TrendingViewModel', 'æ•°æ®åŠ è½½å¼‚å¸¸', error);
+                const errorMessage = this.getErrorMessage(error);
+                this.updateUiState({
+                    isLoading: false,
+                    error: errorMessage
+                });
+            }
+        }, 1000);
+    }
+    // åˆ·æ–°æ•°æ®
+    onRefresh() {
+        console.info('TrendingViewModel', 'å¼€å§‹åˆ·æ–°æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+        // å–æ¶ˆä¹‹å‰çš„åˆ·æ–°ä»»åŠ¡
+        if (this.currentRefreshTask) {
+            clearTimeout(this.currentRefreshTask);
+        }
+        this.updateUiState({ isRefreshing: true, error: null });
+        // æ¨¡æ‹Ÿå¼‚æ­¥åˆ·æ–°
+        this.currentRefreshTask = setTimeout(async () => {
+            try {
+                const repositories = await this.repository.getTrendingRepositories();
+                console.info('TrendingViewModel', `åˆ·æ–°æˆåŠŸ: ${repositories.length} ä¸ªä»“åº“`);
+                this.updateUiState({
+                    isRefreshing: false,
+                    repositories: repositories,
+                    error: null
+                });
+            }
+            catch (error) {
+                console.error('TrendingViewModel', 'åˆ·æ–°å¼‚å¸¸', error);
+                const errorMessage = this.getErrorMessage(error);
+                this.updateUiState({
+                    isRefreshing: false,
+                    error: errorMessage
+                });
+            }
+        }, 1000);
+    }
+    // å¤„ç†ä»“åº“ç‚¹å‡»äº‹ä»¶
+    onRepositoryClick(repository) {
+        console.info('TrendingViewModel', `ç‚¹å‡»ä»“åº“: ${repository.name}`);
+        try {
+            const convertedUrl = this.linkConverter.convertGitHubToZread(repository.url);
+            console.info('TrendingViewModel', `è½¬æ¢åçš„URL: ${convertedUrl}`);
+            this.updateUiState({ openBrowserEvent: new BrowserEvent(convertedUrl) });
+        }
+        catch (error) {
+            console.warn('TrendingViewModel', 'URLè½¬æ¢å¤±è´¥ï¼Œä½¿ç”¨åŸå§‹URL', error);
+            this.updateUiState({ openBrowserEvent: new BrowserEvent(repository.url) });
+        }
+    }
+    // å¤„ç†æµè§ˆå™¨äº‹ä»¶å®Œæˆ
+    onBrowserEventHandled() {
+        this.updateUiState({ openBrowserEvent: null });
+    }
+    // æ¸…é™¤é”™è¯¯
+    clearError() {
+        this.updateUiState({ error: null });
+    }
+    // é‡è¯•åŠ è½½
+    retry() {
+        console.info('TrendingViewModel', 'é‡è¯•åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+        this.clearError();
+        this.loadTrendingRepositories();
+    }
+    // è·å–é”™è¯¯æ¶ˆæ¯
+    getErrorMessage(error) {
+        if (error instanceof Error) {
+            const message = error.message.toLowerCase();
+            if (message.includes('network') || message.includes('connection')) {
+                return 'ç½‘ç»œè¿æ¥å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®';
+            }
+            else if (message.includes('timeout')) {
+                return 'ç½‘ç»œè¯·æ±‚è¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•';
+            }
+            else {
+                return `æ•°æ®åŠ è½½å¤±è´¥: ${error.message}`;
+            }
+        }
+        return 'æ•°æ®åŠ è½½å¤±è´¥: æœªçŸ¥é”™è¯¯';
+    }
+    // æ¸…ç†èµ„æº
+    destroy() {
+        console.info('TrendingViewModel', 'ViewModelé”€æ¯ï¼Œæ¸…ç†èµ„æº');
+        if (this.currentLoadTask) {
+            clearTimeout(this.currentLoadTask);
+            this.currentLoadTask = null;
+        }
+        if (this.currentRefreshTask) {
+            clearTimeout(this.currentRefreshTask);
+            this.currentRefreshTask = null;
+        }
+        this.uiStateChangeListeners = [];
+    }
+}
+// åˆ›å»ºTrendingViewModelçš„å·¥å‚å‡½æ•°
+export function createTrendingViewModel() {
+    const repository = new TrendingRepository();
+    const linkConverter = new LinkConverter();
+    return new TrendingViewModel(repository, linkConverter);
+}
+export class TrendingUiState {
+    constructor() {
+        this.isLoading = false;
+        this.isRefreshing = false;
+        this.repositories = [];
+        this.error = null;
+        this.openBrowserEvent = null;
+    }
+}
+export class BrowserEvent {
+    constructor(url) {
+        this.url = url;
+        this.timestamp = Date.now();
+    }
+}
+//# sourceMappingURL=TrendingViewModel.js.mapÂ’ÙLD:\dev\reddit\harmonyos-app\entry\src\main\ets\models\TrendingRepository.etsÙFD:\dev\reddit\harmonyos-app\entry\src\main\ets\utils\LinkConverter.etsÙOD:\dev\reddit\harmonyos-app\entry\src\main\ets\viewmodels\TrendingViewModel.etsÔrB›ªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo¯hostModulesInfo°belongModulePath¬shouldEmitJs¥entryÃÂÙ!D:\dev\reddit\harmonyos-app\entry»D:\dev\reddit\harmonyos-app¥entry¥1.0.0Ô  ‘ÔrC’²hostDependencyName®hostModuleName³./TrendingViewModel¥entryÙ!D:\dev\reddit\harmonyos-app\entryÃÃÚÕimport { TrendingRepository } from '../models/TrendingRepository';
+import { Repository } from '../models/Repository';
+import { LinkConverter } from '../utils/LinkConverter';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+export class TrendingViewModel {
+  private repository: TrendingRepository;
+  private linkConverter: LinkConverter;
+  
+  // UIçŠ¶æ€ç®¡ç†
+  private uiState: TrendingUiState = new TrendingUiState();
+  private uiStateChangeListeners: Array<(state: TrendingUiState) => void> = [];
+  
+  // å½“å‰åŠ è½½ä»»åŠ¡
+  private currentLoadTask: number | null = null;
+  private currentRefreshTask: number | null = null;
+
+  constructor(repository: TrendingRepository, linkConverter: LinkConverter) {
+    this.repository = repository;
+    this.linkConverter = linkConverter;
+    console.info('TrendingViewModel', 'ViewModelåˆå§‹åŒ–');
+    this.loadTrendingRepositories();
+  }
+
+  // æ·»åŠ çŠ¶æ€ç›‘å¬å™¨
+  addStateChangeListener(listener: (state: TrendingUiState) => void): void {
+    this.uiStateChangeListeners.push(listener);
+  }
+
+  // ç§»é™¤çŠ¶æ€ç›‘å¬å™¨
+  removeStateChangeListener(listener: (state: TrendingUiState) => void): void {
+    const index = this.uiStateChangeListeners.indexOf(listener);
+    if (index > -1) {
+      this.uiStateChangeListeners.splice(index, 1);
+    }
+  }
+
+  // é€šçŸ¥çŠ¶æ€å˜åŒ–
+  private notifyStateChange(): void {
+    const stateCopy: TrendingUiState = {
+      isLoading: this.uiState.isLoading,
+      isRefreshing: this.uiState.isRefreshing,
+      repositories: this.uiState.repositories.slice(),
+      error: this.uiState.error,
+      openBrowserEvent: this.uiState.openBrowserEvent
+    };
+    this.uiStateChangeListeners.forEach(listener => {
+      listener(stateCopy);
+    });
+  }
+
+  // æ›´æ–°UIçŠ¶æ€
+  private updateUiState(updates: Partial<TrendingUiState>): void {
+    this.uiState.isLoading = updates.isLoading ?? this.uiState.isLoading;
+    this.uiState.isRefreshing = updates.isRefreshing ?? this.uiState.isRefreshing;
+    this.uiState.error = updates.error ?? this.uiState.error;
+    this.uiState.openBrowserEvent = updates.openBrowserEvent ?? this.uiState.openBrowserEvent;
+    
+    if (updates.repositories) {
+      this.uiState.repositories = updates.repositories.slice();
+    }
+    
+    this.notifyStateChange();
+  }
+
+  // è·å–è°ƒè¯•ä¿¡æ¯
+  getDebugInfo(): string {
+    return `UI State: loading=${this.uiState.isLoading}, ` +
+           `refreshing=${this.uiState.isRefreshing}, ` +
+           `repositories=${this.uiState.repositories.length}, ` +
+           `error=${this.uiState.error}`;
+  }
+
+  // åŠ è½½è¶‹åŠ¿ä»“åº“æ•°æ®
+  loadTrendingRepositories(): void {
+    console.info('TrendingViewModel', 'å¼€å§‹åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+    
+    // å–æ¶ˆä¹‹å‰çš„åŠ è½½ä»»åŠ¡
+    if (this.currentLoadTask) {
+      clearTimeout(this.currentLoadTask);
+    }
+
+    this.updateUiState({ isLoading: true, error: null });
+
+    // æ¨¡æ‹Ÿå¼‚æ­¥åŠ è½½
+    this.currentLoadTask = setTimeout(async () => {
+      try {
+        const repositories = await this.repository.getTrendingRepositories();
+        console.info('TrendingViewModel', `æˆåŠŸè·å– ${repositories.length} ä¸ªä»“åº“`);
+        this.updateUiState({
+          isLoading: false,
+          repositories: repositories,
+          error: null
+        });
+      } catch (error) {
+        console.error('TrendingViewModel', 'æ•°æ®åŠ è½½å¼‚å¸¸', error);
+        const errorMessage = this.getErrorMessage(error);
+        this.updateUiState({
+          isLoading: false,
+          error: errorMessage
+        });
+      }
+    }, 1000);
+  }
+
+  // åˆ·æ–°æ•°æ®
+  onRefresh(): void {
+    console.info('TrendingViewModel', 'å¼€å§‹åˆ·æ–°æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+    
+    // å–æ¶ˆä¹‹å‰çš„åˆ·æ–°ä»»åŠ¡
+    if (this.currentRefreshTask) {
+      clearTimeout(this.currentRefreshTask);
+    }
+
+    this.updateUiState({ isRefreshing: true, error: null });
+
+    // æ¨¡æ‹Ÿå¼‚æ­¥åˆ·æ–°
+    this.currentRefreshTask = setTimeout(async () => {
+      try {
+        const repositories = await this.repository.getTrendingRepositories();
+        console.info('TrendingViewModel', `åˆ·æ–°æˆåŠŸ: ${repositories.length} ä¸ªä»“åº“`);
+        this.updateUiState({
+          isRefreshing: false,
+          repositories: repositories,
+          error: null
+        });
+      } catch (error) {
+        console.error('TrendingViewModel', 'åˆ·æ–°å¼‚å¸¸', error);
+        const errorMessage = this.getErrorMessage(error);
+        this.updateUiState({
+          isRefreshing: false,
+          error: errorMessage
+        });
+      }
+    }, 1000);
+  }
+
+  // å¤„ç†ä»“åº“ç‚¹å‡»äº‹ä»¶
+  onRepositoryClick(repository: Repository): void {
+    console.info('TrendingViewModel', `ç‚¹å‡»ä»“åº“: ${repository.name}`);
+    try {
+      const convertedUrl = this.linkConverter.convertGitHubToZread(repository.url);
+      console.info('TrendingViewModel', `è½¬æ¢åçš„URL: ${convertedUrl}`);
+      this.updateUiState({ openBrowserEvent: new BrowserEvent(convertedUrl) });
+    } catch (error) {
+      console.warn('TrendingViewModel', 'URLè½¬æ¢å¤±è´¥ï¼Œä½¿ç”¨åŸå§‹URL', error);
+      this.updateUiState({ openBrowserEvent: new BrowserEvent(repository.url) });
+    }
+  }
+
+  // å¤„ç†æµè§ˆå™¨äº‹ä»¶å®Œæˆ
+  onBrowserEventHandled(): void {
+    this.updateUiState({ openBrowserEvent: null });
+  }
+
+  // æ¸…é™¤é”™è¯¯
+  clearError(): void {
+    this.updateUiState({ error: null });
+  }
+
+  // é‡è¯•åŠ è½½
+  retry(): void {
+    console.info('TrendingViewModel', 'é‡è¯•åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰');
+    this.clearError();
+    this.loadTrendingRepositories();
+  }
+
+  // è·å–é”™è¯¯æ¶ˆæ¯
+  private getErrorMessage(error: Error): string {
+    if (error instanceof Error) {
+      const message = error.message.toLowerCase();
+      if (message.includes('network') || message.includes('connection')) {
+        return 'ç½‘ç»œè¿æ¥å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®';
+      } else if (message.includes('timeout')) {
+        return 'ç½‘ç»œè¯·æ±‚è¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•';
+      } else {
+        return `æ•°æ®åŠ è½½å¤±è´¥: ${error.message}`;
+      }
+    }
+    return 'æ•°æ®åŠ è½½å¤±è´¥: æœªçŸ¥é”™è¯¯';
+  }
+
+  // æ¸…ç†èµ„æº
+  destroy(): void {
+    console.info('TrendingViewModel', 'ViewModelé”€æ¯ï¼Œæ¸…ç†èµ„æº');
+    if (this.currentLoadTask) {
+      clearTimeout(this.currentLoadTask);
+      this.currentLoadTask = null;
+    }
+    if (this.currentRefreshTask) {
+      clearTimeout(this.currentRefreshTask);
+      this.currentRefreshTask = null;
+    }
+    this.uiStateChangeListeners = [];
+  }
+}
+
+// åˆ›å»ºTrendingViewModelçš„å·¥å‚å‡½æ•°
+export function createTrendingViewModel(): TrendingViewModel {
+  const repository = new TrendingRepository();
+  const linkConverter = new LinkConverter();
+  return new TrendingViewModel(repository, linkConverter);
+}
+
+export class TrendingUiState {
+  isLoading: boolean = false;
+  isRefreshing: boolean = false;
+  repositories: Repository[] = [];
+  error: string | null = null;
+  openBrowserEvent: BrowserEvent | null = null;
+}
+
+export class BrowserEvent {
+  url: string;
+  timestamp: number;
+
+  constructor(url: string) {
+    this.url = url;
+    this.timestamp = Date.now();
+  }
+}ÀÔrD’¶../utils/LinkConverter¼../models/TrendingRepositoryÔrE—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙFD:\dev\reddit\harmonyos-app\entry\src\main\ets\utils\LinkConverter.etsAÃªoh-resolveÂEAÂÙLD:\dev\reddit\harmonyos-app\entry\src\main\ets\models\TrendingRepository.etsAÃªoh-resolveÂ“ÔrF–§version¤fileªsourceRoot§sources¥names¨mappings´TrendingViewModel.js ‘µTrendingViewModel.etsÜ Á˜”    ”  ”	  	”  ”  ”#  #”ÌA  ÌA”ÌB  ÌB˜”   ” ”	 	” ” ” ”6 6”7 7””   ” ” ” •” ” ” ,” .”) ÌJ’” 
+” 
+—” 
+” ” %” )”* 8”, :”- ;•” 
+”#  ”& ÌL”( ÌN”) ÌO’” ” •” 
+” ” +”# /”$ 0•” 
+” ”" .”& 2”' 3—” ” ” 	” ” ”$  ”% !—” ” ” 	” ” ”* &”+ 'š” ” ” ” ” ”( $”* &”8 4”9 5”: 6–” ” ” 	”% !”' #”( $’” ” ’” ” ”” ” ” ”# ÌCš” ” ” 	”# ”$  ”( $”) %”1 -”2 .”3 /’” ” ’” ” ”” ” ” ”& ÌF”  ”  
+”  ”  ”  ”  ”1  -”2  .”9  5”:  6”ÌB  >”ÌC  ?”ÌD  Ì@—” !” !” !” !” !” !” !œ” "” "
+” "”' "!”( ""”. "(”/ ")”4 ".”6 "0”7 "1”8 "2”9 "3‘”	 #’” $” $’” &” &’” '
+” '”” (” (
+” (” ('˜” )” )” )” )” )”# )”$ )”- )'˜” *” *” *” *” *”& * ”' *!”3 *-›” +” +” +” +” +”& + ”' +!”3 +-”4 +.”9 +3”; +5˜” ,” ,” ,” ,” ,” ,”  ,”% ,˜” -” -” -”" -”# -”* -$”+ -%”; -5’”	 .”
+ .š” /” /” /	”# /”$ / ”+ /'”, /(”4 /0”5 /1”7 /3–” 0” 0” 0” 0” 0”  0”” 1”	 1”
+ 1” 1’” 2” 2’” 4” 4”” 5
+” 5” 5” 59Ü ” 6” 6” 6	” 6” 6” 6”! 6”( 6$”) 6%”2 6.”6 62”: 66”; 67”ÌB 6>”ÌC 6?”ÌL 6ÌH”ÌM 6ÌIÜ ” 7” 7” 7	” 7” 7”! 7”$ 7 ”+ 7'”, 7(”8 74”< 78”Ì@ 7<”ÌA 7=”ÌH 7ÌD”ÌI 7ÌE”ÌU 7ÌQ”ÌV 7ÌRÜ ” 8” 8” 8	” 8” 8” 8” 8”$ 8 ”% 8!”* 8&”. 8*”2 8.”3 8/”: 86”; 87”Ì@ 8<”ÌA 8=Ü ” 9” 9” 9	” 9” 9”% 9!”( 9$”/ 9+”0 9,”Ì@ 9<”ÌD 9Ì@”ÌH 9ÌD”ÌI 9ÌE”ÌP 9ÌL”ÌQ 9ÌM”Ìa 9Ì]”Ìb 9Ì^–” ;” ;” ;” ;”  ;”" ;” <” <
+” <” <” <”% <”( <"”/ <)”0 <*”< <6”= <7”ÌB <<”ÌD <>”ÌE <?‘”	 =–” ?” ?” ?	” ?”  ?”! ?’” Ì@” Ì@’” ÌB” ÌB’” ÌC” ÌC™” ÌD” ÌD”$ ÌD ”( ÌD$”) ÌD%”0 ÌD,”1 ÌD-”: ÌD6”> ÌD:˜” ÌE” ÌE” ÌE” ÌE”& ÌE%”' ÌE&”3 ÌE2”7 ÌE6š” ÌF” ÌF”  ÌF”! ÌF ”( ÌF'”) ÌF(”5 ÌF4”6 ÌF5”< ÌF;”Ì@ ÌF?™” ÌG” ÌG” ÌG” ÌG”! ÌG ”" ÌG!”' ÌG&”) ÌG(”* ÌG)’” ÌH” ÌH’” ÌJ” ÌJ’” ÌK” ÌKš” ÌL” ÌL” ÌL” ÌL” ÌL”( ÌL$”* ÌL&”? ÌL;”Ì@ ÌL<”ÌA ÌL=’” ÌN” ÌN–” ÌO” ÌO” ÌO” ÌO”  ÌO”" ÌO˜” ÌP” ÌP” ÌP” ÌP” ÌP”- ÌP'”. ÌP(”/ ÌP)‘”	 ÌQÜ ” ÌS” ÌS” ÌS	” ÌS” ÌS” ÌS”& ÌS"”( ÌS$”, ÌS(”. ÌS*”3 ÌS/”5 ÌS1”9 ÌS5”; ÌS7”< ÌS8”= ÌS9’” ÌU” ÌUš” ÌV” ÌV” ÌV	” ÌV” ÌV”) ÌV%”* ÌV&”/ ÌV+”3 ÌV/”5 ÌV1’” ÌW” ÌW
+œ” ÌX” ÌX”" ÌX”% ÌX”+ ÌX#”/ ÌX'”0 ÌX(”: ÌX2”; ÌX3”ÌR ÌXÌJ”ÌT ÌXÌL”ÌU ÌXÌM” ÌY” ÌY” ÌY” ÌY” ÌY”0 ÌY(”2 ÌY*”: ÌY2”ÌF ÌY>”ÌG ÌY?”ÌM ÌYÌE”ÌS ÌYÌK”ÌT ÌYÌL”ÌU ÌYÌM•” ÌZ” ÌZ” ÌZ”" ÌZ”# ÌZ”” Ì[
+” Ì[” Ì[”$ Ì[”” Ì\
+”  Ì\”" Ì\”. Ì\$”” Ì]
+” Ì]” Ì]” Ì]“” Ì^	” Ì^
+” Ì^‘” Ì_”” Ì_” Ì_” Ì_” Ì_œ” Ì`” Ì`” Ì`” Ì`” Ì`”1 Ì`)”3 Ì`+”; Ì`3”= Ì`5”ÌB Ì`:”ÌC Ì`;”ÌD Ì`<›” Ìa” Ìa”" Ìa”% Ìa”) Ìa!”* Ìa"”9 Ìa1”: Ìa2”? Ìa7”Ì@ Ìa8”ÌA Ìa9•” Ìb” Ìb” Ìb”" Ìb”# Ìb”” Ìc
+” Ìc” Ìc”$ Ìc”” Ìd
+” Ìd” Ìd”' Ìd“” Ìe	” Ìe
+” Ìe‘” Ìf–” Ìg”	 Ìg” Ìg” Ìg” Ìg” Ìg’” Ìh” Ìh’” Ìj” Ìj	’” Ìk” Ìkš” Ìl” Ìl” Ìl” Ìl” Ìl”( Ìl$”* Ìl&”? Ìl;”Ì@ Ìl<”ÌA Ìl=’” Ìn” Ìn–” Ìo” Ìo” Ìo” Ìo”# Ìo”% Ìo!˜” Ìp” Ìp” Ìp” Ìp” Ìp”0 Ìp*”1 Ìp+”2 Ìp,‘”	 ÌqÜ ” Ìs” Ìs” Ìs	” Ìs” Ìs” Ìs”) Ìs%”+ Ìs'”/ Ìs+”1 Ìs-”6 Ìs2”8 Ìs4”< Ìs8”> Ìs:”? Ìs;”Ì@ Ìs<’” Ìu” Ìuš” Ìv” Ìv” Ìv	” Ìv”" Ìv”, Ìv(”- Ìv)”2 Ìv.”6 Ìv2”8 Ìv4’” Ìw” Ìw
+œ” Ìx” Ìx”" Ìx”% Ìx”+ Ìx#”/ Ìx'”0 Ìx(”: Ìx2”; Ìx3”ÌR ÌxÌJ”ÌT ÌxÌL”ÌU ÌxÌM” Ìy” Ìy” Ìy” Ìy” Ìy”0 Ìy(”2 Ìy*”; Ìy3”ÌG Ìy?”ÌH ÌyÌ@”ÌN ÌyÌF”ÌT ÌyÌL”ÌU ÌyÌM”ÌV ÌyÌN•” Ìz” Ìz” Ìz”" Ìz”# Ìz”” Ì{
+”  Ì{”" Ì{”' Ì{”” Ì|
+”  Ì|”" Ì|”. Ì|$”” Ì}
+” Ì}” Ì}” Ì}“” Ì~	” Ì~
+” Ì~‘” Ì”” Ì” Ì” Ì” Ìœ” Ì€” Ì€” Ì€” Ì€” Ì€”1 Ì€)”3 Ì€+”9 Ì€1”; Ì€3”Ì@ Ì€8”ÌA Ì€9”ÌB Ì€:›” Ì” Ì”" Ì”% Ì”) Ì!”* Ì"”9 Ì1”: Ì2”? Ì7”Ì@ Ì8”ÌA Ì9•” Ì‚” Ì‚” Ì‚”" Ì‚”# Ì‚”” Ìƒ
+”  Ìƒ”" Ìƒ”' Ìƒ”” Ì„
+” Ì„” Ì„”' Ì„“” Ì…	” Ì…
+” Ì…‘” Ì†–” Ì‡”	 Ì‡” Ì‡” Ì‡” Ì‡” Ì‡’” Ìˆ” Ìˆ’” ÌŠ” ÌŠ”” Ì‹” Ì‹” Ì‹”  Ì‹*” ÌŒ” ÌŒ” ÌŒ” ÌŒ” ÌŒ”( ÌŒ$”* ÌŒ&”3 ÌŒ/”= ÌŒ9”> ÌŒ:”ÌB ÌŒ>”ÌD ÌŒÌ@”ÌE ÌŒÌA”ÌF ÌŒÌB’” Ì” ÌŸ” Ì” Ì” Ì”! Ì”% Ì”& Ì ”3 Ì-”4 Ì.”ÌH ÌÌB”ÌI ÌÌC”ÌS ÌÌM”ÌT ÌÌN”ÌW ÌÌQ”ÌX ÌÌR”ÌY ÌÌSœ” Ì” Ì” Ì” Ì” Ì”, Ì&”. Ì(”: Ì4”ÌF ÌÌ@”ÌH ÌÌB”ÌI ÌÌC”ÌJ ÌÌDÜ ” Ì” Ì
+” Ì” Ì” Ì”! Ì”1 Ì+”3 Ì-”7 Ì1”ÌC Ì=”ÌD Ì>”ÌP ÌÌJ”ÌQ ÌÌK”ÌS ÌÌM”ÌT ÌÌN”ÌU ÌÌO‘”	 Ì‘”” Ì‘” Ì‘” Ì‘” Ì‘œ” Ì’” Ì’” Ì’” Ì’” Ì’”, Ì’&”. Ì’(”? Ì’9”ÌA Ì’;”ÌF Ì’Ì@”ÌG Ì’ÌA”ÌH Ì’ÌBÜ ” Ì“” Ì“
+” Ì“” Ì“” Ì“”! Ì“”1 Ì“+”3 Ì“-”7 Ì“1”ÌC Ì“=”ÌD Ì“>”ÌN Ì“ÌH”ÌO Ì“ÌI”ÌR Ì“ÌL”ÌS Ì“ÌM”ÌU Ì“ÌO”ÌV Ì“ÌP”ÌW Ì“ÌQ‘”	 Ì”’” Ì•” Ì•’” Ì—” Ì—’” Ì˜” Ì˜œ” Ì™” Ì™” Ì™	” Ì™” Ì™” Ì™”- Ì™)”/ Ì™+”3 Ì™/”5 Ì™1”6 Ì™2”7 Ì™3’” Ìš” Ìš’” Ìœ” Ìœ	’” Ì” Ìœ” Ì” Ì” Ì	” Ì” Ì” Ì”" Ì”$ Ì ”( Ì$”* Ì&”+ Ì'”, Ì(’” ÌŸ” ÌŸ’” Ì¡” Ì¡	’” Ì¢”	 Ì¢š” Ì£” Ì£” Ì£” Ì£” Ì£”( Ì£$”* Ì£&”? Ì£;”Ì@ Ì£<”ÌA Ì£=–” Ì¤” Ì¤” Ì¤	” Ì¤” Ì¤” Ì¤–” Ì¥” Ì¥” Ì¥	”% Ì¥!”' Ì¥#”( Ì¥$’” Ì¦” Ì¦’” Ì¨” Ì¨”” Ì©
+” Ì©” Ì©” Ì©&–” Ìª” Ìª” Ìª” Ìª”" Ìª”$ Ìª ›” Ì«” Ì«” Ì«” Ì«”! Ì«”" Ì«”) Ì«#”* Ì«$”5 Ì«/”7 Ì«1”8 Ì«2Ü ” Ì¬” Ì¬
+” Ì¬” Ì¬”  Ì¬”! Ì¬”* Ì¬$”+ Ì¬%”/ Ì¬)”6 Ì¬0”7 Ì¬1”? Ì¬9”Ì@ Ì¬:”ÌL Ì¬ÌF”ÌM Ì¬ÌG”ÌO Ì¬ÌI”” Ì­” Ì­”' Ì­”( Ì­ ‘” Ì®™” Ì®” Ì®” Ì®” Ì®”% Ì®!”& Ì®"”/ Ì®+”0 Ì®,”2 Ì®.”” Ì¯” Ì¯”% Ì¯”& Ì¯‘” Ì°‘” Ì°˜” Ì±” Ì±”" Ì±”' Ì±”( Ì± ”/ Ì±'”1 Ì±)”2 Ì±*‘” Ì²‘”	 Ì³”” Ì´” Ì´” Ì´” Ì´’” Ìµ” Ìµ’” Ì·” Ì·	’” Ì¸” Ì¸	š” Ì¹” Ì¹” Ì¹” Ì¹” Ì¹”( Ì¹$”* Ì¹&”< Ì¹8”= Ì¹9”> Ì¹:–” Ìº” Ìº” Ìº” Ìº”  Ìº”" Ìº˜” Ì»” Ì»” Ì»” Ì»” Ì»”- Ì»'”. Ì»(”/ Ì»)—” Ì¼” Ì¼
+” Ì¼”  Ì¼”# Ì¼”' Ì¼!”( Ì¼"‘”	 Ì½–” Ì¾” Ì¾” Ì¾” Ì¾”# Ì¾”% Ì¾!˜” Ì¿” Ì¿” Ì¿” Ì¿” Ì¿”0 Ì¿*”1 Ì¿+”2 Ì¿,—” ÌÀ” ÌÀ
+” ÌÀ”# ÌÀ”& ÌÀ ”* ÌÀ$”+ ÌÀ%‘”	 ÌÁ—” ÌÂ” ÌÂ” ÌÂ	”# ÌÂ”& ÌÂ"”( ÌÂ$”) ÌÂ%’” ÌÃ” ÌÃ‘” ÌÄ’”  ÌÆ ” ÌÆ””  ÌÇ ” ÌÇ” ÌÇ”' ÌÇ'˜” ÌÈ”
+ ÌÈ” ÌÈ” ÌÈ” ÌÈ”- ÌÈ+”/ ÌÈ-”0 ÌÈ.˜” ÌÉ”
+ ÌÉ” ÌÉ” ÌÉ” ÌÉ”+ ÌÉ)”- ÌÉ+”. ÌÉ,š” ÌÊ” ÌÊ	” ÌÊ”  ÌÊ”! ÌÊ”+ ÌÊ)”- ÌÊ+”: ÌÊ8”; ÌÊ9”< ÌÊ:’”  ÌË ” ÌË””  ÌÍ ” ÌÍ” ÌÍ” ÌÍ‘” ÌÍ •” ÌÎ” ÌÎ” ÌÎ” ÌÎ” ÌÎ•” ÌÏ” ÌÏ” ÌÏ”! ÌÏ”" ÌÏ •” ÌĞ” ÌĞ” ÌĞ” ÌĞ!” ÌĞ"•” ÌÑ” ÌÑ” ÌÑ” ÌÑ” ÌÑ•” ÌÒ” ÌÒ”  ÌÒ*”$ ÌÒ.”% ÌÒ/’” ÌÓ ” ÌÓ‘” ÌÓ””  ÌÕ ” ÌÕ” ÌÕ” ÌÕ“” ÌÙ” ÌÙ” ÌÙ—” ÌÚ” ÌÚ” ÌÚ	” ÌÚ” ÌÚ” ÌÚ” ÌÚš” ÌÛ” ÌÛ” ÌÛ	” ÌÛ” ÌÛ” ÌÛ” ÌÛ”! ÌÛ”# ÌÛ”$ ÌÛ ’” ÌÜ” ÌÜ‘” ÌİÔrG–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ Â‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ÔrH’§missing¦pluginÃ¦genAbcÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache”ÔrJ–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÌ}ÍûÔrK–¤type¥start£end¢idªsuperClass¤body°ClassDeclarationÌ„ÍûÔrL”¤type¥start£end¤nameªIdentifierÌŠÌ›±TrendingViewModelÀÔrM”¤type¥start£end¤body©ClassBodyÌœÍûÔrN˜¤type¥start£end¦static¨computed£key¤kind¥value°MethodDefinitionÌ£Í[ÂÂLªIdentifierÌ£Ì®«constructor«constructorÔrO™¤type¥start£end¢idªexpression©generator¥async¦params¤body²FunctionExpressionÌ®Í[ÀÂÂÂ’LªIdentifierÌ¯Ì¹ªrepositoryLªIdentifierÌ»ÌÈ­linkConverterM®BlockStatementÌÊÍ[˜ÔrP”¤type¥start£endªexpression³ExpressionStatementÌèÍÔrQ–¤type¥start£end¨operator¤left¥right´AssignmentExpressionÌèÍ¡=ÔrR—¤type¥start£end¦object¨property¨computed¨optional°MemberExpressionÌèÌôÔrS“¤type¥start£end®ThisExpressionÌèÌìLªIdentifierÌíÌô§uiStateÂÂÔrT•¤type¥start£end¦callee©arguments­NewExpressionÌ÷ÍLªIdentifierÌûÍ
+¯TrendingUiStateP³ExpressionStatementÍÍ8Q´AssignmentExpressionÍÍ7¡=R°MemberExpressionÍÍ2S®ThisExpressionÍÍLªIdentifierÍÍ2¶uiStateChangeListenersÂÂÔrU”¤type¥start£end¨elements¯ArrayExpressionÍ5Í7P³ExpressionStatementÍUÍqQ´AssignmentExpressionÍUÍp¡=R°MemberExpressionÍUÍiS®ThisExpressionÍUÍYLªIdentifierÍZÍi¯currentLoadTaskÂÂÔrV•¤type¥start£end¥value£raw§LiteralÍlÍpÀ¤nullP³ExpressionStatementÍ{ÍšQ´AssignmentExpressionÍ{Í™¡=R°MemberExpressionÍ{Í’S®ThisExpressionÍ{ÍLªIdentifierÍ€Í’²currentRefreshTaskÂÂV§LiteralÍ•Í™À¤nullP³ExpressionStatementÍ¤ÍÁQ´AssignmentExpressionÍ¤ÍÀ¡=R°MemberExpressionÍ¤Í³S®ThisExpressionÍ¤Í¨LªIdentifierÍ©Í³ªrepositoryÂÂLªIdentifierÍ¶ÍÀªrepositoryP³ExpressionStatementÍËÍîQ´AssignmentExpressionÍËÍí¡=R°MemberExpressionÍËÍİS®ThisExpressionÍËÍÏLªIdentifierÍĞÍİ­linkConverterÂÂLªIdentifierÍàÍí­linkConverterP³ExpressionStatementÍøÍ*ÔrW–¤type¥start£end¦callee©arguments¨optional®CallExpressionÍøÍ)R°MemberExpressionÍøÍLªIdentifierÍøÍÿ§consoleLªIdentifierÍ Í¤infoÂÂ’V§LiteralÍÍ±TrendingViewModel³'TrendingViewModel'V§LiteralÍÍ(²ViewModelåˆå§‹åŒ–´'ViewModelåˆå§‹åŒ–'ÂP³ExpressionStatementÍ4ÍTW®CallExpressionÍ4ÍSR°MemberExpressionÍ4ÍQS®ThisExpressionÍ4Í8LªIdentifierÍ9ÍQ¸loadTrendingRepositoriesÂÂÂN°MethodDefinitionÍqÍÏÂÂLªIdentifierÍqÍ‡¶addStateChangeListener¦methodO²FunctionExpressionÍ‡ÍÏÀÂÂÂ‘LªIdentifierÍˆÍ¨listenerM®BlockStatementÍ’ÍÏ‘P³ExpressionStatementÍÍÈW®CallExpressionÍÍÇR°MemberExpressionÍÍ½R°MemberExpressionÍÍ¸S®ThisExpressionÍÍ¡LªIdentifierÍ¢Í¸¶uiStateChangeListenersÂÂLªIdentifierÍ¹Í½¤pushÂÂ‘LªIdentifierÍ¾ÍÆ¨listenerÂN°MethodDefinitionÍåÍ¸ÂÂLªIdentifierÍåÍş¹removeStateChangeListener¦methodO²FunctionExpressionÍşÍ¸ÀÂÂÂ‘LªIdentifierÍÿÍ¨listenerM®BlockStatementÍ	Í¸’ÔrX•¤type¥start£end¬declarations¤kind³VariableDeclarationÍÍP‘ÔrY•¤type¥start£end¢id¤init²VariableDeclaratorÍÍOLªIdentifierÍÍ¥indexW®CallExpressionÍ"ÍOR°MemberExpressionÍ"ÍER°MemberExpressionÍ"Í=S®ThisExpressionÍ"Í&LªIdentifierÍ'Í=¶uiStateChangeListenersÂÂLªIdentifierÍ>ÍE§indexOfÂÂ‘LªIdentifierÍFÍN¨listenerÂ¥constÔrZ–¤type¥start£end¤testªconsequent©alternate«IfStatementÍZÍ±Ôr[–¤type¥start£end¤left¨operator¥right°BinaryExpressionÍ^ÍhLªIdentifierÍ^Íc¥index¡>Ôr\–¤type¥start£end¨operator¦prefix¨argument¯UnaryExpressionÍfÍh¡-ÃV§LiteralÍgÍh¡1M®BlockStatementÍjÍ±‘P³ExpressionStatementÍyÍ¦W®CallExpressionÍyÍ¥R°MemberExpressionÍyÍ›R°MemberExpressionÍyÍ”S®ThisExpressionÍyÍ}LªIdentifierÍ~Í”¶uiStateChangeListenersÂÂLªIdentifierÍ•Í›¦spliceÂÂ’LªIdentifierÍœÍ¡¥indexV§LiteralÍ£Í¤¡1ÂÀN°MethodDefinitionÍÍÍ…ÂÂLªIdentifierÍÍÍŞ±notifyStateChange¦methodO²FunctionExpressionÍŞÍ…ÀÂÂÂM®BlockStatementÍáÍ…’X³VariableDeclarationÍìÍ‘Y²VariableDeclaratorÍòÍLªIdentifierÍòÍû©stateCopyÔr]”¤type¥start£endªproperties°ObjectExpressionÍşÍ•Ôr^™¤type¥start£end¦method©shorthand¨computed£key¥value¤kind¨PropertyÍÍ.ÂÂÂLªIdentifierÍÍ©isLoadingR°MemberExpressionÍÍ.R°MemberExpressionÍÍ$S®ThisExpressionÍÍLªIdentifierÍÍ$§uiStateÂÂLªIdentifierÍ%Í.©isLoadingÂÂ¤init^¨PropertyÍ=ÍdÂÂÂLªIdentifierÍ=ÍI¬isRefreshingR°MemberExpressionÍKÍdR°MemberExpressionÍKÍWS®ThisExpressionÍKÍOLªIdentifierÍPÍW§uiStateÂÂLªIdentifierÍXÍd¬isRefreshingÂÂ¤init^¨PropertyÍsÍ¢ÂÂÂLªIdentifierÍsÍ¬repositoriesW®CallExpressionÍÍ¢R°MemberExpressionÍÍ R°MemberExpressionÍÍšR°MemberExpressionÍÍS®ThisExpressionÍÍ…LªIdentifierÍ†Í§uiStateÂÂLªIdentifierÍÍš¬repositoriesÂÂLªIdentifierÍ›Í ¥sliceÂÂÂ¤init^¨PropertyÍ±ÍÊÂÂÂLªIdentifierÍ±Í¶¥errorR°MemberExpressionÍ¸ÍÊR°MemberExpressionÍ¸ÍÄS®ThisExpressionÍ¸Í¼LªIdentifierÍ½ÍÄ§uiStateÂÂLªIdentifierÍÅÍÊ¥errorÂÂ¤init^¨PropertyÍÙÍÂÂÂLªIdentifierÍÙÍé°openBrowserEventR°MemberExpressionÍëÍR°MemberExpressionÍëÍ÷S®ThisExpressionÍëÍïLªIdentifierÍğÍ÷§uiStateÂÂLªIdentifierÍøÍ°openBrowserEventÂÂ¤init¥constP³ExpressionStatementÍÍ~W®CallExpressionÍÍ}R°MemberExpressionÍÍAR°MemberExpressionÍÍ9S®ThisExpressionÍÍ"LªIdentifierÍ#Í9¶uiStateChangeListenersÂÂLªIdentifierÍ:ÍA§forEachÂÂ‘O·ArrowFunctionExpressionÍBÍ|ÀÂÂÂ‘LªIdentifierÍBÍJ¨listenerM®BlockStatementÍNÍ|‘P³ExpressionStatementÍ]ÍqW®CallExpressionÍ]ÍpLªIdentifierÍ]Íe¨listener‘LªIdentifierÍfÍo©stateCopyÂÂN°MethodDefinitionÍšÍ¡ÂÂLªIdentifierÍšÍ§­updateUiState¦methodO²FunctionExpressionÍ§Í¡ÀÂÂÂ‘LªIdentifierÍ¨Í¯§updatesM®BlockStatementÍ±Í¡–P³ExpressionStatementÍ¼ÍQ´AssignmentExpressionÍ¼Í ¡=R°MemberExpressionÍ¼ÍÒR°MemberExpressionÍ¼ÍÈS®ThisExpressionÍ¼ÍÀLªIdentifierÍÁÍÈ§uiStateÂÂLªIdentifierÍÉÍÒ©isLoadingÂÂ[±LogicalExpressionÍÕÍ R°MemberExpressionÍÕÍæLªIdentifierÍÕÍÜ§updatesLªIdentifierÍİÍæ©isLoadingÂÂ¢??R°MemberExpressionÍêÍ R°MemberExpressionÍêÍöS®ThisExpressionÍêÍîLªIdentifierÍïÍö§uiStateÂÂLªIdentifierÍ÷Í ©isLoadingÂÂP³ExpressionStatementÍÍYQ´AssignmentExpressionÍÍX¡=R°MemberExpressionÍÍ$R°MemberExpressionÍÍS®ThisExpressionÍÍLªIdentifierÍÍ§uiStateÂÂLªIdentifierÍÍ$¬isRefreshingÂÂ[±LogicalExpressionÍ'ÍXR°MemberExpressionÍ'Í;LªIdentifierÍ'Í.§updatesLªIdentifierÍ/Í;¬isRefreshingÂÂ¢??R°MemberExpressionÍ?ÍXR°MemberExpressionÍ?ÍKS®ThisExpressionÍ?ÍCLªIdentifierÍDÍK§uiStateÂÂLªIdentifierÍLÍX¬isRefreshingÂÂP³ExpressionStatementÍcÍœQ´AssignmentExpressionÍcÍ›¡=R°MemberExpressionÍcÍuR°MemberExpressionÍcÍoS®ThisExpressionÍcÍgLªIdentifierÍhÍo§uiStateÂÂLªIdentifierÍpÍu¥errorÂÂ[±LogicalExpressionÍxÍ›R°MemberExpressionÍxÍ…LªIdentifierÍxÍ§updatesLªIdentifierÍ€Í…¥errorÂÂ¢??R°MemberExpressionÍ‰Í›R°MemberExpressionÍ‰Í•S®ThisExpressionÍ‰ÍLªIdentifierÍÍ•§uiStateÂÂLªIdentifierÍ–Í›¥errorÂÂP³ExpressionStatementÍ¦Í Q´AssignmentExpressionÍ¦Íÿ¡=R°MemberExpressionÍ¦ÍÃR°MemberExpressionÍ¦Í²S®ThisExpressionÍ¦ÍªLªIdentifierÍ«Í²§uiStateÂÂLªIdentifierÍ³ÍÃ°openBrowserEventÂÂ[±LogicalExpressionÍÆÍÿR°MemberExpressionÍÆÍŞLªIdentifierÍÆÍÍ§updatesLªIdentifierÍÎÍŞ°openBrowserEventÂÂ¢??R°MemberExpressionÍâÍÿR°MemberExpressionÍâÍîS®ThisExpressionÍâÍæLªIdentifierÍçÍî§uiStateÂÂLªIdentifierÍïÍÿ°openBrowserEventÂÂZ«IfStatementÍ
+ÍwR°MemberExpressionÍÍ"LªIdentifierÍÍ§updatesLªIdentifierÍÍ"¬repositoriesÂÂM®BlockStatementÍ$Íw‘P³ExpressionStatementÍ3ÍlQ´AssignmentExpressionÍ3Ík¡=R°MemberExpressionÍ3ÍLR°MemberExpressionÍ3Í?S®ThisExpressionÍ3Í7LªIdentifierÍ8Í?§uiStateÂÂLªIdentifierÍ@ÍL¬repositoriesÂÂW®CallExpressionÍOÍkR°MemberExpressionÍOÍiR°MemberExpressionÍOÍcLªIdentifierÍOÍV§updatesLªIdentifierÍWÍc¬repositoriesÂÂLªIdentifierÍdÍi¥sliceÂÂÂÀP³ExpressionStatementÍÍšW®CallExpressionÍÍ™R°MemberExpressionÍÍ—S®ThisExpressionÍÍ…LªIdentifierÍ†Í—±notifyStateChangeÂÂÂN°MethodDefinitionÍ¶ÍºÂÂLªIdentifierÍ¶ÍÂ¬getDebugInfo¦methodO²FunctionExpressionÍÂÍºÀÂÂÂM®BlockStatementÍÅÍº‘Ôr_”¤type¥start£end¨argument¯ReturnStatementÍĞÍ³[°BinaryExpressionÍ×Í²[°BinaryExpressionÍ×Í…[°BinaryExpressionÍ×ÍAÔr`•¤type¥start£end«expressions¦quasis¯TemplateLiteralÍ×Í‘R°MemberExpressionÍìÍR°MemberExpressionÍìÍøS®ThisExpressionÍìÍğLªIdentifierÍñÍø§uiStateÂÂLªIdentifierÍùÍ©isLoadingÂÂ’Ôra•¤type¥start£end¥value¤tail¯TemplateElementÍØÍêÔrb’£raw¦cooked²UI State: loading=²UI State: loading=Âa¯TemplateElementÍÍb¢, ¢, Ã¡+`¯TemplateLiteralÍÍA‘R°MemberExpressionÍ$Í=R°MemberExpressionÍ$Í0S®ThisExpressionÍ$Í(LªIdentifierÍ)Í0§uiStateÂÂLªIdentifierÍ1Í=¬isRefreshingÂÂ’a¯TemplateElementÍÍ"b«refreshing=«refreshing=Âa¯TemplateElementÍ>Í@b¢, ¢, Ã¡+`¯TemplateLiteralÍQÍ…‘R°MemberExpressionÍaÍR°MemberExpressionÍaÍzR°MemberExpressionÍaÍmS®ThisExpressionÍaÍeLªIdentifierÍfÍm§uiStateÂÂLªIdentifierÍnÍz¬repositoriesÂÂLªIdentifierÍ{Í¦lengthÂÂ’a¯TemplateElementÍRÍ_b­repositories=­repositories=Âa¯TemplateElementÍ‚Í„b¢, ¢, Ã¡+`¯TemplateLiteralÍ•Í²‘R°MemberExpressionÍÍ°R°MemberExpressionÍÍªS®ThisExpressionÍÍ¢LªIdentifierÍ£Íª§uiStateÂÂLªIdentifierÍ«Í°¥errorÂÂ’a¯TemplateElementÍ–Íœb¦error=¦error=Âa¯TemplateElementÍ±Í±b  ÃN°MethodDefinitionÍÑÍÂÂLªIdentifierÍÑÍé¸loadTrendingRepositories¦methodO²FunctionExpressionÍéÍÀÂÂÂM®BlockStatementÍìÍ”P³ExpressionStatementÍ÷Í	0W®CallExpressionÍ÷Í	/R°MemberExpressionÍ÷Í	LªIdentifierÍ÷Íş§consoleLªIdentifierÍÿÍ	¤infoÂÂ’V§LiteralÍ	Í	±TrendingViewModel³'TrendingViewModel'V§LiteralÍ	Í	.Ù'å¼€å§‹åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰Ù)'å¼€å§‹åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰'ÂZ«IfStatementÍ	PÍ	§R°MemberExpressionÍ	TÍ	hS®ThisExpressionÍ	TÍ	XLªIdentifierÍ	YÍ	h¯currentLoadTaskÂÂM®BlockStatementÍ	jÍ	§‘P³ExpressionStatementÍ	yÍ	œW®CallExpressionÍ	yÍ	›LªIdentifierÍ	yÍ	…¬clearTimeout‘R°MemberExpressionÍ	†Í	šS®ThisExpressionÍ	†Í	ŠLªIdentifierÍ	‹Í	š¯currentLoadTaskÂÂÂÀP³ExpressionStatementÍ	±Í	æW®CallExpressionÍ	±Í	åR°MemberExpressionÍ	±Í	ÃS®ThisExpressionÍ	±Í	µLªIdentifierÍ	¶Í	Ã­updateUiStateÂÂ‘]°ObjectExpressionÍ	ÄÍ	ä’^¨PropertyÍ	ÆÍ	ÕÂÂÂLªIdentifierÍ	ÆÍ	Ï©isLoadingV§LiteralÍ	ÑÍ	ÕÃ¤true¤init^¨PropertyÍ	×Í	âÂÂÂLªIdentifierÍ	×Í	Ü¥errorV§LiteralÍ	ŞÍ	âÀ¤null¤initÂP³ExpressionStatementÍ
+Í	Q´AssignmentExpressionÍ
+Í¡=R°MemberExpressionÍ
+Í
+S®ThisExpressionÍ
+Í
+LªIdentifierÍ
+Í
+¯currentLoadTaskÂÂW®CallExpressionÍ
+ÍLªIdentifierÍ
+Í
+$ªsetTimeout’O·ArrowFunctionExpressionÍ
+%ÍÀÂÂÃM®BlockStatementÍ
+1Í‘Ôrc–¤type¥start£end¥block§handler©finalizer¬TryStatementÍ
+@ÍöM®BlockStatementÍ
+DÍ¶“X³VariableDeclarationÍ
+WÍ
+œ‘Y²VariableDeclaratorÍ
+]Í
+›LªIdentifierÍ
+]Í
+i¬repositories_¯AwaitExpressionÍ
+lÍ
+›W®CallExpressionÍ
+rÍ
+›R°MemberExpressionÍ
+rÍ
+™R°MemberExpressionÍ
+rÍ
+S®ThisExpressionÍ
+rÍ
+vLªIdentifierÍ
+wÍ
+ªrepositoryÂÂLªIdentifierÍ
+‚Í
+™·getTrendingRepositoriesÂÂÂ¥constP³ExpressionStatementÍ
+®Í
+óW®CallExpressionÍ
+®Í
+òR°MemberExpressionÍ
+®Í
+ºLªIdentifierÍ
+®Í
+µ§consoleLªIdentifierÍ
+¶Í
+º¤infoÂÂ’V§LiteralÍ
+»Í
+Î±TrendingViewModel³'TrendingViewModel'`¯TemplateLiteralÍ
+ĞÍ
+ñ‘R°MemberExpressionÍ
+ØÍ
+ëLªIdentifierÍ
+ØÍ
+ä¬repositoriesLªIdentifierÍ
+åÍ
+ë¦lengthÂÂ’a¯TemplateElementÍ
+ÑÍ
+Öb­æˆåŠŸè·å– ­æˆåŠŸè·å– Âa¯TemplateElementÍ
+ìÍ
+ğbª ä¸ªä»“åº“ª ä¸ªä»“åº“ÃÂP³ExpressionStatementÍÍ§W®CallExpressionÍÍ¦R°MemberExpressionÍÍS®ThisExpressionÍÍ	LªIdentifierÍ
+Í­updateUiStateÂÂ‘]°ObjectExpressionÍÍ¥“^¨PropertyÍ/Í?ÂÂÂLªIdentifierÍ/Í8©isLoadingV§LiteralÍ:Í?Â¥false¤init^¨PropertyÍVÍpÂÂÂLªIdentifierÍVÍb¬repositoriesLªIdentifierÍdÍp¬repositories¤init^¨PropertyÍ‡Í’ÂÂÂLªIdentifierÍ‡ÍŒ¥errorV§LiteralÍÍ’À¤null¤initÂÔrd•¤type¥start£end¥param¤body«CatchClauseÍÄÍöLªIdentifierÍËÍĞ¥errorM®BlockStatementÍÒÍö“P³ExpressionStatementÍåÍW®CallExpressionÍåÍR°MemberExpressionÍåÍòLªIdentifierÍåÍì§consoleLªIdentifierÍíÍò¥errorÂÂ“V§LiteralÍóÍ±TrendingViewModel³'TrendingViewModel'V§LiteralÍÍ²æ•°æ®åŠ è½½å¼‚å¸¸´'æ•°æ®åŠ è½½å¼‚å¸¸'LªIdentifierÍÍ¥errorÂX³VariableDeclarationÍ+Í\‘Y²VariableDeclaratorÍ1Í[LªIdentifierÍ1Í=¬errorMessageW®CallExpressionÍ@Í[R°MemberExpressionÍ@ÍTS®ThisExpressionÍ@ÍDLªIdentifierÍEÍT¯getErrorMessageÂÂ‘LªIdentifierÍUÍZ¥errorÂ¥constP³ExpressionStatementÍnÍçW®CallExpressionÍnÍæR°MemberExpressionÍnÍ€S®ThisExpressionÍnÍrLªIdentifierÍsÍ€­updateUiStateÂÂ‘]°ObjectExpressionÍÍå’^¨PropertyÍ˜Í¨ÂÂÂLªIdentifierÍ˜Í¡©isLoadingV§LiteralÍ£Í¨Â¥false¤init^¨PropertyÍ¿ÍÒÂÂÂLªIdentifierÍ¿ÍÄ¥errorLªIdentifierÍÆÍÒ¬errorMessage¤initÂÀV§LiteralÍÍÍè¤1000ÂN°MethodDefinitionÍ#ÍdÂÂLªIdentifierÍ#Í,©onRefresh¦methodO²FunctionExpressionÍ,ÍdÀÂÂÂM®BlockStatementÍ/Íd”P³ExpressionStatementÍ:ÍsW®CallExpressionÍ:ÍrR°MemberExpressionÍ:ÍFLªIdentifierÍ:ÍA§consoleLªIdentifierÍBÍF¤infoÂÂ’V§LiteralÍGÍZ±TrendingViewModel³'TrendingViewModel'V§LiteralÍ\ÍqÙ'å¼€å§‹åˆ·æ–°æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰Ù)'å¼€å§‹åˆ·æ–°æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰'ÂZ«IfStatementÍ“ÍğR°MemberExpressionÍ—Í®S®ThisExpressionÍ—Í›LªIdentifierÍœÍ®²currentRefreshTaskÂÂM®BlockStatementÍ°Íğ‘P³ExpressionStatementÍ¿ÍåW®CallExpressionÍ¿ÍäLªIdentifierÍ¿ÍË¬clearTimeout‘R°MemberExpressionÍÌÍãS®ThisExpressionÍÌÍĞLªIdentifierÍÑÍã²currentRefreshTaskÂÂÂÀP³ExpressionStatementÍúÍ2W®CallExpressionÍúÍ1R°MemberExpressionÍúÍS®ThisExpressionÍúÍşLªIdentifierÍÿÍ­updateUiStateÂÂ‘]°ObjectExpressionÍÍ0’^¨PropertyÍÍ!ÂÂÂLªIdentifierÍÍ¬isRefreshingV§LiteralÍÍ!Ã¤true¤init^¨PropertyÍ#Í.ÂÂÂLªIdentifierÍ#Í(¥errorV§LiteralÍ*Í.À¤null¤initÂP³ExpressionStatementÍOÍ]Q´AssignmentExpressionÍOÍ\¡=R°MemberExpressionÍOÍfS®ThisExpressionÍOÍSLªIdentifierÍTÍf²currentRefreshTaskÂÂW®CallExpressionÍiÍ\LªIdentifierÍiÍsªsetTimeout’O·ArrowFunctionExpressionÍtÍUÀÂÂÃM®BlockStatementÍ€ÍU‘c¬TryStatementÍÍJM®BlockStatementÍ“Í	“X³VariableDeclarationÍ¦Íë‘Y²VariableDeclaratorÍ¬ÍêLªIdentifierÍ¬Í¸¬repositories_¯AwaitExpressionÍ»ÍêW®CallExpressionÍÁÍêR°MemberExpressionÍÁÍèR°MemberExpressionÍÁÍĞS®ThisExpressionÍÁÍÅLªIdentifierÍÆÍĞªrepositoryÂÂLªIdentifierÍÑÍè·getTrendingRepositoriesÂÂÂ¥constP³ExpressionStatementÍıÍCW®CallExpressionÍıÍBR°MemberExpressionÍıÍ	LªIdentifierÍıÍ§consoleLªIdentifierÍÍ	¤infoÂÂ’V§LiteralÍ
+Í±TrendingViewModel³'TrendingViewModel'`¯TemplateLiteralÍÍA‘R°MemberExpressionÍ(Í;LªIdentifierÍ(Í4¬repositoriesLªIdentifierÍ5Í;¦lengthÂÂ’a¯TemplateElementÍ Í&b®åˆ·æ–°æˆåŠŸ: ®åˆ·æ–°æˆåŠŸ: Âa¯TemplateElementÍ<Í@bª ä¸ªä»“åº“ª ä¸ªä»“åº“ÃÂP³ExpressionStatementÍUÍúW®CallExpressionÍUÍùR°MemberExpressionÍUÍgS®ThisExpressionÍUÍYLªIdentifierÍZÍg­updateUiStateÂÂ‘]°ObjectExpressionÍhÍø“^¨PropertyÍÍ’ÂÂÂLªIdentifierÍÍ‹¬isRefreshingV§LiteralÍÍ’Â¥false¤init^¨PropertyÍ©ÍÃÂÂÂLªIdentifierÍ©Íµ¬repositoriesLªIdentifierÍ·ÍÃ¬repositories¤init^¨PropertyÍÚÍåÂÂÂLªIdentifierÍÚÍß¥errorV§LiteralÍáÍåÀ¤null¤initÂd«CatchClauseÍÍJLªIdentifierÍÍ#¥errorM®BlockStatementÍ%ÍJ“P³ExpressionStatementÍ8ÍjW®CallExpressionÍ8ÍiR°MemberExpressionÍ8ÍELªIdentifierÍ8Í?§consoleLªIdentifierÍ@ÍE¥errorÂÂ“V§LiteralÍFÍY±TrendingViewModel³'TrendingViewModel'V§LiteralÍ[Ía¬åˆ·æ–°å¼‚å¸¸®'åˆ·æ–°å¼‚å¸¸'LªIdentifierÍcÍh¥errorÂX³VariableDeclarationÍ|Í­‘Y²VariableDeclaratorÍ‚Í¬LªIdentifierÍ‚Í¬errorMessageW®CallExpressionÍ‘Í¬R°MemberExpressionÍ‘Í¥S®ThisExpressionÍ‘Í•LªIdentifierÍ–Í¥¯getErrorMessageÂÂ‘LªIdentifierÍ¦Í«¥errorÂ¥constP³ExpressionStatementÍ¿Í;W®CallExpressionÍ¿Í:R°MemberExpressionÍ¿ÍÑS®ThisExpressionÍ¿ÍÃLªIdentifierÍÄÍÑ­updateUiStateÂÂ‘]°ObjectExpressionÍÒÍ9’^¨PropertyÍéÍüÂÂÂLªIdentifierÍéÍõ¬isRefreshingV§LiteralÍ÷ÍüÂ¥false¤init^¨PropertyÍÍ&ÂÂÂLªIdentifierÍÍ¥errorLªIdentifierÍÍ&¬errorMessage¤initÂÀV§LiteralÍWÍ[Íè¤1000ÂN°MethodDefinitionÍ{ÍÈÂÂLªIdentifierÍ{ÍŒ±onRepositoryClick¦methodO²FunctionExpressionÍŒÍÈÀÂÂÂ‘LªIdentifierÍÍ—ªrepositoryM®BlockStatementÍ™ÍÈ’P³ExpressionStatementÍ¤ÍâW®CallExpressionÍ¤ÍáR°MemberExpressionÍ¤Í°LªIdentifierÍ¤Í«§consoleLªIdentifierÍ¬Í°¤infoÂÂ’V§LiteralÍ±ÍÄ±TrendingViewModel³'TrendingViewModel'`¯TemplateLiteralÍÆÍà‘R°MemberExpressionÍÏÍŞLªIdentifierÍÏÍÙªrepositoryLªIdentifierÍÚÍŞ¤nameÂÂ’a¯TemplateElementÍÇÍÍb®ç‚¹å‡»ä»“åº“: ®ç‚¹å‡»ä»“åº“: Âa¯TemplateElementÍßÍßb  ÃÂc¬TryStatementÍìÍÁM®BlockStatementÍğÍú“X³VariableDeclarationÍÿÍL‘Y²VariableDeclaratorÍÍKLªIdentifierÍÍ¬convertedUrlW®CallExpressionÍÍKR°MemberExpressionÍÍ;R°MemberExpressionÍÍ&S®ThisExpressionÍÍLªIdentifierÍÍ&­linkConverterÂÂLªIdentifierÍ'Í;´convertGitHubToZreadÂÂ‘R°MemberExpressionÍ<ÍJLªIdentifierÍ<ÍFªrepositoryLªIdentifierÍGÍJ£urlÂÂÂ¥constP³ExpressionStatementÍZÍ˜W®CallExpressionÍZÍ—R°MemberExpressionÍZÍfLªIdentifierÍZÍa§consoleLªIdentifierÍbÍf¤infoÂÂ’V§LiteralÍgÍz±TrendingViewModel³'TrendingViewModel'`¯TemplateLiteralÍ|Í–‘LªIdentifierÍˆÍ”¬convertedUrl’a¯TemplateElementÍ}Í†b±è½¬æ¢åçš„URL: ±è½¬æ¢åçš„URL: Âa¯TemplateElementÍ•Í•b  ÃÂP³ExpressionStatementÍ¦ÍïW®CallExpressionÍ¦ÍîR°MemberExpressionÍ¦Í¸S®ThisExpressionÍ¦ÍªLªIdentifierÍ«Í¸­updateUiStateÂÂ‘]°ObjectExpressionÍ¹Íí‘^¨PropertyÍ»ÍëÂÂÂLªIdentifierÍ»ÍË°openBrowserEventT­NewExpressionÍÍÍëLªIdentifierÍÑÍİ¬BrowserEvent‘LªIdentifierÍŞÍê¬convertedUrl¤initÂd«CatchClauseÍÍÁLªIdentifierÍÍ¥errorM®BlockStatementÍÍÁ’P³ExpressionStatementÍ!Í]W®CallExpressionÍ!Í\R°MemberExpressionÍ!Í-LªIdentifierÍ!Í(§consoleLªIdentifierÍ)Í-¤warnÂÂ“V§LiteralÍ.ÍA±TrendingViewModel³'TrendingViewModel'V§LiteralÍCÍTÙ!URLè½¬æ¢å¤±è´¥ï¼Œä½¿ç”¨åŸå§‹URLÙ#'URLè½¬æ¢å¤±è´¥ï¼Œä½¿ç”¨åŸå§‹URL'LªIdentifierÍVÍ[¥errorÂP³ExpressionStatementÍkÍ¶W®CallExpressionÍkÍµR°MemberExpressionÍkÍ}S®ThisExpressionÍkÍoLªIdentifierÍpÍ}­updateUiStateÂÂ‘]°ObjectExpressionÍ~Í´‘^¨PropertyÍ€Í²ÂÂÂLªIdentifierÍ€Í°openBrowserEventT­NewExpressionÍ’Í²LªIdentifierÍ–Í¢¬BrowserEvent‘R°MemberExpressionÍ£Í±LªIdentifierÍ£Í­ªrepositoryLªIdentifierÍ®Í±£urlÂÂ¤initÂÀN°MethodDefinitionÍàÍ9ÂÂLªIdentifierÍàÍõµonBrowserEventHandled¦methodO²FunctionExpressionÍõÍ9ÀÂÂÂM®BlockStatementÍøÍ9‘P³ExpressionStatementÍÍ2W®CallExpressionÍÍ1R°MemberExpressionÍÍS®ThisExpressionÍÍLªIdentifierÍÍ­updateUiStateÂÂ‘]°ObjectExpressionÍÍ0‘^¨PropertyÍÍ.ÂÂÂLªIdentifierÍÍ(°openBrowserEventV§LiteralÍ*Í.À¤null¤initÂN°MethodDefinitionÍLÍÂÂLªIdentifierÍLÍVªclearError¦methodO²FunctionExpressionÍVÍÀÂÂÂM®BlockStatementÍYÍ‘P³ExpressionStatementÍdÍˆW®CallExpressionÍdÍ‡R°MemberExpressionÍdÍvS®ThisExpressionÍdÍhLªIdentifierÍiÍv­updateUiStateÂÂ‘]°ObjectExpressionÍwÍ†‘^¨PropertyÍyÍ„ÂÂÂLªIdentifierÍyÍ~¥errorV§LiteralÍ€Í„À¤null¤initÂN°MethodDefinitionÍ¢Í;ÂÂLªIdentifierÍ¢Í§¥retry¦methodO²FunctionExpressionÍ§Í;ÀÂÂÂM®BlockStatementÍªÍ;“P³ExpressionStatementÍµÍîW®CallExpressionÍµÍíR°MemberExpressionÍµÍÁLªIdentifierÍµÍ¼§consoleLªIdentifierÍ½ÍÁ¤infoÂÂ’V§LiteralÍÂÍÕ±TrendingViewModel³'TrendingViewModel'V§LiteralÍ×ÍìÙ'é‡è¯•åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰Ù)'é‡è¯•åŠ è½½æ•°æ®ï¼ˆæ¥æº=zread.aiï¼‰'ÂP³ExpressionStatementÍøÍ
+W®CallExpressionÍøÍ	R°MemberExpressionÍøÍS®ThisExpressionÍøÍüLªIdentifierÍıÍªclearErrorÂÂÂP³ExpressionStatementÍÍ4W®CallExpressionÍÍ3R°MemberExpressionÍÍ1S®ThisExpressionÍÍLªIdentifierÍÍ1¸loadTrendingRepositoriesÂÂÂN°MethodDefinitionÍPÍIÂÂLªIdentifierÍPÍ_¯getErrorMessage¦methodO²FunctionExpressionÍ_ÍIÀÂÂÂ‘LªIdentifierÍ`Íe¥errorM®BlockStatementÍgÍI’Z«IfStatementÍrÍ"[°BinaryExpressionÍvÍŒLªIdentifierÍvÍ{¥errorªinstanceofLªIdentifierÍ‡ÍŒ¥ErrorM®BlockStatementÍÍ"’X³VariableDeclarationÍÍÉ‘Y²VariableDeclaratorÍ£ÍÈLªIdentifierÍ£Íª§messageW®CallExpressionÍ­ÍÈR°MemberExpressionÍ­ÍÆR°MemberExpressionÍ­ÍºLªIdentifierÍ­Í²¥errorLªIdentifierÍ³Íº§messageÂÂLªIdentifierÍ»ÍÆ«toLowerCaseÂÂÂ¥constZ«IfStatementÍ×Í[±LogicalExpressionÍÛÍW®CallExpressionÍÛÍöR°MemberExpressionÍÛÍëLªIdentifierÍÛÍâ§messageLªIdentifierÍãÍë¨includesÂÂ‘V§LiteralÍìÍõ§network©'network'Â¢||W®CallExpressionÍúÍR°MemberExpressionÍúÍ
+LªIdentifierÍúÍ§messageLªIdentifierÍÍ
+¨includesÂÂ‘V§LiteralÍÍªconnection¬'connection'ÂM®BlockStatementÍÍT‘_¯ReturnStatementÍ-ÍEV§LiteralÍ4ÍDÙ*ç½‘ç»œè¿æ¥å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®Ù,'ç½‘ç»œè¿æ¥å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®'Z«IfStatementÍgÍW®CallExpressionÍkÍ†R°MemberExpressionÍkÍ{LªIdentifierÍkÍr§messageLªIdentifierÍsÍ{¨includesÂÂ‘V§LiteralÍ|Í…§timeout©'timeout'ÂM®BlockStatementÍˆÍÀ‘_¯ReturnStatementÍ›Í±V§LiteralÍ¢Í°Ù$ç½‘ç»œè¯·æ±‚è¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•Ù&'ç½‘ç»œè¯·æ±‚è¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•'M®BlockStatementÍÓÍ‘_¯ReturnStatementÍæÍ`¯TemplateLiteralÍíÍ‘R°MemberExpressionÍøÍLªIdentifierÍøÍı¥errorLªIdentifierÍşÍ§messageÂÂ’a¯TemplateElementÍîÍöb´æ•°æ®åŠ è½½å¤±è´¥: ´æ•°æ®åŠ è½½å¤±è´¥: Âa¯TemplateElementÍÍb  ÃÀ_¯ReturnStatementÍ,ÍBV§LiteralÍ3ÍAÙ æ•°æ®åŠ è½½å¤±è´¥: æœªçŸ¥é”™è¯¯Ù"'æ•°æ®åŠ è½½å¤±è´¥: æœªçŸ¥é”™è¯¯'N°MethodDefinitionÍ\ÍøÂÂLªIdentifierÍ\Íc§destroy¦methodO²FunctionExpressionÍcÍøÀÂÂÂM®BlockStatementÍfÍø”P³ExpressionStatementÍqÍ§W®CallExpressionÍqÍ¦R°MemberExpressionÍqÍ}LªIdentifierÍqÍx§consoleLªIdentifierÍyÍ}¤infoÂÂ’V§LiteralÍ~Í‘±TrendingViewModel³'TrendingViewModel'V§LiteralÍ“Í¥¾ViewModelé”€æ¯ï¼Œæ¸…ç†èµ„æºÙ 'ViewModelé”€æ¯ï¼Œæ¸…ç†èµ„æº'ÂZ«IfStatementÍ±Í2R°MemberExpressionÍµÍÉS®ThisExpressionÍµÍ¹LªIdentifierÍºÍÉ¯currentLoadTaskÂÂM®BlockStatementÍËÍ2’P³ExpressionStatementÍÚÍıW®CallExpressionÍÚÍüLªIdentifierÍÚÍæ¬clearTimeout‘R°MemberExpressionÍçÍûS®ThisExpressionÍçÍëLªIdentifierÍìÍû¯currentLoadTaskÂÂÂP³ExpressionStatementÍÍ'Q´AssignmentExpressionÍÍ&¡=R°MemberExpressionÍÍS®ThisExpressionÍÍLªIdentifierÍÍ¯currentLoadTaskÂÂV§LiteralÍ"Í&À¤nullÀZ«IfStatementÍ<ÍÆR°MemberExpressionÍ@ÍWS®ThisExpressionÍ@ÍDLªIdentifierÍEÍW²currentRefreshTaskÂÂM®BlockStatementÍYÍÆ’P³ExpressionStatementÍhÍW®CallExpressionÍhÍLªIdentifierÍhÍt¬clearTimeout‘R°MemberExpressionÍuÍŒS®ThisExpressionÍuÍyLªIdentifierÍzÍŒ²currentRefreshTaskÂÂÂP³ExpressionStatementÍœÍ»Q´AssignmentExpressionÍœÍº¡=R°MemberExpressionÍœÍ³S®ThisExpressionÍœÍ LªIdentifierÍ¡Í³²currentRefreshTaskÂÂV§LiteralÍ¶ÍºÀ¤nullÀP³ExpressionStatementÍĞÍñQ´AssignmentExpressionÍĞÍğ¡=R°MemberExpressionÍĞÍëS®ThisExpressionÍĞÍÔLªIdentifierÍÕÍë¶uiStateChangeListenersÂÂU¯ArrayExpressionÍîÍğÀJ¶ExportNamedDeclarationÍÍèO³FunctionDeclarationÍ!ÍèLªIdentifierÍ*ÍA·createTrendingViewModelÂÂÂM®BlockStatementÍDÍè“X³VariableDeclarationÍKÍw‘Y²VariableDeclaratorÍQÍvLªIdentifierÍQÍ[ªrepositoryT­NewExpressionÍ^ÍvLªIdentifierÍbÍt²TrendingRepository¥constX³VariableDeclarationÍ}Í§‘Y²VariableDeclaratorÍƒÍ¦LªIdentifierÍƒÍ­linkConverterT­NewExpressionÍ“Í¦LªIdentifierÍ—Í¤­LinkConverter¥const_¯ReturnStatementÍ­ÍåT­NewExpressionÍ´ÍäLªIdentifierÍ¸ÍÉ±TrendingViewModel’LªIdentifierÍÊÍÔªrepositoryLªIdentifierÍÖÍã­linkConverterÀJ¶ExportNamedDeclarationÍêÍĞK°ClassDeclarationÍñÍĞLªIdentifierÍ÷Í¯TrendingUiStateÀM©ClassBodyÍÍĞ‘N°MethodDefinitionÍÍÍÂÂLªIdentifierÍÍ«constructor«constructorO²FunctionExpressionÍÍÍÀÂÂÂM®BlockStatementÍÍÍ•P³ExpressionStatementÍ'Í>Q´AssignmentExpressionÍ'Í=¡=R°MemberExpressionÍ'Í5S®ThisExpressionÍ'Í+LªIdentifierÍ,Í5©isLoadingÂÂV§LiteralÍ8Í=Â¥falseP³ExpressionStatementÍHÍbQ´AssignmentExpressionÍHÍa¡=R°MemberExpressionÍHÍYS®ThisExpressionÍHÍLLªIdentifierÍMÍY¬isRefreshingÂÂV§LiteralÍ\ÍaÂ¥falseP³ExpressionStatementÍlÍƒQ´AssignmentExpressionÍlÍ‚¡=R°MemberExpressionÍlÍ}S®ThisExpressionÍlÍpLªIdentifierÍqÍ}¬repositoriesÂÂU¯ArrayExpressionÍ€Í‚P³ExpressionStatementÍÍŸQ´AssignmentExpressionÍÍ¡=R°MemberExpressionÍÍ—S®ThisExpressionÍÍ‘LªIdentifierÍ’Í—¥errorÂÂV§LiteralÍšÍÀ¤nullP³ExpressionStatementÍ©ÍÆQ´AssignmentExpressionÍ©ÍÅ¡=R°MemberExpressionÍ©Í¾S®ThisExpressionÍ©Í­LªIdentifierÍ®Í¾°openBrowserEventÂÂV§LiteralÍÁÍÅÀ¤nullÀJ¶ExportNamedDeclarationÍÒÍNK°ClassDeclarationÍÙÍNLªIdentifierÍßÍë¬BrowserEventÀM©ClassBodyÍìÍN‘N°MethodDefinitionÍóÍKÂÂLªIdentifierÍóÍş«constructor«constructorO²FunctionExpressionÍşÍKÀÂÂÂ‘LªIdentifierÍÿÍ£urlM®BlockStatementÍÍK’P³ExpressionStatementÍÍQ´AssignmentExpressionÍÍ¡=R°MemberExpressionÍÍS®ThisExpressionÍÍLªIdentifierÍÍ£urlÂÂLªIdentifierÍÍ£urlP³ExpressionStatementÍ(ÍDQ´AssignmentExpressionÍ(ÍC¡=R°MemberExpressionÍ(Í6S®ThisExpressionÍ(Í,LªIdentifierÍ-Í6©timestampÂÂW®CallExpressionÍ9ÍCR°MemberExpressionÍ9ÍALªIdentifierÍ9Í=¤DateLªIdentifierÍ>ÍA£nowÂÂÂÀ’Ôre•¤type¥start£endªspecifiers¦source±ImportDeclaration ÌB‘Ôrf•¤type¥start£end¨imported¥local¯ImportSpecifier	LªIdentifier	²TrendingRepositoryLªIdentifier	²TrendingRepositoryV§Literal#ÌA¼../models/TrendingRepository¾'../models/TrendingRepository'e±ImportDeclarationÌDÌ{‘f¯ImportSpecifierÌMÌZLªIdentifierÌMÌZ­LinkConverterLªIdentifierÌMÌZ­LinkConverterV§LiteralÌbÌz¶../utils/LinkConverter¸'../utils/LinkConverter'

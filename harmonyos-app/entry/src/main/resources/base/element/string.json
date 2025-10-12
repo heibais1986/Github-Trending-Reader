@@ -51,6 +51,14 @@
     {
       "name": "stars_count",
       "value": "⭐ %s"
+    },
+    {
+      "name": "float_window_permission_reason",
+      "value": "需要悬浮窗权限来显示应用窗口"
+    },
+    {
+      "name": "running_lock_permission_reason",
+      "value": "需要运行锁权限来保持应用运行状态"
     }
   ]
 }

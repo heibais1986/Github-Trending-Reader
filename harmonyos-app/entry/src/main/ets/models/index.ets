@@ -2,14 +2,13 @@
  * Index file for exporting all data models and interfaces
  */
 
-// Repository and Author models
+// Repository models
 export {
   Repository,
-  Author,
-  TrendingResponse,
-  ApiError,
-  DataValidator,
-  TypeGuards
+  RepositoryOwner,
+  createRepository,
+  createRepositoryOwner,
+  RepositoryValidator
 } from './Repository';
 
 // Network models
@@ -38,3 +37,11 @@ export {
   SUCCESS_MESSAGES,
   LOADING_MESSAGES
 } from '../constants/ApiConstants';
+
+// Trending response models
+export {
+  TrendingResponse,
+  ApiError,
+  DataValidator,
+  TypeGuards
+} from './TrendingResponse';

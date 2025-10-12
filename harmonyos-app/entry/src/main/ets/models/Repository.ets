@@ -1,5 +1,10 @@
 /**
- * Repository data model representing a GitHub repository
+ * Simplified Repository model for HarmonyOS application
+ * Minimal implementation to reduce memory usage
+ */
+
+/**
+ * Repository interface representing a GitHub repository
  */
 export interface Repository {
   id: string;
@@ -9,169 +14,86 @@ export interface Repository {
   url: string;
   stars: number;
   language: string;
-  author: Author;
-  createdAt?: string;
-  updatedAt?: string;
+  owner: RepositoryOwner;
 }
 
 /**
- * Author data model representing a GitHub repository owner
+ * Repository owner interface
  */
-export interface Author {
-  name: string;
-  avatar: string;
+export interface RepositoryOwner {
+  id: string;
+  login: string;
+  avatarUrl: string;
+  url: string;
 }
 
 /**
- * API response interface for trending repositories
+ * Factory function to create a Repository object
  */
-export interface TrendingResponse {
-  date: string;
-  repositories: Repository[];
-  total: number;
-}
-
-/**
- * API error response interface
- */
-export interface ApiError {
-  error: {
-    code: string;
-    message: string;
-    details?: string;
+export function createRepository(data: Partial<Repository> = {}): Repository {
+  return {
+    id: data.id || '',
+    name: data.name || '',
+    fullName: data.fullName || '',
+    description: data.description || '',
+    url: data.url || '',
+    stars: data.stars || 0,
+    language: data.language || '',
+    owner: data.owner || createRepositoryOwner()
   };
-  timestamp: string;
 }
 
 /**
- * Data validation utility class
+ * Factory function to create a RepositoryOwner object
  */
-export class DataValidator {
+export function createRepositoryOwner(data: Partial<RepositoryOwner> = {}): RepositoryOwner {
+  return {
+    id: data.id || '',
+    login: data.login || '',
+    avatarUrl: data.avatarUrl || '',
+    url: data.url || ''
+  };
+}
+
+/**
+ * Basic validator for Repository model
+ */
+export class RepositoryValidator {
   /**
-   * Validates if a repository object has all required fields
-   * @param repo - Repository object to validate
-   * @returns true if valid, false otherwise
+   * Validate if an object is a valid Repository
    */
-  static validateRepository(repo: any): repo is Repository {
-    if (!repo || typeof repo !== 'object') {
+  static isValidRepository(obj: Repository): boolean {
+    if (!obj || typeof obj !== 'object') {
       return false;
     }
 
-    const requiredFields = ['id', 'name', 'fullName', 'description', 'url', 'stars', 'language', 'author'];
+    const requiredFields = ['id', 'name', 'fullName', 'url'];
     
     for (const field of requiredFields) {
-      if (!(field in repo)) {
-        return false;
+      let fieldValue: string | number | boolean | object | undefined;
+      
+      switch (field) {
+        case 'id':
+          fieldValue = obj.id;
+          break;
+        case 'name':
+          fieldValue = obj.name;
+          break;
+        case 'fullName':
+          fieldValue = obj.fullName;
+          break;
+        case 'url':
+          fieldValue = obj.url;
+          break;
+        default:
+          fieldValue = undefined;
       }
-    }
-
-    // Validate field types
-    if (typeof repo.id !== 'string' ||
-        typeof repo.name !== 'string' ||
-        typeof repo.fullName !== 'string' ||
-        typeof repo.description !== 'string' ||
-        typeof repo.url !== 'string' ||
-        typeof repo.stars !== 'number' ||
-        typeof repo.language !== 'string') {
-      return false;
-    }
-
-    // Validate author object
-    if (!this.validateAuthor(repo.author)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Validates if an author object has all required fields
-   * @param author - Author object to validate
-   * @returns true if valid, false otherwise
-   */
-  static validateAuthor(author: any): author is Author {
-    if (!author || typeof author !== 'object') {
-      return false;
-    }
-
-    return typeof author.name === 'string' && typeof author.avatar === 'string';
-  }
-
-  /**
-   * Validates if a trending response has the correct structure
-   * @param response - TrendingResponse object to validate
-   * @returns true if valid, false otherwise
-   */
-  static validateTrendingResponse(response: any): response is TrendingResponse {
-    if (!response || typeof response !== 'object') {
-      return false;
-    }
-
-    if (typeof response.date !== 'string' ||
-        typeof response.total !== 'number' ||
-        !Array.isArray(response.repositories)) {
-      return false;
-    }
-
-    // Validate each repository in the array
-    for (const repo of response.repositories) {
-      if (!this.validateRepository(repo)) {
+      
+      if (fieldValue === undefined || fieldValue === null) {
         return false;
       }
     }
 
     return true;
-  }
-
-  /**
-   * Validates if an API error response has the correct structure
-   * @param error - ApiError object to validate
-   * @returns true if valid, false otherwise
-   */
-  static validateApiError(error: any): error is ApiError {
-    if (!error || typeof error !== 'object') {
-      return false;
-    }
-
-    if (!error.error || typeof error.error !== 'object') {
-      return false;
-    }
-
-    return typeof error.error.code === 'string' &&
-           typeof error.error.message === 'string' &&
-           typeof error.timestamp === 'string';
-  }
-}
-
-/**
- * Type guard functions for runtime type checking
- */
-export class TypeGuards {
-  /**
-   * Type guard for Repository interface
-   */
-  static isRepository(obj: any): obj is Repository {
-    return DataValidator.validateRepository(obj);
-  }
-
-  /**
-   * Type guard for Author interface
-   */
-  static isAuthor(obj: any): obj is Author {
-    return DataValidator.validateAuthor(obj);
-  }
-
-  /**
-   * Type guard for TrendingResponse interface
-   */
-  static isTrendingResponse(obj: any): obj is TrendingResponse {
-    return DataValidator.validateTrendingResponse(obj);
-  }
-
-  /**
-   * Type guard for ApiError interface
-   */
-  static isApiError(obj: any): obj is ApiError {
-    return DataValidator.validateApiError(obj);
   }
 }

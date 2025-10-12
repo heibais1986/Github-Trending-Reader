@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ohos/hvigor-ohos-plugin": ["./hvigor/hvigor-ohos-plugin"],
+      "@ohos/*": ["./hvigor/*"]
+    }
+  },
+  "exclude": [
+    "build",
+    "oh_modules"
+  ]
+}

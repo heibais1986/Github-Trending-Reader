@@ -1,0 +1,25 @@
+{
+  "modulePathMap": {
+    "entry": "D:\\dev\\reddit\\harmonyos-app\\entry"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "D:\\dev\\reddit\\harmonyos-app",
+  "nodeModulesPath": "D:\\dev\\reddit\\harmonyos-app\\entry\\build\\default\\intermediates\\loader_out\\default\\node_modules",
+  "byteCodeHarInfo": {},
+  "declarationEntry": [],
+  "moduleName": "entry",
+  "hspNameOhmMap": {},
+  "harNameOhmMap": {},
+  "packageManagerType": "ohpm",
+  "compileEntry": [],
+  "otherCompileFiles": [],
+  "dynamicImportLibInfo": {},
+  "routerMap": [],
+  "hspResourcesMap": {},
+  "updateVersionInfo": {},
+  "anBuildOutPut": "D:\\dev\\reddit\\harmonyos-app\\entry\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildMode": "type",
+  "patchConfig": {
+    "changedFileList": "D:\\dev\\reddit\\harmonyos-app\\entry\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
+  }
+}

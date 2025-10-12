@@ -198,6 +198,16 @@ export async function getStatsHandler(
   try {
     const storageManager = new StorageManager(env.TRENDING_KV);
     
+    // Try to get task execution stats if available
+    let taskStats = null;
+    try {
+      const { ScheduledTaskHandler } = await import('./scheduled-task');
+      const taskHandler = new ScheduledTaskHandler(env.GITHUB_TOKEN, env.TRENDING_KV);
+      taskStats = await taskHandler.getTaskStats();
+    } catch (error) {
+      console.warn('Could not retrieve task stats:', error);
+    }
+    
     const [storageStats, availableDates] = await Promise.all([
       storageManager.getStorageStats(),
       storageManager.getAvailableDates(),
@@ -213,9 +223,10 @@ export async function getStatsHandler(
           newest: storageStats.newestDate,
         },
       },
+      tasks: taskStats,
       system: {
         version: '1.0.0',
-        environment: 'production',
+        environment: process.env.ENVIRONMENT || 'production',
       },
     };
     
@@ -228,6 +239,99 @@ export async function getStatsHandler(
       500,
       'INTERNAL_ERROR',
       'Failed to retrieve statistics',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+/**
+ * POST /api/trigger-scraping
+ * Manually trigger the scraping task (for testing)
+ */
+export async function triggerScrapingHandler(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext,
+  params?: Record<string, string>
+): Promise<Response> {
+  try {
+    console.log('Manual scraping trigger requested');
+    
+    const { executeScheduledTask } = await import('./scheduled-task');
+    
+    // Execute the scraping task
+    const result = await executeScheduledTask(Date.now(), env, ctx);
+    
+    if (result.success) {
+      return createJSONResponse({
+        message: 'Scraping task completed successfully',
+        result: result,
+        timestamp: new Date().toISOString(),
+      });
+    } else {
+      return createErrorResponse(
+        500,
+        'SCRAPING_FAILED',
+        'Manual scraping task failed',
+        result.error || 'Unknown error'
+      );
+    }
+    
+  } catch (error) {
+    console.error('Error in triggerScrapingHandler:', error);
+    
+    return createErrorResponse(
+      500,
+      'INTERNAL_ERROR',
+      'Failed to execute manual scraping',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
+  }
+}
+
+/**
+ * GET /api/debug/scraping
+ * Debug endpoint to test scraping without storing data
+ */
+export async function debugScrapingHandler(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext,
+  params?: Record<string, string>
+): Promise<Response> {
+  try {
+    console.log('Debug scraping test requested');
+    
+    const { GitHubApiClient, getYesterdayDate } = await import('./github-client');
+    
+    const githubClient = new GitHubApiClient(env.GITHUB_TOKEN);
+    const targetDate = getYesterdayDate();
+    
+    console.log(`Testing scraping for date: ${targetDate}`);
+    
+    // Test the scraping without storing data
+    const result = await githubClient.searchTrendingRepositories(targetDate, 10);
+    
+    return createJSONResponse({
+      message: 'Debug scraping test completed',
+      targetDate: targetDate,
+      repositoriesFound: result.items.length,
+      sampleRepositories: result.items.slice(0, 3).map(repo => ({
+        full_name: repo.full_name,
+        description: repo.description,
+        stars: repo.stargazers_count,
+        language: repo.language,
+      })),
+      timestamp: new Date().toISOString(),
+    });
+    
+  } catch (error) {
+    console.error('Error in debugScrapingHandler:', error);
+    
+    return createErrorResponse(
+      500,
+      'DEBUG_ERROR',
+      'Debug scraping test failed',
       error instanceof Error ? error.message : 'Unknown error'
     );
   }

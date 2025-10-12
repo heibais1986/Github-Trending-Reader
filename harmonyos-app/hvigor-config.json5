@@ -1,0 +1,15 @@
+{
+  "hvigor": {
+    "pool": {
+      "maxSize": 1
+    },
+    "enableMemoryCache": false,
+    "jvmArgs": ["-Xmx4096m", "-Xms2048m"],
+    "nodeOptions": ["--max-old-space-size=4096", "--max-semi-space-size=512"]
+  },
+  "ohos": {
+    "arkCompile": {
+      "maxSize": 2048
+    }
+  }
+}

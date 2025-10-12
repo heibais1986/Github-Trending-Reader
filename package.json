@@ -29,7 +29,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240129.0",
     "@types/node": "^20.11.0",
-    "typescript": "^5.3.3",
+    "typescript": "^4.9.5",
     "vitest": "^1.2.0",
     "vitest-environment-miniflare": "^2.14.4",
     "wrangler": "^3.25.0"
@@ -40,5 +40,15 @@
     "trending-repositories"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "commander": "^11.0.0",
+    "fs-extra": "^11.2.0",
+    "log4js": "^6.7.1",
+    "semver": "^7.5.4",
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.7.2",
+    "ws": "^8.14.1"
+  }
 }

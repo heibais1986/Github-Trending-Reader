@@ -1,0 +1,519 @@
+{
+    "code": 0,
+    "msg": "",
+    "data": {
+        "topics": [
+            "python",
+            "hacktoberfest",
+            "typescript",
+            "ai",
+            "docker",
+            "llm",
+            "javascript",
+            "macos"
+        ],
+        "repos": [
+            {
+                "repo_id": "f8bd1931-a1f4-11f0-bbb3-1a109de107af",
+                "owner": "hahwul",
+                "name": "dalfox",
+                "url": "https://github.com/hahwul/dalfox",
+                "description": "🌙🦊 Dalfox is a powerful open-source XSS scanner and utility focused on automation.",
+                "description_zh": "🌙🦊 Dalfox 是一款专注于自动化的强大开源 XSS 扫描工具。",
+                "star_count": 4582,
+                "language": "go",
+                "topics": [
+                    "bugbounty",
+                    "bugbounty-tool",
+                    "cicd-pipeline",
+                    "devsecops",
+                    "golang",
+                    "hacktoberfest",
+                    "security",
+                    "vulnerability",
+                    "xss",
+                    "xss-bruteforce",
+                    "xss-detection",
+                    "xss-exploit",
+                    "xss-scanner"
+                ],
+                "wiki_id": "c8cb359e-9644-4813-8b97-697921acb169",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759673396,
+                "updated_at": 1759676983,
+                "last_commit": {
+                    "hash": "897cfd434d53d6ef72b74fe6d58649ed0bc468f6",
+                    "when": 1759305210
+                }
+            },
+            {
+                "repo_id": "3ebb0414-a2aa-11f0-a4bc-922af4060225",
+                "owner": "fondoger",
+                "name": "pocketbase",
+                "url": "https://github.com/fondoger/pocketbase",
+                "description": "PocketBase fork for PostgreSQL",
+                "description_zh": "PocketBase PostgreSQL 分支，一个文件的开源 Go 后端。",
+                "star_count": 93,
+                "language": "go",
+                "topics": [],
+                "wiki_id": "07d64a1e-f334-4d31-96d3-81f2d55176eb",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759751253,
+                "updated_at": 1759755950,
+                "last_commit": {
+                    "hash": "9322e9a6a57cce2f8e3139fb3088e8c4d9c29177",
+                    "when": 1759162961
+                }
+            },
+            {
+                "repo_id": "e5d7f1a2-a263-11f0-9bfe-1a109de107af",
+                "owner": "Jigsaw-Code",
+                "name": "outline-ss-server",
+                "url": "https://github.com/Jigsaw-Code/outline-ss-server",
+                "description": "Outline Shadowsocks server",
+                "description_zh": "",
+                "star_count": 812,
+                "language": "go",
+                "topics": [
+                    "censorship-circumvention",
+                    "shadowsocks"
+                ],
+                "wiki_id": "a9c4c380-7183-40e3-a191-a8741843c36e",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759721039,
+                "updated_at": 1759727540,
+                "last_commit": {
+                    "hash": "5522935db32278fee07145693ddf021c10e76fcc",
+                    "when": 1742484605
+                }
+            },
+            {
+                "repo_id": "99c43af7-a06c-11f0-941b-6a8e8800f629",
+                "owner": "optuna",
+                "name": "optuna",
+                "url": "https://github.com/optuna/optuna",
+                "description": "A hyperparameter optimization framework",
+                "description_zh": "Optuna：一个超参数优化框架",
+                "star_count": 12778,
+                "language": "python",
+                "topics": [
+                    "distributed",
+                    "hyperparameter-optimization",
+                    "machine-learning",
+                    "parallel",
+                    "python"
+                ],
+                "wiki_id": "13b0b041-2c81-408d-a52d-0674929b2346",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759504874,
+                "updated_at": 1759509221,
+                "last_commit": {
+                    "hash": "b7e92b47f1b34f6b6361926c7fbb6bb64414f575",
+                    "when": 1759469787
+                }
+            },
+            {
+                "repo_id": "e9f65be4-a277-11f0-9bfe-1a109de107af",
+                "owner": "NOAA-GFDL",
+                "name": "GFDL_atmos_cubed_sphere",
+                "url": "https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere",
+                "description": "The GFDL atmos_cubed_sphere dynamical core code",
+                "description_zh": "GFDL atmos_cubed_sphere 动态核心代码",
+                "star_count": 70,
+                "language": "fortran",
+                "topics": [
+                    "climate",
+                    "fms",
+                    "fortran",
+                    "fv3",
+                    "gfdl",
+                    "model-component",
+                    "physics"
+                ],
+                "wiki_id": "7b52b58f-6e22-4b57-ad12-e3567ed68f97",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759729636,
+                "updated_at": 1759731860,
+                "last_commit": {
+                    "hash": "1ab589c5d0d49c7ea245abea8893bd13c937617c",
+                    "when": 1750795512
+                }
+            },
+            {
+                "repo_id": "c02f3dc3-a270-11f0-9bfe-1a109de107af",
+                "owner": "matthewdcage",
+                "name": "cursor-mcp-installer",
+                "url": "https://github.com/matthewdcage/cursor-mcp-installer",
+                "description": "Installs MCPs in cursor for you, give it a git URL and let it rip",
+                "description_zh": "一键安装 Cursor MCP，输入 Git URL 即可自动部署。",
+                "star_count": 70,
+                "language": "javascript",
+                "topics": [],
+                "wiki_id": "b13dd451-7b62-4900-aaa4-87fecb59dc1d",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759726559,
+                "updated_at": 1759728581,
+                "last_commit": {
+                    "hash": "acbcd5f72d327c813701a720e03b18613d10a7c2",
+                    "when": 1743297629
+                }
+            },
+            {
+                "repo_id": "e9975ea2-a1eb-11f0-9301-ee526e7a6085",
+                "owner": "neuphonic",
+                "name": "neutts-air",
+                "url": "https://github.com/neuphonic/neutts-air",
+                "description": "On-device TTS model by Neuphonic",
+                "description_zh": "Neuphonic 端到端中文TTS模型",
+                "star_count": 514,
+                "language": "python",
+                "topics": [],
+                "wiki_id": "4a3d0d22-b713-4703-97ba-0fe128dc12fc",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759669505,
+                "updated_at": 1759673180,
+                "last_commit": {
+                    "hash": "1c1367ae13fa0fe3efe93ef22d39c7404529f32c",
+                    "when": 1759502800
+                }
+            },
+            {
+                "repo_id": "87233cb3-a28e-11f0-a2bc-1a109de107af",
+                "owner": "cusbg",
+                "name": "p2rank-framework",
+                "url": "https://github.com/cusbg/p2rank-framework",
+                "description": "The central entry point to the P2Rank project with links to the individual projects, including references to documentation, datasets, etc.",
+                "description_zh": "P2Rank项目中心入口，包含文档、数据集等资源链接。",
+                "star_count": 12,
+                "language": "shell",
+                "topics": [
+                    "bioinformatics",
+                    "p2rank",
+                    "protein-structure"
+                ],
+                "wiki_id": "f0956179-022c-41d4-a2df-b13f515c9b09",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759739348,
+                "updated_at": 1759743445,
+                "last_commit": {
+                    "hash": "7591c9da2a85e194202d5b6d4089e5615531e75f",
+                    "when": 1748008197
+                }
+            },
+            {
+                "repo_id": "45bd3b4f-a213-11f0-bbb3-1a109de107af",
+                "owner": "fcaspe",
+                "name": "ddx7",
+                "url": "https://github.com/fcaspe/ddx7",
+                "description": "Differentiable FM Synthesis of Musical Instrument Sounds",
+                "description_zh": "可微分FM合成乐器音色",
+                "star_count": 142,
+                "language": "python",
+                "topics": [],
+                "wiki_id": "0aaabb14-7dca-4907-b0ef-d768c133c9f1",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759686410,
+                "updated_at": 1759689521,
+                "last_commit": {
+                    "hash": "11d04fc16475ff81454f7436f318df9836971a0c",
+                    "when": 1660551288
+                }
+            },
+            {
+                "repo_id": "57695057-9de2-11f0-83df-92d1e07c678b",
+                "owner": "xpipe-io",
+                "name": "xpipe",
+                "url": "https://github.com/xpipe-io/xpipe",
+                "description": "Access your entire server infrastructure from your local desktop",
+                "description_zh": "从本地桌面访问全部服务器基础设施",
+                "star_count": 11715,
+                "language": "java",
+                "topics": [
+                    "bash",
+                    "docker",
+                    "filemanager",
+                    "files",
+                    "incus",
+                    "java",
+                    "javafx",
+                    "k8s",
+                    "kubernetes",
+                    "lxd",
+                    "networking",
+                    "podman",
+                    "sftp",
+                    "ssh",
+                    "tailscale",
+                    "wsl"
+                ],
+                "wiki_id": "c8e4a576-ea64-4f4a-9cbd-414aa10e6533",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759225590,
+                "updated_at": 1759229251,
+                "last_commit": {
+                    "hash": "e938df61a92b8bf4c8154692b763fd663ebc2735",
+                    "when": 1758088213
+                }
+            },
+            {
+                "repo_id": "95dac732-9dc2-11f0-9f57-7eabdbd09891",
+                "owner": "TwiN",
+                "name": "gatus",
+                "url": "https://github.com/TwiN/gatus",
+                "description": "⛑ Automated developer-oriented status page",
+                "description_zh": "⛑ 自动化开发者导向状态页面",
+                "star_count": 8629,
+                "language": "go",
+                "topics": [
+                    "alerting",
+                    "container",
+                    "dashboard",
+                    "devops",
+                    "docker",
+                    "go",
+                    "golang",
+                    "health",
+                    "monitor",
+                    "monitoring",
+                    "monitoring-tool",
+                    "notifications",
+                    "self-hosted",
+                    "selfhosted",
+                    "slack",
+                    "status",
+                    "status-page",
+                    "statuspage",
+                    "uptime",
+                    "uptime-monitoring"
+                ],
+                "wiki_id": "d71d3f95-7b6d-4e59-aa36-fe67fcc26cda",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759211951,
+                "updated_at": 1759214125,
+                "last_commit": {
+                    "hash": "bd296c75dabc01b547b7f8cf35a140392155020d",
+                    "when": 1759201287
+                }
+            },
+            {
+                "repo_id": "9e0fbc3f-9d95-11f0-a395-7eabdbd09891",
+                "owner": "guangzhengli",
+                "name": "ChatFiles",
+                "url": "https://github.com/guangzhengli/ChatFiles",
+                "description": "Document Chatbot — multiple files. Powered by GPT / Embedding.",
+                "description_zh": "多文件文档聊天机器人 — 基于 GPT 和 Embedding 技术。",
+                "star_count": 3350,
+                "language": "typescript",
+                "topics": [
+                    "chatbot",
+                    "chatfile",
+                    "chatgpt",
+                    "chatgpt-api",
+                    "chatpdf"
+                ],
+                "wiki_id": "63ecfa6c-a60d-4278-bf5a-bb0ecd39c4df",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759192637,
+                "updated_at": 1759228204,
+                "last_commit": {
+                    "hash": "c3bb7cf747e0967ef5bb73abe9616c8622c8141c",
+                    "when": 1734431210
+                }
+            },
+            {
+                "repo_id": "6199e5c5-9d3c-11f0-bc53-e2b101a4dacb",
+                "owner": "Atarity",
+                "name": "deploy-your-own-saas",
+                "url": "https://github.com/Atarity/deploy-your-own-saas",
+                "description": "List of \"only yours\" cloud services for everyday needs :black_flag:",
+                "description_zh": "部署你专属的云服务：日常所需，一手掌控",
+                "star_count": 5559,
+                "language": "",
+                "topics": [
+                    "awesome",
+                    "awesome-list",
+                    "list",
+                    "open-source",
+                    "self-hosted"
+                ],
+                "wiki_id": "d5432028-c0a0-4f74-bf61-5b59035ed2e5",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759154311,
+                "updated_at": 1759157500,
+                "last_commit": {
+                    "hash": "5e873687218db08c86a546c05f3995abddff573f",
+                    "when": 1758375827
+                }
+            },
+            {
+                "repo_id": "cba4b12d-9d4b-11f0-9761-7eabdbd09891",
+                "owner": "Aleksoid1978",
+                "name": "MPC-BE",
+                "url": "https://github.com/Aleksoid1978/MPC-BE",
+                "description": "MPC-BE – универсальный проигрыватель аудио и видеофайлов для операционной системы Windows.",
+                "description_zh": "MPC-BE – Windows系统的通用音视频播放器。",
+                "star_count": 3283,
+                "language": "c",
+                "topics": [],
+                "wiki_id": "2d3c565d-eca7-4d42-bd81-20c5a866c137",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759160931,
+                "updated_at": 1759163933,
+                "last_commit": {
+                    "hash": "40655eff67289dfd506fa8c3d2ed5e79ef2508f6",
+                    "when": 1759125554
+                }
+            },
+            {
+                "repo_id": "1f6dd685-9dc5-11f0-b6b8-7eabdbd09891",
+                "owner": "YeDaxia",
+                "name": "JApiDocs",
+                "url": "https://github.com/YeDaxia/JApiDocs",
+                "description": "A magical api documentation generator without annotation for springboot. [No Time Maintain]",
+                "description_zh": "一个神奇的无需注解的SpringBoot API文档生成器。[无时间维护]",
+                "star_count": 1698,
+                "language": "java",
+                "topics": [
+                    "api",
+                    "api-documentation",
+                    "apidocs",
+                    "springboot"
+                ],
+                "wiki_id": "f1bd4260-8eff-4798-b18b-964542edcd8b",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759213041,
+                "updated_at": 1759215948,
+                "last_commit": {
+                    "hash": "4b92eee3be6a79d49d394253b17c9442c9c337c8",
+                    "when": 1660725765
+                }
+            },
+            {
+                "repo_id": "5049a0b2-a1e2-11f0-9b7a-e206151f6ca8",
+                "owner": "UPB-SysSec",
+                "name": "DPYProxy",
+                "url": "https://github.com/UPB-SysSec/DPYProxy",
+                "description": "Python Proxy that implements DPI evasion mechanisms ",
+                "description_zh": "Python代理，实现DPI规避机制。",
+                "star_count": 71,
+                "language": "python",
+                "topics": [],
+                "wiki_id": "885380cb-ab89-4b52-95e5-5736be342028",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759665383,
+                "updated_at": 1759668549,
+                "last_commit": {
+                    "hash": "61a1fa2d9495dcbc9e4ecc3eab546f0bf7a3b902",
+                    "when": 1747835228
+                }
+            },
+            {
+                "repo_id": "a5530ff8-a2ad-11f0-bcdd-1a109de107af",
+                "owner": "teekaysharma",
+                "name": "ESGAI",
+                "url": "https://github.com/teekaysharma/ESGAI",
+                "description": "Putting the Data in ESG",
+                "description_zh": "将数据融入ESG",
+                "star_count": 0,
+                "language": "python",
+                "topics": [],
+                "wiki_id": "8d77675e-4ce1-45c4-aa5d-2bf6cc0f2983",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759752713,
+                "updated_at": 1759757755,
+                "last_commit": {
+                    "hash": "4e68aa5fefa62299f74d61e17f790de583cc807b",
+                    "when": 1757365419
+                }
+            },
+            {
+                "repo_id": "6582e35d-a1dc-11f0-8749-1a109de107af",
+                "owner": "jasonkylelol",
+                "name": "graphrag-chinese",
+                "url": "https://github.com/jasonkylelol/graphrag-chinese",
+                "description": "支持中文🇨🇳🇨🇳🇨🇳 的 microsoft/graphrag",
+                "description_zh": "支持中文的Microsoft GraphRAG实现",
+                "star_count": 50,
+                "language": "python",
+                "topics": [
+                    "chinese",
+                    "graphrag"
+                ],
+                "wiki_id": "193461d0-5fef-44e1-87dd-65cbedfe8d3e",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759662841,
+                "updated_at": 1759665522,
+                "last_commit": {
+                    "hash": "d7c08b867f4efc60e416ecb4cb003158b390d3e5",
+                    "when": 1743677006
+                }
+            },
+            {
+                "repo_id": "9b051c26-a1ec-11f0-8164-4ac1834f4fb2",
+                "owner": "ironmanic",
+                "name": "crawler_target_users_good",
+                "url": "https://github.com/ironmanic/crawler_target_users_good",
+                "description": "搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务",
+                "description_zh": "搜索bilibili特定视频，为评论点赞、关注、私信的一体化服务",
+                "star_count": 25,
+                "language": "python",
+                "topics": [],
+                "wiki_id": "f8ec608d-106f-4efd-bb1e-76e176a40fd8",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1759669803,
+                "updated_at": 1759673106,
+                "last_commit": {
+                    "hash": "8cb048e06e965b893982b494395e70ee2be2d385",
+                    "when": 1741771063
+                }
+            },
+            {
+                "repo_id": "4c5484ea-670a-11f0-be84-aa5f9cfed415",
+                "owner": "harry0703",
+                "name": "MoneyPrinterTurbo",
+                "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+                "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+                "description_zh": "利用AI大模型，一键生成高清短视频。",
+                "star_count": 38235,
+                "language": "python",
+                "topics": [
+                    "ai",
+                    "automation",
+                    "chatgpt",
+                    "moviepy",
+                    "python",
+                    "shortvideo",
+                    "tiktok"
+                ],
+                "wiki_id": "62707be5-4733-45f2-bb12-3ac653b3f815",
+                "status": "success",
+                "visibility": "public",
+                "created_at": 1753195437,
+                "updated_at": 1759245118,
+                "last_commit": {
+                    "hash": "6cb5f2348714b08fd7cf04a416c13faeab1d356b",
+                    "when": 1747364616
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run)",
+      "Bash(npm run type-check)",
+      "Bash(npx hvigorw:*)",
+      "Bash(./hvigor/hvigor-wrapper.js:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

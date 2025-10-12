@@ -1,4 +1,5 @@
 {
+  "modelVersion": "5.1.1",
   "name": "github-trending-harmonyos",
   "version": "1.0.0",
   "description": "GitHub热门仓库展示的鸿蒙应用",

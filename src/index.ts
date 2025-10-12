@@ -9,6 +9,8 @@ import {
   getAvailableDatesHandler, 
   healthCheckHandler, 
   getStatsHandler,
+  triggerScrapingHandler,
+  debugScrapingHandler,
   notFoundHandler 
 } from './api-handlers';
 import {
@@ -61,6 +63,16 @@ router.get('/api/trending', getTrendingHandler, [validationMiddleware()]);
 router.get('/api/trending/dates', getAvailableDatesHandler);
 router.get('/api/health', healthCheckHandler); // Legacy health endpoint
 router.get('/api/stats', getStatsHandler);
+
+// Debug and testing endpoints
+router.post('/api/trigger-scraping', async (request, env, ctx) => {
+  const { triggerScrapingHandler } = await import('./api-handlers');
+  return triggerScrapingHandler(request, env, ctx);
+});
+router.get('/api/debug/scraping', async (request, env, ctx) => {
+  const { debugScrapingHandler } = await import('./api-handlers');
+  return debugScrapingHandler(request, env, ctx);
+});
 
 // Catch-all route for undefined endpoints
 router.get('*', notFoundHandler);
