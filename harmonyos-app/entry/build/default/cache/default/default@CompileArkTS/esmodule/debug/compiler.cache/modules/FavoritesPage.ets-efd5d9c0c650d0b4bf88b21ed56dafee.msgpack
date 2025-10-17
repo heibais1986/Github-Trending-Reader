@@ -1,0 +1,880 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚO if (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+/**
+ * Favorites page
+ */
+import router from '@ohos.router';
+import { createFavoritesManager } from '../models';
+class FavoritesPage extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__favoriteItems = new ObservedPropertyObjectPU([], this, "favoriteItems");
+        this.__isLoading = new ObservedPropertySimplePU(true, this, "isLoading");
+        this.__isEmpty = new ObservedPropertySimplePU(true, this, "isEmpty");
+        this.favoritesManager = createFavoritesManager();
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.favoriteItems !== undefined) {
+            this.favoriteItems = params.favoriteItems;
+        }
+        if (params.isLoading !== undefined) {
+            this.isLoading = params.isLoading;
+        }
+        if (params.isEmpty !== undefined) {
+            this.isEmpty = params.isEmpty;
+        }
+        if (params.favoritesManager !== undefined) {
+            this.favoritesManager = params.favoritesManager;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__favoriteItems.purgeDependencyOnElmtId(rmElmtId);
+        this.__isLoading.purgeDependencyOnElmtId(rmElmtId);
+        this.__isEmpty.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__favoriteItems.aboutToBeDeleted();
+        this.__isLoading.aboutToBeDeleted();
+        this.__isEmpty.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get favoriteItems() {
+        return this.__favoriteItems.get();
+    }
+    set favoriteItems(newValue) {
+        this.__favoriteItems.set(newValue);
+    }
+    get isLoading() {
+        return this.__isLoading.get();
+    }
+    set isLoading(newValue) {
+        this.__isLoading.set(newValue);
+    }
+    get isEmpty() {
+        return this.__isEmpty.get();
+    }
+    set isEmpty(newValue) {
+        this.__isEmpty.set(newValue);
+    }
+    aboutToAppear() {
+        this.loadFavorites();
+    }
+    /**
+     * åŠ è½½æ”¶è—åˆ—è¡¨
+     */
+    loadFavorites() {
+        this.isLoading = true;
+        try {
+            this.favoriteItems = this.favoritesManager.getFavorites();
+            this.isEmpty = this.favoriteItems.length === 0;
+            console.info('FavoritesPage', 'åŠ è½½æ”¶è—:', this.favoriteItems.length, 'æ¡');
+        }
+        catch (error) {
+            console.error('FavoritesPage', 'åŠ è½½æ”¶è—å¤±è´¥:', error);
+            this.isEmpty = true;
+        }
+        finally {
+            this.isLoading = false;
+        }
+    }
+    /**
+     * å¯¼èˆªåˆ°ä»“åº“è¯¦æƒ…
+     */
+    navigateToRepositoryDetail(repository) {
+        try {
+            router.pushUrl({
+                url: 'pages/WebViewPage',
+                params: {
+                    url: repository.htmlUrl || '',
+                    title: repository.name
+                }
+            });
+        }
+        catch (error) {
+            console.error('FavoritesPage', 'å¯¼èˆªå¤±è´¥:', error);
+        }
+    }
+    /**
+     * ä»æ”¶è—ä¸­ç§»é™¤
+     */
+    removeFromFavorites(repositoryId) {
+        this.favoritesManager.removeFromFavorites(repositoryId);
+        this.loadFavorites(); // é‡æ–°åŠ è½½
+    }
+    /**
+     * æ ¼å¼åŒ–æ—¥æœŸ
+     */
+    formatDate(date) {
+        const now = new Date();
+        const diff = now.getTime() - date.getTime();
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        if (days === 0) {
+            return 'ä»Šå¤©';
+        }
+        else if (days === 1) {
+            return 'æ˜¨å¤©';
+        }
+        else if (days < 7) {
+            return `${days}å¤©å‰`;
+        }
+        else {
+            return date.toLocaleDateString();
+        }
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height('100%');
+            Column.backgroundColor('#f5f5f5');
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // é¡µé¢æ ‡é¢˜
+            Row.create();
+            // é¡µé¢æ ‡é¢˜
+            Row.width('100%');
+            // é¡µé¢æ ‡é¢˜
+            Row.height(56);
+            // é¡µé¢æ ‡é¢˜
+            Row.padding({ left: 16, right: 16 });
+            // é¡µé¢æ ‡é¢˜
+            Row.backgroundColor('#f5f5f5');
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Button.createWithLabel('â†');
+            Button.fontSize(16);
+            Button.fontColor('#333');
+            Button.backgroundColor(Color.Transparent);
+            Button.onClick(() => {
+                router.back();
+            });
+        }, Button);
+        Button.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('æˆ‘çš„æ”¶è—');
+            Text.fontSize(20);
+            Text.fontWeight(FontWeight.Bold);
+            Text.fontColor('#333');
+            Text.layoutWeight(1);
+            Text.textAlign(TextAlign.Center);
+        }, Text);
+        Text.pop();
+        // é¡µé¢æ ‡é¢˜
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            // å†…å®¹åŒºåŸŸ
+            if (this.isLoading) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Column.create();
+                        Column.width('100%');
+                        Column.height('100%');
+                        Column.justifyContent(FlexAlign.Center);
+                    }, Column);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        LoadingProgress.create();
+                        LoadingProgress.width(40);
+                        LoadingProgress.height(40);
+                        LoadingProgress.margin({ top: 50 });
+                    }, LoadingProgress);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('åŠ è½½ä¸­...');
+                        Text.fontSize(16);
+                        Text.fontColor('#666');
+                        Text.margin({ top: 10 });
+                    }, Text);
+                    Text.pop();
+                    Column.pop();
+                });
+            }
+            else if (this.isEmpty) {
+                this.ifElseBranchUpdateFunction(1, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Column.create();
+                        Column.width('100%');
+                        Column.height('100%');
+                        Column.justifyContent(FlexAlign.Center);
+                    }, Column);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('æš‚æ— æ”¶è—');
+                        Text.fontSize(18);
+                        Text.fontColor('#999');
+                        Text.margin({ top: 50 });
+                    }, Text);
+                    Text.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('æ”¶è—çš„ä»“åº“ä¼šæ˜¾ç¤ºåœ¨è¿™é‡Œ');
+                        Text.fontSize(14);
+                        Text.fontColor('#ccc');
+                        Text.margin({ top: 10 });
+                    }, Text);
+                    Text.pop();
+                    Column.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(2, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        // æ”¶è—åˆ—è¡¨
+                        List.create({ space: 8 });
+                        // æ”¶è—åˆ—è¡¨
+                        List.layoutWeight(1);
+                        // æ”¶è—åˆ—è¡¨
+                        List.padding(12);
+                    }, List);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        ForEach.create();
+                        const forEachItemGenFunction = _item => {
+                            const item = _item;
+                            {
+                                const itemCreation = (elmtId, isInitialRender) => {
+                                    ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+                                    ListItem.create(deepRenderFunction, true);
+                                    if (!isInitialRender) {
+                                        ListItem.pop();
+                                    }
+                                    ViewStackProcessor.StopGetAccessRecording();
+                                };
+                                const itemCreation2 = (elmtId, isInitialRender) => {
+                                    ListItem.create(deepRenderFunction, true);
+                                };
+                                const deepRenderFunction = (elmtId, isInitialRender) => {
+                                    itemCreation(elmtId, isInitialRender);
+                                    this.FavoriteItem.bind(this)(item);
+                                    ListItem.pop();
+                                };
+                                this.observeComponentCreation2(itemCreation2, ListItem);
+                                ListItem.pop();
+                            }
+                        };
+                        this.forEachUpdateFunction(elmtId, this.favoriteItems, forEachItemGenFunction, (item) => item.id, false, false);
+                    }, ForEach);
+                    ForEach.pop();
+                    // æ”¶è—åˆ—è¡¨
+                    List.pop();
+                });
+            }
+        }, If);
+        If.pop();
+        Column.pop();
+    }
+    FavoriteItem(item, parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.padding(16);
+            Column.backgroundColor(Color.White);
+            Column.borderRadius(8);
+            Column.shadow({ radius: 2, color: '#00000010', offsetX: 0, offsetY: 1 });
+            Column.onClick(() => {
+                this.navigateToRepositoryDetail(item.repository);
+            });
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.width('100%');
+            Row.alignItems(VerticalAlign.Center);
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // ä»“åº“ä¿¡æ¯
+            Column.create({ space: 4 });
+            // ä»“åº“ä¿¡æ¯
+            Column.layoutWeight(1);
+            // ä»“åº“ä¿¡æ¯
+            Column.alignItems(HorizontalAlign.Start);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(item.repository.name);
+            Text.fontSize(16);
+            Text.fontWeight(FontWeight.Medium);
+            Text.fontColor('#333');
+            Text.maxLines(1);
+            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+            Text.width('100%');
+            Text.textAlign(TextAlign.Start);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(item.repository.owner?.login || '');
+            Text.fontSize(14);
+            Text.fontColor('#666');
+            Text.maxLines(1);
+            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+            Text.width('100%');
+            Text.textAlign(TextAlign.Start);
+        }, Text);
+        Text.pop();
+        // ä»“åº“ä¿¡æ¯
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.createWithLabel('â¤ï¸');
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.fontSize(16);
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.fontColor('#ff4757');
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.backgroundColor(Color.Transparent);
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.width(32);
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.height(32);
+            // å–æ¶ˆæ”¶è—æŒ‰é’®
+            Button.onClick(() => {
+                this.removeFromFavorites(item.repository.id);
+            });
+        }, Button);
+        // å–æ¶ˆæ”¶è—æŒ‰é’®
+        Button.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // æ”¶è—æ—¶é—´
+            Text.create(`æ”¶è—äº ${this.formatDate(item.favoritedAt)}`);
+            // æ”¶è—æ—¶é—´
+            Text.fontSize(12);
+            // æ”¶è—æ—¶é—´
+            Text.fontColor('#999');
+            // æ”¶è—æ—¶é—´
+            Text.width('100%');
+            // æ”¶è—æ—¶é—´
+            Text.textAlign(TextAlign.Start);
+            // æ”¶è—æ—¶é—´
+            Text.margin({ top: 4 });
+        }, Text);
+        // æ”¶è—æ—¶é—´
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            // ä»“åº“æè¿°
+            if (item.repository.description) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(item.repository.description);
+                        Text.fontSize(14);
+                        Text.fontColor('#666');
+                        Text.maxLines(2);
+                        Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+                        Text.width('100%');
+                        Text.textAlign(TextAlign.Start);
+                        Text.margin({ top: 4 });
+                    }, Text);
+                    Text.pop();
+                });
+            }
+            // æ ‡ç­¾
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            // æ ‡ç­¾
+            if (item.tags && item.tags.length > 0) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create({ space: 8 });
+                        Row.width('100%');
+                        Row.margin({ top: 4 });
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        ForEach.create();
+                        const forEachItemGenFunction = _item => {
+                            const tag = _item;
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Text.create(tag);
+                                Text.fontSize(12);
+                                Text.fontColor('#409eff');
+                                Text.padding({ left: 8, right: 8, top: 2, bottom: 2 });
+                                Text.backgroundColor('#e6f7ff');
+                                Text.borderRadius(4);
+                            }, Text);
+                            Text.pop();
+                        };
+                        this.forEachUpdateFunction(elmtId, item.tags, forEachItemGenFunction, (tag) => tag, false, false);
+                    }, ForEach);
+                    ForEach.pop();
+                    Row.pop();
+                });
+            }
+            // å¤‡æ³¨
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            // å¤‡æ³¨
+            if (item.notes && item.notes.trim() !== '') {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(item.notes);
+                        Text.fontSize(12);
+                        Text.fontColor('#666');
+                        Text.fontStyle(FontStyle.Italic);
+                        Text.maxLines(2);
+                        Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+                        Text.width('100%');
+                        Text.textAlign(TextAlign.Start);
+                        Text.margin({ top: 4 });
+                    }, Text);
+                    Text.pop();
+                });
+            }
+            // ç»Ÿè®¡ä¿¡æ¯
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // ç»Ÿè®¡ä¿¡æ¯
+            Row.create({ space: 16 });
+            // ç»Ÿè®¡ä¿¡æ¯
+            Row.width('100%');
+            // ç»Ÿè®¡ä¿¡æ¯
+            Row.margin({ top: 8 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create({ space: 4 });
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('â­');
+            Text.fontSize(12);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(item.repository.stars.toString());
+            Text.fontSize(12);
+            Text.fontColor('#666');
+        }, Text);
+        Text.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (item.repository.language) {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Row.create({ space: 4 });
+                    }, Row);
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create('ğŸ”¤');
+                        Text.fontSize(12);
+                    }, Text);
+                    Text.pop();
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        Text.create(item.repository.language);
+                        Text.fontSize(12);
+                        Text.fontColor('#666');
+                    }, Text);
+                    Text.pop();
+                    Row.pop();
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                });
+            }
+        }, If);
+        If.pop();
+        // ç»Ÿè®¡ä¿¡æ¯
+        Row.pop();
+        Column.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "FavoritesPage";
+    }
+}
+registerNamedRoute(() => new FavoritesPage(undefined, {}), "", { bundleName: "com.github.trending", moduleName: "entry", pagePath: "pages/FavoritesPage", pageFullPath: "entry/src/main/ets/pages/FavoritesPage", integratedHsp: "false", moduleType: "followWithHap" });
+//# sourceMappingURL=FavoritesPage.js.mapÂ’Ùf hvigor_ignore_D:_Program Files_Huawei_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.router.d.tsÙ?D:\dev\reddit\harmonyos-app\entry\src\main\ets\models\index.etsÙFD:\dev\reddit\harmonyos-app\entry\src\main\ets\pages\FavoritesPage.etsÔrBšªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo°belongModulePath¬shouldEmitJs¥entryÃÂÙ!D:\dev\reddit\harmonyos-app\entry»D:\dev\reddit\harmonyos-app¥entry¥1.0.0Ô  Ù!D:\dev\reddit\harmonyos-app\entryÃÃÚ¥/**
+ * Favorites page
+ */
+
+import router from '@ohos.router';
+import { createFavoritesManager, FavoriteItem } from '../models';
+import { Repository } from '../models/Repository';
+
+@Entry
+@Component
+struct FavoritesPage {
+  @State favoriteItems: FavoriteItem[] = [];
+  @State isLoading: boolean = true;
+  @State isEmpty: boolean = true;
+  
+  private favoritesManager = createFavoritesManager();
+
+  aboutToAppear() {
+    this.loadFavorites();
+  }
+
+  /**
+   * åŠ è½½æ”¶è—åˆ—è¡¨
+   */
+  private loadFavorites() {
+    this.isLoading = true;
+    try {
+      this.favoriteItems = this.favoritesManager.getFavorites();
+      this.isEmpty = this.favoriteItems.length === 0;
+      console.info('FavoritesPage', 'åŠ è½½æ”¶è—:', this.favoriteItems.length, 'æ¡');
+    } catch (error) {
+      console.error('FavoritesPage', 'åŠ è½½æ”¶è—å¤±è´¥:', error);
+      this.isEmpty = true;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  /**
+   * å¯¼èˆªåˆ°ä»“åº“è¯¦æƒ…
+   */
+  private navigateToRepositoryDetail(repository: Repository) {
+    try {
+      router.pushUrl({
+        url: 'pages/WebViewPage',
+        params: {
+          url: repository.htmlUrl || '',
+          title: repository.name
+        }
+      });
+    } catch (error) {
+      console.error('FavoritesPage', 'å¯¼èˆªå¤±è´¥:', error);
+    }
+  }
+
+  /**
+   * ä»æ”¶è—ä¸­ç§»é™¤
+   */
+  private removeFromFavorites(repositoryId: string) {
+    this.favoritesManager.removeFromFavorites(repositoryId);
+    this.loadFavorites(); // é‡æ–°åŠ è½½
+  }
+
+  /**
+   * æ ¼å¼åŒ–æ—¥æœŸ
+   */
+  private formatDate(date: Date): string {
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    
+    if (days === 0) {
+      return 'ä»Šå¤©';
+    } else if (days === 1) {
+      return 'æ˜¨å¤©';
+    } else if (days < 7) {
+      return `${days}å¤©å‰`;
+    } else {
+      return date.toLocaleDateString();
+    }
+  }
+
+  build() {
+    Column() {
+      // é¡µé¢æ ‡é¢˜
+      Row() {
+        Button('â†')
+          .fontSize(16)
+          .fontColor('#333')
+          .backgroundColor(Color.Transparent)
+          .onClick(() => {
+            router.back();
+          })
+        
+        Text('æˆ‘çš„æ”¶è—')
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#333')
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+      }
+      .width('100%')
+      .height(56)
+      .padding({ left: 16, right: 16 })
+      .backgroundColor('#f5f5f5')
+
+      // å†…å®¹åŒºåŸŸ
+      if (this.isLoading) {
+        Column() {
+          LoadingProgress()
+            .width(40)
+            .height(40)
+            .margin({ top: 50 })
+          Text('åŠ è½½ä¸­...')
+            .fontSize(16)
+            .fontColor('#666')
+            .margin({ top: 10 })
+        }
+        .width('100%')
+        .height('100%')
+        .justifyContent(FlexAlign.Center)
+      } else if (this.isEmpty) {
+        Column() {
+          Text('æš‚æ— æ”¶è—')
+            .fontSize(18)
+            .fontColor('#999')
+            .margin({ top: 50 })
+          Text('æ”¶è—çš„ä»“åº“ä¼šæ˜¾ç¤ºåœ¨è¿™é‡Œ')
+            .fontSize(14)
+            .fontColor('#ccc')
+            .margin({ top: 10 })
+        }
+        .width('100%')
+        .height('100%')
+        .justifyContent(FlexAlign.Center)
+      } else {
+        // æ”¶è—åˆ—è¡¨
+        List({ space: 8 }) {
+          ForEach(this.favoriteItems, (item: FavoriteItem) => {
+            ListItem() {
+              this.FavoriteItem(item)
+            }
+          }, (item: FavoriteItem) => item.id)
+        }
+        .layoutWeight(1)
+        .padding(12)
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#f5f5f5')
+  }
+
+  @Builder
+  FavoriteItem(item: FavoriteItem) {
+    Column() {
+      Row() {
+        // ä»“åº“ä¿¡æ¯
+        Column({ space: 4 }) {
+          Text(item.repository.name)
+            .fontSize(16)
+            .fontWeight(FontWeight.Medium)
+            .fontColor('#333')
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .width('100%')
+            .textAlign(TextAlign.Start)
+          
+          Text(item.repository.owner?.login || '')
+            .fontSize(14)
+            .fontColor('#666')
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .width('100%')
+            .textAlign(TextAlign.Start)
+        }
+        .layoutWeight(1)
+        .alignItems(HorizontalAlign.Start)
+        
+        // å–æ¶ˆæ”¶è—æŒ‰é’®
+        Button('â¤ï¸')
+          .fontSize(16)
+          .fontColor('#ff4757')
+          .backgroundColor(Color.Transparent)
+          .width(32)
+          .height(32)
+          .onClick(() => {
+            this.removeFromFavorites(item.repository.id);
+          })
+      }
+      .width('100%')
+      .alignItems(VerticalAlign.Center)
+
+      // æ”¶è—æ—¶é—´
+      Text(`æ”¶è—äº ${this.formatDate(item.favoritedAt)}`)
+        .fontSize(12)
+        .fontColor('#999')
+        .width('100%')
+        .textAlign(TextAlign.Start)
+        .margin({ top: 4 })
+
+      // ä»“åº“æè¿°
+      if (item.repository.description) {
+        Text(item.repository.description)
+          .fontSize(14)
+          .fontColor('#666')
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .width('100%')
+          .textAlign(TextAlign.Start)
+          .margin({ top: 4 })
+      }
+
+      // æ ‡ç­¾
+      if (item.tags && item.tags.length > 0) {
+        Row({ space: 8 }) {
+          ForEach(item.tags, (tag: string) => {
+            Text(tag)
+              .fontSize(12)
+              .fontColor('#409eff')
+              .padding({ left: 8, right: 8, top: 2, bottom: 2 })
+              .backgroundColor('#e6f7ff')
+              .borderRadius(4)
+          }, (tag: string) => tag)
+        }
+        .width('100%')
+        .margin({ top: 4 })
+      }
+
+      // å¤‡æ³¨
+      if (item.notes && item.notes.trim() !== '') {
+        Text(item.notes)
+          .fontSize(12)
+          .fontColor('#666')
+          .fontStyle(FontStyle.Italic)
+          .maxLines(2)
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .width('100%')
+          .textAlign(TextAlign.Start)
+          .margin({ top: 4 })
+      }
+
+      // ç»Ÿè®¡ä¿¡æ¯
+      Row({ space: 16 }) {
+        Row({ space: 4 }) {
+          Text('â­')
+            .fontSize(12)
+          Text(item.repository.stars.toString())
+            .fontSize(12)
+            .fontColor('#666')
+        }
+
+        if (item.repository.language) {
+          Row({ space: 4 }) {
+            Text('ğŸ”¤')
+              .fontSize(12)
+            Text(item.repository.language)
+              .fontSize(12)
+              .fontColor('#666')
+          }
+        }
+      }
+      .width('100%')
+      .margin({ top: 8 })
+    }
+    .width('100%')
+    .padding(16)
+    .backgroundColor(Color.White)
+    .borderRadius(8)
+    .shadow({ radius: 2, color: '#00000010', offsetX: 0, offsetY: 1 })
+    .onClick(() => {
+      this.navigateToRepositoryDetail(item.repository);
+    })
+  }
+}ÀÔrC’¬@ohos.router©../modelsÔrD—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÃÙf hvigor_ignore_D:_Program Files_Huawei_DevEco Studio_sdk_default_openharmony_ets_api_@ohos.router.d.tsAÃªoh-resolveÂDAÂÙ?D:\dev\reddit\harmonyos-app\entry\src\main\ets\models\index.etsAÃªoh-resolveÂ“ÔrE–§version¤fileªsourceRoot§sources¥names¨mappings°FavoritesPage.js ‘±FavoritesPage.etsÜñ‘”    ‘” –”   ” ” ” ”! !”" "˜”   ” ”	 	” ”! /”' 5”2 Ì@”3 ÌA’” 
+” 
+‘”  ’”< )”> +’”8 ”< "’”6 ”:  “”  ”6 3”8 5‘” 2’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” 	” ’” ” –” ” ” 	” ” ” ’” ” ‘” ‘” ’” 
+” —” ” ” 	” ” ” ” ’” ” œ” ” 
+” ” ”! ”% ”&  ”6 0”7 1”ÌC =”ÌE ?”ÌF Ì@” ” 
+” ” ” ” ”  ”- '”. (”4 .”9 3”: 4”; 5Ü ” ” ” ” ” ”( "”* $”1 +”3 -”7 1”8 2”ÌE ?”ÌF Ì@”ÌL ÌF”ÌN ÌH”ÌQ ÌK”ÌR ÌL”ÌS ÌM‘”	 ”” ” ” ” œ” ” ” ” ” ”) #”+ %”4 .”6 0”; 5”< 6”= 7—”  ”  
+”  ”  ”  ”  ”   ‘”	 !‘” !—” "” "
+” "” "” "”" "”# "‘”	 #’” $” $‘” &‘” (”” )
+” )$” )%”) );’” *” *•” +” +” +” +” +”” ,” ,” ,”( , “” -” -” -˜” .
+” .” .”# .”$ .”+ .!”/ .%”1 .'–” /
+” /” /”% /”& /”* / ‘” 0	“” 1” 1” 1	‘”	 2”” 2” 2” 2” 2œ” 3” 3” 3” 3” 3”) 3#”+ 3%”2 3,”4 3.”9 33”: 34”; 35‘”	 4’” 5” 5‘” 7‘” 9”” :
+” :” :”$ :2š” ;” ;” ;	” ;” ;”1 ;-”2 ;.”> ;:”? ;;”Ì@ ;<˜” <” <” <	” <” <” <” <”% <!’” =” =‘” ?‘” ÌA”” ÌB
+” ÌB” ÌB” ÌB˜” ÌC” ÌC
+” ÌC” ÌC” ÌC” ÌC” ÌC” ÌC” ÌD” ÌD
+” ÌD” ÌD” ÌD” ÌD”  ÌD”" ÌD”% ÌD!”) ÌD%”* ÌD&”1 ÌD-”3 ÌD/”4 ÌD0Ü ” ÌE” ÌE
+” ÌE” ÌE” ÌE” ÌE” ÌE”  ÌE”$ ÌE ”' ÌE#”( ÌE$”, ÌE(”/ ÌE+”1 ÌE-”4 ÌE0”6 ÌE2”9 ÌE5”; ÌE7”< ÌE8”= ÌE9”> ÌE:–” ÌG” ÌG” ÌG” ÌG” ÌG” ÌG”” ÌH” ÌH” ÌH” ÌH‘”	 ÌI–” ÌI” ÌI” ÌI” ÌI” ÌI” ÌI”” ÌJ” ÌJ” ÌJ” ÌJ‘”	 ÌK–” ÌK” ÌK” ÌK” ÌK” ÌK” ÌK–” ÌL” ÌL” ÌL” ÌL” ÌL” ÌL‘”	 ÌM‘” ÌM—” ÌN” ÌN” ÌN” ÌN”* ÌN$”, ÌN&”- ÌN'‘”	 ÌO’” ÌP” ÌP‘” ÌR’” ÌS” ÌS
+–” ÌS” ÌS
+” Ì”” Ì”
+” Ì”” Ì”–” ÌS” ÌS
+” Ì•” Ì•” Ì•”  Ì•–” ÌS” ÌS
+” Ì–”" Ì–”# Ì–”, Ì–’” ÌT” ÌT’” ÌU” ÌU	’” ÌT” ÌT–” ÌU” ÌU	” Ìe” Ìe” Ìe” Ìe’” ÌT” ÌT–” ÌU” ÌU	” Ìf” Ìf” Ìf” Ìf’” ÌT” ÌT” ÌU” ÌU	” Ìg” Ìg” Ìg” Ìg” Ìg”  Ìg”" Ìg”$ Ìg”) Ìg ”+ Ìg"”- Ìg$”/ Ìg&’” ÌT” ÌT–” ÌU” ÌU	” Ìh” Ìh”  Ìh”) Ìh ”” ÌV” ÌV”# ÌV”& ÌV–” ÌV” ÌV” ÌW” ÌW” ÌW” ÌW–” ÌV” ÌV” ÌX” ÌX” ÌX”# ÌX˜” ÌV” ÌV” ÌY”" ÌY”# ÌY”( ÌY ”) ÌY!”4 ÌY,—” ÌV” ÌV” ÌZ” ÌZ” ÌZ” ÌZ”  ÌZ–” Ì[” Ì[” Ì[” Ì[” Ì[” Ì[’” Ì\
+” Ì\’” ÌV” ÌV”” Ì^” Ì^” Ì^” Ì^–” Ì^” Ì^” Ì_” Ì_” Ì_” Ì_˜” Ì^” Ì^” Ì`” Ì`” Ì`”& Ì` ”' Ì`!”+ Ì`%–” Ì^” Ì^” Ìa” Ìa” Ìa”! Ìa–” Ì^” Ì^” Ìb” Ìb” Ìb” Ìb˜” Ì^” Ì^” Ìc” Ìc” Ìc”$ Ìc”% Ìc”+ Ìc%’” Ì^” Ì^’” ÌT” ÌT’” ÌU” ÌU	’” Ìj” Ìj–” Ìk” Ìk
+” Ìk” Ìk” Ìk”  Ìk’” Ìl” Ìl–” Ìl” Ìl” Ìv	”$ Ìv”% Ìv”+ Ìv–” Ìl” Ìl” Ìw	”% Ìw”& Ìw”, Ìw˜” Ìl” Ìl” Ìx	”- Ìx”. Ìx”7 Ìx!”8 Ìx"”> Ìx(’” Ìm
+”' Ìm–” Ìm
+”' Ìm”( Ìn”- Ìn”. Ìn”0 Ìn–” Ìm
+”' Ìm”( Ìo”. Ìo”/ Ìo”1 Ìoš” Ìm
+”' Ìm”( Ìp”. Ìp”/ Ìp”1 Ìp”4 Ìp”6 Ìp”8 Ìp”: Ìp”” Ìq
+” Ìq”$ Ìq”, Ìq–” Ìq
+” Ìq” Ìr”% Ìr”& Ìr”( Ìr–” Ìq
+” Ìq” Ìs”& Ìs”' Ìs”- Ìsš” Ìq
+” Ìq” Ìt”# Ìt”$ Ìt”& Ìt”) Ìt”+ Ìt”- Ìt”/ Ìt’” Ìq
+” Ìq’” Ìl” Ìl‘” Ìy–” Ìy” Ìy” Ìy” Ìy”! Ìy”# Ìy’” Ìz” Ìz–” Ìz” Ìz” Ì„	”$ Ì„”% Ì„”+ Ì„–” Ìz” Ìz” Ì…	”% Ì…”& Ì…”, Ì…˜” Ìz” Ìz” Ì†	”- Ì†”. Ì†”7 Ì†!”8 Ì†"”> Ì†(”” Ì{
+” Ì{”$ Ì{”* Ì{–” Ì{
+” Ì{” Ì|”% Ì|”& Ì|”( Ì|–” Ì{
+” Ì{” Ì}”& Ì}”' Ì}”- Ì}š” Ì{
+” Ì{” Ì~”# Ì~”$ Ì~”& Ì~”) Ì~”+ Ì~”- Ì~”/ Ì~’” Ì{
+” Ì{”” Ì
+” Ì”$ Ì”1 Ì–” Ì
+” Ì” Ì€”% Ì€”& Ì€”( Ì€–” Ì
+” Ì” Ì”& Ì”' Ì”- Ìš” Ì
+” Ì” Ì‚”# Ì‚”$ Ì‚”& Ì‚”) Ì‚”+ Ì‚”- Ì‚”/ Ì‚’” Ì
+” Ì’” Ìz” Ìz‘” Ì‡‘” Ì‡’” Ìˆ” Ìˆ˜” Ì‰” Ì‰”$ Ì‰”& Ì‰”+ Ì‰”- Ì‰”. Ì‰”0 Ì‰’” Ìˆ” Ìˆ–” Ì‰” Ì‰” Ì	”) Ì”* Ì”+ Ì’” Ìˆ” Ìˆ–” Ì‰” Ì‰” Ì‘	”$ Ì‘”% Ì‘”' Ì‘’” ÌŠ
+” ÌŠ’”( Ì‹”0 Ì‹—”$ ÌŒ”( ÌŒ”) ÌŒ”5 ÌŒ”ÌA ÌŒ ”ÌE ÌŒ$”ÌF ÌŒ%’”$ Ì‹”, Ì‹’”  Ì‹”( Ì‹”; ÌŠ”? ÌŠ”Ì@ ÌŠ”ÌM ÌŠ$”Ìg Ì”Ìh Ì”Ìl Ì ”Ìn Ì"”Ìp Ì$”Ìq Ì%”Ìu Ì)”Ìv Ì*”Ìx Ì,’” ÌŠ
+” ÌŠ’” Ìˆ” Ìˆ’” Ì‰” Ì‰‘” Ì’’” ÌS” ÌS
+‘” Ì—”” Ìš” Ìš” Ìš” Ìš!’” Ì›” Ì›
+–” Ì›” Ì›
+” Í	” Í	
+” Í	” Í	–” Ì›” Ì›
+” Í
+” Í
+” Í
+” Í
+˜” Ì›” Ì›
+” Í”" Í”# Í”( Í”) Í”. Í –” Ì›” Ì›
+” Í” Í”  Í”! ÍÜ ” Ì›” Ì›
+” Í” Í” Í” Í”" Í”$ Í”% Í”' Í”, Í”. Í ”9 Í+”; Í-”ÌB Í4”ÌD Í6”ÌE Í7”ÌG Í9”ÌN ÍÌ@”ÌP ÍÌB”ÌQ ÍÌC”ÌS ÍÌE—” Ì›” Ì›
+” Í” Í” Í” Í”  Íš” Í” Í
+” Í”/ Í%”0 Í&”4 Í*”5 Í+”? Í5”Ì@ Í6”ÌA Í7’” Í” Í’” Ìœ” Ìœ	–” Ìœ” Ìœ	” Ì¾” Ì¾” Ì¾” Ì¾˜” Ìœ” Ìœ	” Ì¿” Ì¿” Ì¿”( Ì¿”) Ì¿ ”/ Ì¿&’” Ì” Ì˜” Ì” Ì” Ì” Ì”! Ì”# Ì”$ Ì”& Ì’” Ì” Ì–” Ì” Ì” Ì°	” Ì°”  Ì°”! Ì°’” Ì” Ì˜” Ì” Ì” Ì±	” Ì±” Ì±”- Ì±#”. Ì±$”3 Ì±)˜” ÌŸ
+” ÌŸ” ÌŸ” ÌŸ” ÌŸ”' ÌŸ”( ÌŸ”, ÌŸ#–” ÌŸ
+” ÌŸ” Ì ” Ì ” Ì ” Ì ˜” ÌŸ
+” ÌŸ” Ì¡” Ì¡” Ì¡”& Ì¡"”' Ì¡#”- Ì¡)–” ÌŸ
+” ÌŸ” Ì¢” Ì¢” Ì¢”! Ì¢–” ÌŸ
+” ÌŸ” Ì£” Ì£” Ì£” Ì£œ” ÌŸ
+” ÌŸ” Ì¤” Ì¤” Ì¤”  Ì¤”( Ì¤$”* Ì¤&”6 Ì¤2”7 Ì¤3”? Ì¤;”ÌA Ì¤=–” ÌŸ
+” ÌŸ” Ì¥” Ì¥” Ì¥” Ì¥˜” ÌŸ
+” ÌŸ” Ì¦” Ì¦” Ì¦”$ Ì¦ ”% Ì¦!”* Ì¦&’” ÌŸ
+” ÌŸœ” Ì¨
+” Ì¨” Ì¨” Ì¨” Ì¨”' Ì¨”( Ì¨”- Ì¨$”/ Ì¨&”4 Ì¨+”8 Ì¨/”: Ì¨1–” Ì¨
+” Ì¨” Ì©” Ì©” Ì©” Ì©–” Ì¨
+” Ì¨” Ìª” Ìª” Ìª”! Ìª–” Ì¨
+” Ì¨” Ì«” Ì«” Ì«” Ì«œ” Ì¨
+” Ì¨” Ì¬” Ì¬” Ì¬”  Ì¬”( Ì¬$”* Ì¬&”6 Ì¬2”7 Ì¬3”? Ì¬;”ÌA Ì¬=–” Ì¨
+” Ì¨” Ì­” Ì­” Ì­” Ì­˜” Ì¨
+” Ì¨” Ì®” Ì®” Ì®”$ Ì® ”% Ì®!”* Ì®&’” Ì¨
+” Ì¨’” Ì” Ì’” Ì” Ì’” Ì³” Ì³”” Ì´” Ì´”# Ì´”' Ì´’” Ì³” Ì³–” Ì´” Ì´” Ìµ” Ìµ” Ìµ” Ìµ’” Ì³” Ì³–” Ì´” Ì´” Ì¶” Ì¶” Ì¶”& Ì¶’” Ì³” Ì³˜” Ì´” Ì´” Ì·”" Ì·”# Ì·”( Ì· ”) Ì·!”4 Ì·,’” Ì³” Ì³–” Ì´” Ì´” Ì¸” Ì¸” Ì¸” Ì¸’” Ì³” Ì³–” Ì´” Ì´” Ì¹” Ì¹” Ì¹” Ì¹’” Ì³” Ì³—” Ì´” Ì´” Ìº” Ìº” Ìº” Ìº”  Ìºœ” Ì»” Ì»” Ì»”( Ì»$”) Ì»%”- Ì»)”. Ì»*”8 Ì»4”9 Ì»5”; Ì»7”< Ì»8”= Ì»9’” Ì¼
+” Ì¼’” Ì³” Ì³’” Ì´” Ì´’” Ìœ” Ìœ	’” ÌÁ” ÌÁ” ÌÂ” ÌÂ
+” ÌÂ” ÌÂ”# ÌÂ”$ ÌÂ”. ÌÂ!”/ ÌÂ"”3 ÌÂ&”4 ÌÂ'”? ÌÂ2”Ì@ ÌÂ3”ÌB ÌÂ5’” ÌÁ” ÌÁ–” ÌÂ” ÌÂ
+” ÌÃ	” ÌÃ” ÌÃ” ÌÃ’” ÌÁ” ÌÁ–” ÌÂ” ÌÂ
+” ÌÄ	” ÌÄ” ÌÄ”! ÌÄ’” ÌÁ” ÌÁ–” ÌÂ” ÌÂ
+” ÌÅ	” ÌÅ” ÌÅ” ÌÅ’” ÌÁ” ÌÁ˜” ÌÂ” ÌÂ
+” ÌÆ	” ÌÆ” ÌÆ”$ ÌÆ”% ÌÆ”* ÌÆ"’” ÌÁ” ÌÁš” ÌÂ” ÌÂ
+” ÌÇ	” ÌÇ” ÌÇ” ÌÇ” ÌÇ” ÌÇ”  ÌÇ”" ÌÇ’” ÌÁ” ÌÁ’” ÌÂ” ÌÂ
+’” ÌÉ” ÌÉ˜” ÌÊ” ÌÊ
+” ÌÊ” ÌÊ” ÌÊ”  ÌÊ”+ ÌÊ%”- ÌÊ'˜” ÌË” ÌË”$ ÌË”( ÌË”) ÌË”3 ÌË”4 ÌË”? ÌË(–” ÌË” ÌË” ÌÌ”% ÌÌ”& ÌÌ”( ÌÌ–” ÌË” ÌË” ÌÍ”& ÌÍ”' ÌÍ”- ÌÍ–” ÌË” ÌË” ÌÎ”% ÌÎ”& ÌÎ”' ÌÎœ” ÌË” ÌË” ÌÏ”) ÌÏ”* ÌÏ”, ÌÏ”4 ÌÏ"”6 ÌÏ$”ÌB ÌÏ0”ÌC ÌÏ1”ÌK ÌÏ9”ÌM ÌÏ;–” ÌË” ÌË” ÌĞ”" ÌĞ”# ÌĞ”) ÌĞ˜” ÌË” ÌË” ÌÑ”& ÌÑ”' ÌÑ”0 ÌÑ”1 ÌÑ”6 ÌÑ$š” ÌË” ÌË” ÌÒ”# ÌÒ”$ ÌÒ”& ÌÒ”) ÌÒ”+ ÌÒ”, ÌÒ”. ÌÒ’” ÌË” ÌË‘” ÌÓ’” ÌÕ” ÌÕ‘” ÌÓ’” ÌÕ” ÌÕ” ÌÖ” ÌÖ
+” ÌÖ” ÌÖ” ÌÖ” ÌÖ”! ÌÖ”" ÌÖ”& ÌÖ ”' ÌÖ!”- ÌÖ'”0 ÌÖ*”1 ÌÖ+”3 ÌÖ-˜” Ì×” Ì×”# Ì×”% Ì×”* Ì×”, Ì×”- Ì×”/ Ì×–” Ì×” Ì×” Ìá	”! Ìá”" Ìá”( Ìáš” Ì×” Ì×” Ìâ	”" Ìâ”# Ìâ”% Ìâ”( Ìâ”* Ìâ”+ Ìâ”- Ìâ’” ÌØ
+” ÌØ””  ÌÙ”$ ÌÙ”, ÌÙ”/ ÌÙ–”  ÌÙ”$ ÌÙ”% ÌÚ”- ÌÚ”. ÌÚ”0 ÌÚ–”  ÌÙ”$ ÌÙ”% ÌÛ”. ÌÛ”/ ÌÛ”8 ÌÛ"Ü ”  ÌÙ”$ ÌÙ”% ÌÜ”, ÌÜ”- ÌÜ”/ ÌÜ”3 ÌÜ”5 ÌÜ”6 ÌÜ ”8 ÌÜ"”= ÌÜ'”? ÌÜ)”Ì@ ÌÜ*”ÌB ÌÜ,”ÌE ÌÜ/”ÌG ÌÜ1”ÌH ÌÜ2”ÌJ ÌÜ4”ÌP ÌÜ:”ÌR ÌÜ<”ÌS ÌÜ=”ÌU ÌÜ?–”  ÌÙ”$ ÌÙ”% Ìİ”4 Ìİ”5 Ìİ”> Ìİ(–”  ÌÙ”$ ÌÙ”% ÌŞ”1 ÌŞ”2 ÌŞ”3 ÌŞ’” ÌÙ”  ÌÙ›”; ÌØ”? ÌØ”Ì@ ÌØ”ÌD ÌØ”Ì^ Ìß”Ì_ Ìß”Ìb Ìß”Ìd Ìß”Ìf Ìß”Ìg Ìß”Ìj Ìß!’” ÌØ
+” ÌØ’” Ì×” Ì×‘” Ìã’” Ìå” Ìå‘” Ìã’” Ìå” ÌåŸ” Ìæ” Ìæ
+” Ìæ” Ìæ” Ìæ” Ìæ”" Ìæ”# Ìæ”( Ìæ"”) Ìæ#”- Ìæ'”/ Ìæ)”4 Ìæ.”6 Ìæ0”8 Ìæ2–” Ìç” Ìç”$ Ìç”( Ìç”) Ìç”. Ìç–” Ìç” Ìç” Ìè”% Ìè”& Ìè”( Ìè–” Ìç” Ìç” Ìé”& Ìé”' Ìé”- Ìé˜” Ìç” Ìç” Ìê”& Ìê”' Ìê”0 Ìê”1 Ìê”7 Ìê%–” Ìç” Ìç” Ìë”% Ìë”& Ìë”' Ìëœ” Ìç” Ìç” Ìì”) Ìì”* Ìì”, Ìì”4 Ìì"”6 Ìì$”ÌB Ìì0”ÌC Ìì1”ÌK Ìì9”ÌM Ìì;–” Ìç” Ìç” Ìí”" Ìí”# Ìí”) Ìí˜” Ìç” Ìç” Ìî”& Ìî”' Ìî”0 Ìî”1 Ìî”6 Ìî$š” Ìç” Ìç” Ìï”# Ìï”$ Ìï”& Ìï”) Ìï”+ Ìï”, Ìï”. Ìï’” Ìç” Ìç‘” Ìğ’” Ìò” Ìò‘” Ìğ’” Ìò” Ìò˜” Ìó” Ìó	” Ìó
+” Ìó” Ìó”  Ìó”" Ìó”$ Ìó’” Ìò” Ìò–” Ìó” Ìó	” Í” Í” Í” Í’” Ìò” Ìòš” Ìó” Ìó	” Í” Í” Í” Í” Í” Í” Í”! Í˜” Ìô” Ìô” Ìô” Ìô” Ìô”  Ìô”! Ìô”# Ìô”” Ìõ
+” Ìõ” Ìõ” Ìõ–” Ìõ
+” Ìõ” Ìö” Ìö” Ìö” Ìö’” Ìõ
+” Ìõ›” Ì÷
+” Ì÷” Ì÷” Ì÷” Ì÷”' Ì÷”( Ì÷”- Ì÷$”. Ì÷%”6 Ì÷-”8 Ì÷/–” Ì÷
+” Ì÷” Ìø” Ìø” Ìø” Ìø–” Ì÷
+” Ì÷” Ìù” Ìù” Ìù”! Ìù’” Ì÷
+” Ì÷’” Ìô” Ìô˜” Ìü” Ìü” Ìü” Ìü” Ìü”  Ìü”( Ìü$”* Ìü&˜” Ìı
+” Ìı”# Ìı”% Ìı”* Ìı”, Ìı”- Ìı”/ Ìı”” Ìş” Ìş”$ Ìş”( Ìş–” Ìş” Ìş” Ìÿ”% Ìÿ”& Ìÿ”( Ìÿ’” Ìş” Ìş˜” Í ” Í ”$ Í ”( Í ”) Í ”3 Í  ”4 Í !”< Í )–” Í ” Í ” Í”% Í”& Í”( Í–” Í ” Í ” Í”& Í”' Í”- Í’” Í ” Í ’” Ìı
+” Ìı‘” Í	‘” Í	’” Ìò” Ìò’” Ìó” Ìó	’” Ì›” Ì›
+‘” ÍÔrF–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜú‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘”  ÌØ ‘”  ÌÙ ‘”  ÌÚ ‘”  ÌÛ ‘”  ÌÜ ‘”  Ìİ ‘”  ÌŞ ‘”  Ìß ‘”  Ìà ‘”  Ìá ‘”  Ìâ ‘”  Ìã ‘”  Ìä ‘”  Ìå ‘”  Ìæ ‘”  Ìç ‘”  Ìè ‘”  Ìé ‘”  Ìê ‘”  Ìë ‘”  Ìì ‘”  Ìí ‘”  Ìî ‘”  Ìï ‘”  Ìğ ‘”  Ìñ ‘”  Ìò ‘”  Ìó ‘”  Ìô ‘”  Ìõ ‘”  Ìö ‘”  Ì÷ ‘”  Ìø ‘”  Ìù ‘”  Ìú ‘”  Ìû ‘”  Ìü ‘”  Ìı ‘”  Ìş ‘”  Ìÿ ‘”  Í  ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í	 ‘”  Í
+ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í  ‘”  Í! ‘”  Í" ‘”  Í# ‘”  Í$ ‘”  Í% ‘”  Í& ‘”  Í' ‘”  Í( ‘”  Í) ‘”  Í* ‘”  Í+ ‘”  Í, ‘”  Í- ‘”  Í. ‘”  Í/ ‘”  Í0 ‘”  Í1 ‘”  Í2 ‘”  Í3 ‘”  Í4 ‘”  Í5 ‘”  Í6 ‘”  Í7 ‘”  Í8 ‘”  Í9 ‘”  Í: ‘”  Í; ‘”  Í< ‘”  Í= ‘”  Í> ‘”  Í? ‘”  Í@ ‘”  ÍA ‘”  ÍB ‘”  ÍC ‘”  ÍD ‘”  ÍE ‘”  ÍF ‘”  ÍG ‘”  ÍH ‘”  ÍI ‘”  ÍJ ‘”  ÍK ‘”  ÍL ‘”  ÍM ‘”  ÍN ‘”  ÍO ‘”  ÍP ‘”  ÍQ ‘”  ÍR ‘”  ÍS ‘”  ÍT ‘”  ÍU ‘”  ÍV ‘”  ÍW ‘”  ÍX ‘”  ÍY ‘”  ÍZ ‘”  Í[ ‘”  Í\ ‘”  Í] ‘”  Í^ ‘”  Í_ ‘”  Í` ‘”  Ía ‘”  Íb ‘”  Íc ‘”  Íd ‘”  Íe ‘”  Íf ‘”  Íg ‘”  Íh ‘”  Íi ‘”  Íj ‘”  Ík ‘”  Íl ‘”  Ím ‘”  Ín ‘”  Ío ‘”  Íp ‘”  Íq ‘”  Ír ‘”  Ís ‘”  Ít ‘”  Íu ‘”  Ív ‘”  Íw ‘”  Íx ‘”  Íy ‘”  Íz ‘”  Í{ ‘”  Í| ‘”  Í} ‘”  Í~ ‘”  Í ‘”  Í€ ‘”  Í ‘”  Í‚ ‘”  Íƒ ‘”  Í„ ‘”  Í… ‘”  Í† ‘”  Í‡ ‘”  Íˆ ‘”  Í‰ ‘”  ÍŠ ‘”  Í‹ ‘”  ÍŒ ‘”  Í ‘”  Í ‘”  Í ‘”  Í ‘”  Í‘ ‘”  Í’ ‘”  Í“ ‘”  Í” ‘”  Í• ‘”  Í– ‘”  Í— ‘”  Í˜ ‘”  Í™ ‘”  Íš ‘”  Í› ‘”  Íœ ‘”  Í ‘”  Í ‘”  ÍŸ ‘”  Í  ‘”  Í¡ ‘”  Í¢ ‘”  Í£ ‘”  Í¤ ‘”  Í¥ ‘”  Í¦ ‘”  Í§ ‘”  Í¨ ‘”  Í© ‘”  Íª ‘”  Í« ‘”  Í¬ ‘”  Í­ ‘”  Í® ‘”  Í¯ ‘”  Í° ‘”  Í± ‘”  Í² ‘”  Í³ ‘”  Í´ ‘”  Íµ ‘”  Í¶ ‘”  Í· ‘”  Í¸ ‘”  Í¹ ‘”  Íº ‘”  Í» ‘”  Í¼ ‘”  Í½ ‘”  Í¾ ‘”  Í¿ ‘”  ÍÀ ‘”  ÍÁ ‘”  ÍÂ ‘”  ÍÃ ‘”  ÍÄ ‘”  ÍÅ ‘”  ÍÆ ‘”  ÍÇ ‘”  ÍÈ ‘”  ÍÉ ‘”  ÍÊ ‘”  ÍË ‘”  ÍÌ ‘”  ÍÍ ‘”  ÍÎ ‘”  ÍÏ ‘”  ÍĞ ‘”  ÍÑ ‘”  ÍÒ ‘”  ÍÓ ‘”  ÍÔ ‘”  ÍÕ ‘”  ÍÖ ‘”  Í× ‘”  ÍØ ‘”  ÍÙ ‘”  ÍÚ ‘”  ÍÛ ‘”  ÍÜ ‘”  Íİ ‘”  ÍŞ ‘”  Íß ‘”  Íà ‘”  Íá ‘”  Íâ ‘”  Íã ‘”  Íä ‘”  Íå ‘”  Íæ ‘”  Íç ‘”  Íè ‘”  Íé ‘”  Íê ‘”  Íë ‘”  Íì ‘”  Íí ‘”  Íî ‘”  Íï ‘”  Íğ ‘”  Íñ ‘”  Íò ‘”  Íó ‘”  Íô ‘”  Íõ ‘”  Íö ‘”  Í÷ ‘”  Íø ‘”  Íù ÔrG’§missing¦pluginÃ¦genAbcÂÔ  ÔrH”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache’ÔrI•¤type¥start£endªspecifiers¦source±ImportDeclarationÌÌ¿‘ÔrJ”¤type¥start£end¥local¶ImportDefaultSpecifierÌ¤ÌªÔrK”¤type¥start£end¤nameªIdentifierÌ¤Ìª¦routerÔrL•¤type¥start£end¥value£raw§LiteralÌ°Ì¾¬@ohos.router®'@ohos.router'I±ImportDeclarationÌÁÌô‘ÔrM•¤type¥start£end¨imported¥local¯ImportSpecifierÌÊÌàKªIdentifierÌÊÌà¶createFavoritesManagerKªIdentifierÌÊÌà¶createFavoritesManagerL§LiteralÌèÌó©../models«'../models'

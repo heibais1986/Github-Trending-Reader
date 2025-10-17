@@ -107,6 +107,18 @@
     {
       "name": "language_react",
       "value": "#61DAFB"
+    },
+    {
+      "name": "skeleton_color",
+      "value": "#E5E5E5"
+    },
+    {
+      "name": "warning_color",
+      "value": "#FF9500"
+    },
+    {
+      "name": "info_color",
+      "value": "#007AFF"
     }
   ]
 }

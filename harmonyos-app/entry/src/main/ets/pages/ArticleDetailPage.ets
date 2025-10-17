@@ -5,6 +5,7 @@
 import webview from '@ohos.web.webview';
 import common from '@ohos.app.ability.common';
 import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 import { LoadingIndicator, LoadingType, LoadingSize } from '../components/LoadingIndicator';
 import { FeedbackUtils } from '../utils/FeedbackManager';
 
@@ -21,12 +22,11 @@ struct ArticleDetailPage {
 
   aboutToAppear() {
     // Get URL and title from router parameters
-    const routerParams = router.getParams();
-    if (routerParams && routerParams.url) {
-      this.url = routerParams.url as string;
-    }
-    if (routerParams && routerParams.title) {
-      this.title = routerParams.title as string;
+    const routerParams: Object | undefined = router.getParams();
+    if (routerParams) {
+      const params = routerParams as Object;
+      this.url = (params as Record<string, string>)['url'] || '';
+      this.title = (params as Record<string, string>)['title'] || '文章详情';
     }
   }
 
@@ -77,9 +77,9 @@ struct ArticleDetailPage {
   /**
    * Handle page error
    */
-  private onErrorReceived(errorInfo: webview.WebviewError) {
+  private onErrorReceived(errorInfo: Object) {
     this.loading = false;
-    this.error = errorInfo.description || '加载文章时发生错误';
+    this.error = '加载文章时发生错误';
     console.error('Article detail error:', errorInfo);
     
     FeedbackUtils.showError('文章加载失败');
@@ -150,16 +150,16 @@ struct ArticleDetailPage {
         // WebView component for article content
         Web({
           controller: this.webviewController,
-          url: this.url
+          src: this.url
         })
-        .onPageStart((event) => {
+        .onPageBegin((event) => {
           this.onPageStart();
         })
-        .onPageFinish((event) => {
+        .onPageEnd((event) => {
           this.onPageFinish();
         })
-        .onError((event) => {
-          this.onErrorReceived(event);
+        .onErrorReceive((event) => {
+          this.onErrorReceived(event.error);
         })
         .layoutWeight(1)
         .width('100%')
@@ -170,7 +170,7 @@ struct ArticleDetailPage {
           Column() {
             LoadingIndicator({
               type: LoadingType.SPINNER,
-              size: LoadingSize.LARGE,
+              indicatorSize: LoadingSize.LARGE,
               message: '正在加载文章...',
               showMessage: true
             })

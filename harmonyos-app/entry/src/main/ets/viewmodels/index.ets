@@ -3,10 +3,14 @@
  */
 
 import { TrendingViewModel, TrendingUiState, BrowserEvent, createTrendingViewModel } from './TrendingViewModel';
+import { GitHubTrendingViewModel, GitHubTrendingUiState, createGitHubTrendingViewModel } from './GitHubTrendingViewModel';
 
 export {
   TrendingViewModel,
   TrendingUiState,
   BrowserEvent,
-  createTrendingViewModel
+  createTrendingViewModel,
+  GitHubTrendingViewModel,
+  GitHubTrendingUiState,
+  createGitHubTrendingViewModel
 };

@@ -11,6 +11,20 @@ export {
   RepositoryValidator
 } from './Repository';
 
+// Browsing history models
+export {
+  BrowsingHistoryItem,
+  BrowsingHistoryManager,
+  createBrowsingHistoryManager
+} from './BrowsingHistory';
+
+// Favorites models
+export {
+  FavoriteItem,
+  FavoritesManager,
+  createFavoritesManager
+} from './Favorites';
+
 // Network models
 export {
   RequestConfig,

@@ -1,0 +1,25 @@
+[INFO] Building HarmonyOS App
+[INFO] Build Mode: debug
+[INFO] ======================
+[STEP] 2. Installing dependencies...
+[INFO] Using oh-package.json5 for dependencies
+[STEP] 3. Running code linting...
+[INFO] Linting skipped (not configured)
+[STEP] 4. Building application...
+[INFO] Building in debug mode...
+> hvigor [32mhvigor client: Starting hvigor daemon.[39m
+[INFO] 鉁?Build completed successfully!
+[STEP] 5. Locating build artifacts...
+[INFO] Build artifacts:
+[INFO]   D:\dev\reddit\harmonyos-app\entry\build\default\outputs\default\entry-default-unsigned.hap (0.38 MB)
+[STEP] 6. Next steps:
+[INFO] To install on device:
+[INFO]   hdc install <path-to-hap-file>
+[INFO] 
+[INFO] To run tests:
+[INFO]   .\scripts\test.ps1
+[INFO] 
+[INFO] To package for distribution:
+[INFO]   .\scripts\package.ps1 -Mode release
+[INFO] 
+[INFO] Build process completed!

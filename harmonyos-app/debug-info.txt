@@ -1,138 +1,41 @@
-hvigor ERROR: Failed :entry:default@CompileArkTS... 
-> hvigor ERROR: ArkTS Compiler Error
-1 WARN: ArkTS:WARN: For details about ArkTS syntax errors, see FAQs
-1 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/models/TrendingResponse.ets:94:29
-
-
-2 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/models/TrendingResponse.ets:139:33
-
-
-3 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/models/TrendingResponse.ets:169:34
-
-
-4 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/models/TrendingResponse.ets:201:26
-
-
-5 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/models/NetworkModels.ets:22:50
-
-
-6 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/HttpClient.ets:118:15
-
-
-7 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:43:13
-
-
-8 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:78:13
-
-
-9 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:104:13
-
-
-10 ERROR: 10605034 ArkTS Compiler Error
-Error Message: Type inference in case of generic function calls is limited (arkts-no-inferred-generic-params) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:104:30
-
-
-11 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:119:48
-
-
-12 ERROR: 10605038 ArkTS Compiler Error
-Error Message: Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:240:52
-
-
-13 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:278:65
-
-
-14 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:321:65
-
-
-15 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:335:68
-
-
-16 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:338:68
-
-
-17 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:405:80
-
-
-18 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:406:11
-
-
-19 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:410:57
-
-
-20 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:412:52
-
-
-21 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:413:65
-
-
-22 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:446:72
-
-
-23 ERROR: 10605008 ArkTS Compiler Error
-Error Message: Use explicit types instead of "any", "unknown" (arkts-no-any-unknown) At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:447:59
-
-
-24 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'TrendingResponse' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:9:3
-
-
-25 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'Repository' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:10:3
-
-
-26 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'RepositoryOwner' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:11:3
-
-
-27 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'DataValidator' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:15:3
-
-
-28 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' has no exported member 'ApiEndpoints'. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:16:3
-
-
-29 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' has no exported member 'HttpStatusCode'. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:17:3
-
-
-30 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' has no exported member 'ERROR_MESSAGES'. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:18:3
-
-
-31 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'createRepository' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:20:3
-
-
-32 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Module '"../models/NetworkModels"' declares 'createRepositoryOwner' locally, but it is not exported. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:21:3
-
-
-33 ERROR: 10505001 ArkTS Compiler Error
-Error Message: Conversion of type 'Error' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
-  Index signature for type 'string' is missing in type 'Error'. At File: D:/dev/reddit/harmonyos-app/entry/src/main/ets/services/NetworkService.ets:119:24
-
-
-COMPILE RESULT:FAIL {ERROR:34 WARN:1}
-> hvigor ERROR: BUILD FAILED in 3 s 297 ms 
+> Task :app:compileReleaseKotlin FAILED
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/FavoritesScreen.kt:77:51 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:196:35 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:203:89 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:215:40 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:221:29 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:221:59 Cannot infer a type for this parameter. Please specify it explicitly.
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:222:21 Overload resolution ambiguity:
+public fun Text(text: AnnotatedString, modifier: Modifier = ..., color: Color = ..., fontSize: TextUnit = ..., fontStyle: FontStyle? = ..., fontWeight: FontWeight? = ..., fontFamily: FontFamily? = ..., letterSpacing: TextUnit = 
+..., textDecoration: TextDecoration? = ..., textAlign: TextAlign? = ..., lineHeight: TextUnit = ..., overflow: TextOverflow = ..., softWrap: Boolean = ..., maxLines: Int = ..., minLines: Int = ..., inlineContent: Map<String, InlineTextContent> = ..., onTextLayout: (TextLayoutResult) -> Unit = ..., style: TextStyle = ...): Unit defined in androidx.compose.material3
+public fun Text(text: String, modifier: Modifier = ..., color: Color = ..., fontSize: TextUnit = ..., fontStyle: FontStyle? = ..., fontWeight: FontWeight? = ..., fontFamily: FontFamily? = ..., letterSpacing: TextUnit = ..., text
+Decoration: TextDecoration? = ..., textAlign: TextAlign? = ..., lineHeight: TextUnit = ..., overflow: TextOverflow = ..., softWrap: Boolean = ..., maxLines: Int = ..., minLines: Int = ..., onTextLayout: ((TextLayoutResult) -> Unit)? = ..., style: TextStyle = ...): Unit defined in androidx.compose.material3
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:224:47 @Composable invocations can only happen from the context of a @Composable function
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:227:47 @Composable invocations can only happen from the context of a @Composable function
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/screen/HistoryScreen.kt:254:97 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/FavoritesViewModel.kt:70:58 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/FavoritesViewModel.kt:74:49 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/FavoritesViewModel.kt:90:65 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/FavoritesViewModel.kt:104:24 Type mismatch: inferred type is Repository but FavoriteItem was expected
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/HistoryViewModel.kt:69:61 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/presentation/viewmodel/HistoryViewModel.kt:73:52 Unresolved reference: repository
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/ui/theme/Accessibility.kt:74:13 Val cannot be reassigned
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/ui/theme/Accessibility.kt:75:13 Val cannot be reassigned
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/ui/theme/Accessibility.kt:103:13 Val cannot be reassigned
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/ui/theme/Accessibility.kt:104:13 Val cannot be reassigned
+e: file:///D:/dev/reddit/android-github-app/app/src/main/java/com/example/githubtrending/ui/theme/KeyboardNavigation.kt:22:33 Unresolved reference: toPx
+
+[Incubating] Problems report is available at: file:///D:/dev/reddit/android-github-app/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileReleaseKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.

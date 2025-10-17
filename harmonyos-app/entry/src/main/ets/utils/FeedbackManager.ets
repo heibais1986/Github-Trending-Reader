@@ -75,7 +75,10 @@ export class FeedbackManager {
    */
   showToast(config: ToastConfig): void {
     try {
-      const { message, duration = 2000, type = FeedbackType.INFO, showIcon = true } = config;
+      let message: string = config.message;
+      let duration: number = config.duration || 2000;
+      let type: FeedbackType = config.type || FeedbackType.INFO;
+      let showIcon: boolean = config.showIcon !== undefined ? config.showIcon : true;
       
       // Provide haptic feedback for toast
       this.hapticFeedback(type);
@@ -219,16 +222,16 @@ export class FeedbackUtils {
    * Handle network request start feedback
    */
   static onNetworkRequestStart(): void {
-    this.feedbackManager.loadingStartFeedback();
+    FeedbackUtils.feedbackManager.loadingStartFeedback();
   }
 
   /**
    * Handle network request success feedback
    */
   static onNetworkRequestSuccess(message?: string): void {
-    this.feedbackManager.loadingCompleteFeedback();
+    FeedbackUtils.feedbackManager.loadingCompleteFeedback();
     if (message) {
-      this.feedbackManager.successFeedback(message);
+      FeedbackUtils.feedbackManager.successFeedback(message);
     }
   }
 
@@ -236,56 +239,56 @@ export class FeedbackUtils {
    * Handle network request error feedback
    */
   static onNetworkRequestError(message: string): void {
-    this.feedbackManager.errorFeedback(message);
+    FeedbackUtils.feedbackManager.errorFeedback(message);
   }
 
   /**
    * Handle refresh action feedback
    */
   static onRefreshAction(): void {
-    this.feedbackManager.refreshFeedback();
+    FeedbackUtils.feedbackManager.refreshFeedback();
   }
 
   /**
    * Handle item click feedback
    */
   static onItemClick(): void {
-    this.feedbackManager.itemSelectionFeedback();
+    FeedbackUtils.feedbackManager.itemSelectionFeedback();
   }
 
   /**
    * Handle button press feedback
    */
   static onButtonPress(): void {
-    this.feedbackManager.buttonPressedFeedback();
+    FeedbackUtils.feedbackManager.buttonPressedFeedback();
   }
 
   /**
    * Show success message
    */
   static showSuccess(message: string): void {
-    this.feedbackManager.successFeedback(message);
+    FeedbackUtils.feedbackManager.successFeedback(message);
   }
 
   /**
    * Show error message
    */
   static showError(message: string): void {
-    this.feedbackManager.errorFeedback(message);
+    FeedbackUtils.feedbackManager.errorFeedback(message);
   }
 
   /**
    * Show warning message
    */
   static showWarning(message: string): void {
-    this.feedbackManager.warningFeedback(message);
+    FeedbackUtils.feedbackManager.warningFeedback(message);
   }
 
   /**
    * Show info message
    */
   static showInfo(message: string): void {
-    this.feedbackManager.showToast({
+    FeedbackUtils.feedbackManager.showToast({
       message,
       type: FeedbackType.INFO
     });

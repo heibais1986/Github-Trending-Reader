@@ -44,6 +44,7 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\UIAbilityContext.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityLifecycleCallback.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.ability.featureAbility.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\folder_stack.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\nav_destination.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\navigation.d.ts"
@@ -59,7 +60,8 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.Ability.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\UIAbilityContext.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.EnvironmentCallback.d.ts",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets"
       ],
       "error": false
     },
@@ -80,6 +82,7 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.bundle.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.dialogRequest.d.ts",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\embedded_component.d.ts"
       ],
       "error": false
@@ -235,18 +238,18 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.rdb.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.multimodalInput.pointer.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.appManager.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\graphics3d\\SceneResources.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\embedded_component.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\nav_destination.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\navigation.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\pattern_lock.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\pattern_lock.d.ts"
       ],
       "error": false
     },
@@ -298,8 +301,8 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.common.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\ExtensionContext.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\AbilityStageContext.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts"
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts"
       ],
       "error": false
     },
@@ -346,8 +349,8 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.bundle.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\PhotoEditorExtensionContext.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.multimodalInput.pointer.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts"
       ],
       "error": false
     },
@@ -747,6 +750,8 @@
       ],
       "parent": [
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\action_sheet.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\alert_dialog.d.ts",
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts"
@@ -759,7 +764,14 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts"
       ],
       "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts"
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\MyPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ZReadTrendingPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\BrowsingHistoryPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\FavoritesPage.ets"
       ],
       "error": false
     },
@@ -832,7 +844,9 @@
         "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\UIServiceExtensionConnectCallback.d.ts"
       ],
       "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts"
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets"
       ],
       "error": false
     },
@@ -1382,43 +1396,79 @@
       "error": false
     },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets": {
-      "mtimeMs": 1760016608257.2144,
+      "mtimeMs": 1760283574595.4717,
       "children": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets"
       ],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\GitHubTrendingPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ZReadTrendingPage.ets"
       ],
       "error": false
     },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets": {
-      "mtimeMs": 1760192977017.3098,
+      "mtimeMs": 1760612272354.3735,
       "children": [],
       "parent": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\GitHubTrendingPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\MyPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ZReadTrendingPage.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\BrowsingHistory.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Favorites.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\BrowsingHistoryPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\FavoritesPage.ets"
       ],
-      "error": false,
-      "errorCodes": [
-        8,
-        29
-      ]
+      "error": false
     },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets": {
-      "mtimeMs": 1760018444700.5596,
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\GitHubTrendingPage.ets": {
+      "mtimeMs": 1760485695256.6157,
       "children": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
       ],
-      "parent": [],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets"
+      ],
       "error": false
     },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\MyPage.ets": {
+      "mtimeMs": 1760485347561.6836,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets": {
+      "mtimeMs": 1760613541204.527,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
+      ],
+      "parent": [],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets": {
-      "mtimeMs": 1760052001925.4724,
+      "mtimeMs": 1760612207745.6726,
       "children": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
@@ -1429,16 +1479,38 @@
       "parent": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets"
       ],
-      "error": false
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets": {
+      "mtimeMs": 1760612214179.2932,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\utils\\LinkConverter.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.Want.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityConstant.d.ts"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets"
+      ],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
     },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets": {
-      "mtimeMs": 1760053127475.9333,
+      "mtimeMs": 1760287463276.2305,
       "children": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
       ],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets"
       ],
       "error": false
     },
@@ -1446,9 +1518,239 @@
       "mtimeMs": 1760017191064.864,
       "children": [],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\TrendingViewModel.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets"
       ],
       "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets": {
+      "mtimeMs": 1760305662979.1904,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\GitHubTrendingViewModel.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets": {
+      "mtimeMs": 1760258342135.4114,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets": {
+      "mtimeMs": 1760098344051.038,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets": {
+      "mtimeMs": 1760258071544.791,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets": {
+      "mtimeMs": 1760257400083.329,
+      "children": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
+      ],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
+      ],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts"
+      ],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts"
+      ],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ZReadTrendingPage.ets": {
+      "mtimeMs": 1760485361251.505,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\viewmodels\\index.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.multimedia.image.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts"
+      ],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\components\\LoadingIndicator.ets": {
+      "mtimeMs": 1760285411219.0188,
+      "children": [],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\utils\\FeedbackManager.ets": {
+      "mtimeMs": 1760284415107.0815,
+      "children": [],
+      "parent": [
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\ArticleDetailPage.ets": {
+      "mtimeMs": 1760285842770.3245,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.common.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.promptAction.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\components\\LoadingIndicator.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\utils\\FeedbackManager.ets"
+      ],
+      "parent": [],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\Context.d.ts"
+      ],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts": {
+      "mtimeMs": 1757036793000,
+      "children": [],
+      "parent": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets": {
+      "mtimeMs": 1760617641480.2595,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.window.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.common.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.promptAction.d.ts",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\components\\LoadingIndicator.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\utils\\FeedbackManager.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
+      ],
+      "parent": [],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
     },
     "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\action_sheet.d.ts": {
       "mtimeMs": 1757036793000,
@@ -1810,21 +2112,6 @@
       "parent": [],
       "error": false
     },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.multimedia.image.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts"
-      ],
-      "error": false
-    },
     "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts": {
       "mtimeMs": 1757036793000,
       "children": [
@@ -1833,176 +2120,83 @@
       "parent": [],
       "error": false
     },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
-      ],
-      "error": false
-    },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.print.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\Context.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
-      ],
-      "error": false
-    },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
-      ],
-      "error": false
-    },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
-      ],
-      "error": false
-    },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets": {
-      "mtimeMs": 1760258489652.4495,
-      "children": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
-      ],
-      "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingRepository.ets"
-      ],
-      "error": false
-    },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets": {
-      "mtimeMs": 1760258342135.4114,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
-      ],
-      "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
-      ],
-      "error": false
-    },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets": {
-      "mtimeMs": 1760098344051.038,
-      "children": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
-      ],
-      "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
-      ],
-      "error": false
-    },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets": {
-      "mtimeMs": 1760059587438.8416,
+      "mtimeMs": 1760570191932.2273,
       "children": [
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\BrowsingHistory.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Favorites.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\constants\\ApiConstants.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
       ],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\Index.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\WebViewPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\BrowsingHistoryPage.ets",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\FavoritesPage.ets"
       ],
       "error": false
     },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts": {
-      "mtimeMs": 1757036793000,
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\BrowsingHistory.ets": {
+      "mtimeMs": 1760615077014.722,
       "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
       ],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
       ],
-      "error": false
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
     },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets": {
-      "mtimeMs": 1760258071544.791,
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Favorites.ets": {
+      "mtimeMs": 1760570176303.3176,
       "children": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
       ],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\HttpClient.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\AuthInterceptor.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets"
-      ],
-      "error": false
-    },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
-      ],
-      "error": false
-    },
-    "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts": {
-      "mtimeMs": 1757036793000,
-      "children": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
-      ],
-      "parent": [
-        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
       ],
       "error": false
     },
     "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\constants\\ApiConstants.ets": {
-      "mtimeMs": 1760100449372.1572,
+      "mtimeMs": 1760612140223.4612,
       "children": [],
       "parent": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets"
       ],
       "error": false,
       "errorCodes": [
-        93,
-        142,
         38
       ]
     },
-    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\TrendingResponse.ets": {
-      "mtimeMs": 1760257400083.329,
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\BrowsingHistoryPage.ets": {
+      "mtimeMs": 1760570280848.659,
       "children": [
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets",
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
       ],
-      "parent": [
+      "parent": [],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
+    },
+    "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\pages\\FavoritesPage.ets": {
+      "mtimeMs": 1760570358947.7778,
+      "children": [
+        "D:\\Program Files\\Huawei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
         "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\index.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\services\\NetworkService.ets",
-        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\NetworkModels.ets"
+        "D:\\dev\\reddit\\harmonyos-app\\entry\\src\\main\\ets\\models\\Repository.ets"
       ],
-      "error": false
+      "parent": [],
+      "error": true,
+      "errorCodes": [
+        28007
+      ]
     }
   }
 }

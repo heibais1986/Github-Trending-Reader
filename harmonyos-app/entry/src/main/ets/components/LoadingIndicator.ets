@@ -22,6 +22,15 @@ export enum LoadingSize {
 }
 
 /**
+ * Loading indicator size dimensions interface
+ */
+export interface LoadingDimensions {
+  width: number;
+  height: number;
+  fontSize: number;
+}
+
+/**
  * Loading indicator component properties
  */
 export interface LoadingIndicatorProps {
@@ -39,17 +48,17 @@ export interface LoadingIndicatorProps {
 @Component
 export struct LoadingIndicator {
   @Prop type: LoadingType = LoadingType.SPINNER;
-  @Prop size: LoadingSize = LoadingSize.MEDIUM;
+  @Prop indicatorSize: LoadingSize = LoadingSize.MEDIUM;
   @Prop message: string = '正在加载...';
   @Prop color: ResourceColor = $r('app.color.primary_color');
-  @Prop backgroundColor: ResourceColor = Color.Transparent;
+  @Prop bgColor: ResourceColor = Color.Transparent;
   @Prop showMessage: boolean = true;
 
   /**
    * Get size dimensions based on size prop
    */
-  private getSizeDimensions(): { width: number, height: number, fontSize: number } {
-    switch (this.size) {
+  private getSizeDimensions(): LoadingDimensions {
+    switch (this.indicatorSize) {
       case LoadingSize.SMALL:
         return { width: 24, height: 24, fontSize: 12 };
       case LoadingSize.LARGE:
@@ -64,11 +73,9 @@ export struct LoadingIndicator {
    */
   @Builder
   buildSpinner() {
-    const dimensions = this.getSizeDimensions();
-    
     LoadingProgress()
-      .width(dimensions.width)
-      .height(dimensions.height)
+      .width(40)
+      .height(40)
       .color(this.color)
   }
 
@@ -77,14 +84,11 @@ export struct LoadingIndicator {
    */
   @Builder
   buildDots() {
-    const dimensions = this.getSizeDimensions();
-    const dotSize = dimensions.width / 6;
-    
-    Row({ space: dotSize / 2 }) {
+    Row() {
       ForEach([0, 1, 2], (index: number) => {
         Circle()
-          .width(dotSize)
-          .height(dotSize)
+          .width(8)
+          .height(8)
           .fill(this.color)
           .animation({
             duration: 600,
@@ -94,6 +98,8 @@ export struct LoadingIndicator {
           })
       })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 
   /**
@@ -101,11 +107,9 @@ export struct LoadingIndicator {
    */
   @Builder
   buildPulse() {
-    const dimensions = this.getSizeDimensions();
-    
     Circle()
-      .width(dimensions.width)
-      .height(dimensions.height)
+      .width(40)
+      .height(40)
       .fill(this.color)
       .animation({
         duration: 1000,
@@ -156,19 +160,14 @@ export struct LoadingIndicator {
    */
   @Builder
   buildLoadingContent() {
-    switch (this.type) {
-      case LoadingType.DOTS:
-        this.buildDots();
-        break;
-      case LoadingType.PULSE:
-        this.buildPulse();
-        break;
-      case LoadingType.SKELETON:
-        this.buildSkeleton();
-        break;
-      default:
-        this.buildSpinner();
-        break;
+    if (this.type === LoadingType.DOTS) {
+      this.buildDots();
+    } else if (this.type === LoadingType.PULSE) {
+      this.buildPulse();
+    } else if (this.type === LoadingType.SKELETON) {
+      this.buildSkeleton();
+    } else {
+      this.buildSpinner();
     }
   }
 
@@ -191,7 +190,7 @@ export struct LoadingIndicator {
     .width('100%')
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
-    .backgroundColor(this.backgroundColor)
+    .backgroundColor(this.bgColor)
     .padding(16)
   }
 }

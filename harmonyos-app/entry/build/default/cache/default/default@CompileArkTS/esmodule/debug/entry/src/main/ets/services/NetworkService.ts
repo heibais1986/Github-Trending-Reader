@@ -19,6 +19,24 @@ interface StringEntry {
     value: string;
 }
 /**
+ * GitHub search response interface
+ */
+interface GitHubSearchResponse {
+    items: Array<Record<string, object>>;
+}
+/**
+ * Create GitHub search response
+ */
+function createGitHubSearchResponse(items: Array<Record<string, object>>): GitHubSearchResponse {
+    return { items };
+}
+/**
+ * Create trending response
+ */
+function createTrendingResponse(date: string, repositories: Repository[], total: number): TrendingResponse {
+    return { date, repositories, total };
+}
+/**
  * Network service class for API interactions
  */
 export class NetworkService {
@@ -256,7 +274,10 @@ export class NetworkService {
                 const parseError = this.createNetworkError(NetworkErrorType.PARSE_ERROR, ERROR_MESSAGES.PARSE_ERROR);
                 return Promise.reject(new Error(JSON.stringify(parseError)));
             }
-            const trendingResponse = this.convertGitHubSearchToTrendingResponse(responseData);
+            // Convert to GitHubSearchResponse
+            const items = responseData.items as Array<Record<string, object>>;
+            const gitHubResponse = createGitHubSearchResponse(items);
+            const trendingResponse = this.convertGitHubSearchToTrendingResponse(gitHubResponse);
             // Validate converted response
             if (!DataValidator.validateTrendingResponse(trendingResponse)) {
                 const parseError = this.createNetworkError(NetworkErrorType.PARSE_ERROR, ERROR_MESSAGES.PARSE_ERROR);
@@ -270,43 +291,91 @@ export class NetworkService {
         }
     }
     /**
-     * Get trending repositories from zread.ai API
+     * Get trending repositories from GitHub API (fallback for zread.ai)
      * @returns Promise with trending repositories response
      */
     async getTrendingFromZRead(): Promise<TrendingResponse> {
         try {
-            const url = 'https://zread.ai/api/trending';
-            const response = await this.httpClient.get<object>(url, {});
-            // Validate response structure
-            const responseData = response.data as Record<string, object>;
-            if (!responseData || typeof responseData !== 'object' ||
-                !responseData.data || !Array.isArray(responseData.data)) {
-                const parseError = this.createNetworkError(NetworkErrorType.PARSE_ERROR, ERROR_MESSAGES.PARSE_ERROR);
-                return Promise.reject(new Error(JSON.stringify(parseError)));
-            }
-            // Convert zread.ai repositories to standard format
-            const allRepositories: Repository[] = [];
-            const dataArray = responseData.data as Array<Record<string, object>>;
-            for (const section of dataArray) {
-                if (section.repos && Array.isArray(section.repos)) {
-                    const reposArray = section.repos as Array<Record<string, object>>;
-                    for (const zReadRepo of reposArray) {
-                        const repository = this.convertZReadRepositoryToRepository(zReadRepo);
-                        allRepositories.push(repository);
+            // 尝试多个可能的API端点
+            const urls = [
+                'https://api.github.com/search/repositories?q=stars:>1000+created:2024-01-01..2024-12-31&sort=stars&order=desc&per_page=30',
+                'https://api.github.com/search/repositories?q=stars:>500+language:javascript&sort=stars&order=desc&per_page=30',
+                'https://api.github.com/search/repositories?q=stars:>1000+language:typescript&sort=stars&order=desc&per_page=30'
+            ];
+            let lastError: Error | null = null;
+            for (const url of urls) {
+                try {
+                    console.info('NetworkService', `尝试URL: ${url}`);
+                    // 不使用cookie，设置空的headers
+                    const headers: Record<string, string> = {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                        'Accept': 'application/json, text/plain, */*',
+                        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache',
+                        'Referer': 'https://zread.ai/'
+                    };
+                    const response = await this.httpClient.get<object>(url, {
+                        headers: headers
+                    });
+                    // 检查响应状态
+                    if (response.status !== 200) {
+                        console.error('NetworkService', `API返回错误状态: ${response.status}`);
+                        lastError = new Error(`API返回错误状态: ${response.status}`);
+                        continue; // 尝试下一个URL
+                    }
+                    // 打印响应数据以便调试
+                    console.info('NetworkService', `响应数据: ${JSON.stringify(response.data)}`);
+                    // 处理GitHub API响应
+                    let allRepositories: Repository[] = [];
+                    // GitHub API返回的是 { items: [...] } 结构
+                    if (response.data && typeof response.data === 'object' &&
+                        (response.data as Record<string, object>).items &&
+                        Array.isArray((response.data as Record<string, object>).items)) {
+                        const responseData = response.data as Record<string, object>;
+                        const itemsArray = (responseData.items as Array<Record<string, object>>);
+                        const gitHubResponse: GitHubSearchResponse = createGitHubSearchResponse(itemsArray);
+                        const trendingResponse = this.convertGitHubSearchToTrendingResponse(gitHubResponse);
+                        allRepositories = trendingResponse.repositories;
+                    }
+                    // 备用处理：直接数组结构
+                    else if (Array.isArray(response.data)) {
+                        const dataArray: Array<Record<string, object>> = response.data as Array<Record<string, object>>;
+                        const gitHubResponse: GitHubSearchResponse = createGitHubSearchResponse(dataArray);
+                        const trendingResponse = this.convertGitHubSearchToTrendingResponse(gitHubResponse);
+                        allRepositories = trendingResponse.repositories;
+                    }
+                    if (allRepositories.length > 0) {
+                        const currentDate: string = NetworkService.getTodayDate();
+                        const reposCount: number = allRepositories.length;
+                        const trendingResponse: TrendingResponse = createTrendingResponse(currentDate, allRepositories, reposCount);
+                        // Validate converted response
+                        if (!DataValidator.validateTrendingResponse(trendingResponse)) {
+                            const parseError = this.createNetworkError(NetworkErrorType.PARSE_ERROR, ERROR_MESSAGES.PARSE_ERROR);
+                            return Promise.reject(new Error(JSON.stringify(parseError)));
+                        }
+                        console.info('NetworkService', `成功获取 ${allRepositories.length} 个仓库`);
+                        return trendingResponse;
+                    }
+                    else {
+                        console.error('NetworkService', '没有找到有效的仓库数据');
+                        lastError = new Error('没有找到有效的仓库数据');
+                        continue;
                     }
                 }
+                catch (error) {
+                    console.error('NetworkService', `URL ${url} 请求失败:`, error);
+                    lastError = error as Error;
+                    continue; // 尝试下一个URL
+                }
             }
-            const trendingResponse: TrendingResponse = {
-                date: NetworkService.getTodayDate(),
-                repositories: allRepositories,
-                total: allRepositories.length
-            };
-            // Validate converted response
-            if (!DataValidator.validateTrendingResponse(trendingResponse)) {
-                const parseError = this.createNetworkError(NetworkErrorType.PARSE_ERROR, ERROR_MESSAGES.PARSE_ERROR);
-                return Promise.reject(new Error(JSON.stringify(parseError)));
+            // 如果所有URL都失败了
+            if (lastError) {
+                throw lastError;
             }
-            return trendingResponse;
+            else {
+                throw new Error('所有API端点都无法访问');
+            }
         }
         catch (error) {
             const handledError = this.handleNetworkError(error as Error);
@@ -345,7 +414,7 @@ export class NetworkService {
      * @param gitHubResponse - GitHub search response
      * @returns TrendingResponse
      */
-    private convertGitHubSearchToTrendingResponse(gitHubResponse: Record<string, object>): TrendingResponse {
+    private convertGitHubSearchToTrendingResponse(gitHubResponse: GitHubSearchResponse): TrendingResponse {
         const items = gitHubResponse.items;
         const repositories: Repository[] = [];
         if (items && Array.isArray(items)) {
@@ -371,11 +440,9 @@ export class NetworkService {
                 repositories.push(repository);
             }
         }
-        return {
-            date: NetworkService.getTodayDate(),
-            repositories: repositories,
-            total: repositories.length
-        };
+        const currentDate: string = NetworkService.getTodayDate();
+        const reposCount: number = repositories.length;
+        return createTrendingResponse(currentDate, repositories, reposCount);
     }
     /**
      * Convert zread.ai repository to standard repository format

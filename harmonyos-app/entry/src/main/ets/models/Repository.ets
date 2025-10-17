@@ -12,9 +12,11 @@ export interface Repository {
   fullName: string;
   description: string;
   url: string;
+  htmlUrl: string;
   stars: number;
   language: string;
   owner: RepositoryOwner;
+  author: RepositoryOwner;
 }
 
 /**
@@ -37,9 +39,11 @@ export function createRepository(data: Partial<Repository> = {}): Repository {
     fullName: data.fullName || '',
     description: data.description || '',
     url: data.url || '',
+    htmlUrl: data.htmlUrl || '',
     stars: data.stars || 0,
     language: data.language || '',
-    owner: data.owner || createRepositoryOwner()
+    owner: data.owner || createRepositoryOwner(),
+    author: data.author || data.owner || createRepositoryOwner()
   };
 }
 

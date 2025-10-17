@@ -139,13 +139,46 @@ export class TrendingViewModel {
   // 处理仓库点击事件
   onRepositoryClick(repository: Repository): void {
     console.info('TrendingViewModel', `点击仓库: ${repository.name}`);
+    
+    // 保存到浏览历史
+    this.saveToBrowseHistory(repository);
+    
     try {
-      const convertedUrl = this.linkConverter.convertGitHubToZread(repository.url);
-      console.info('TrendingViewModel', `转换后的URL: ${convertedUrl}`);
-      this.updateUiState({ openBrowserEvent: new BrowserEvent(convertedUrl) });
+      // 构建GitHub仓库的overview页面URL
+      const overviewUrl = repository.url.replace(/\/$/, '') + '#readme';
+      console.info('TrendingViewModel', `Overview URL: ${overviewUrl}`);
+      this.updateUiState({ openBrowserEvent: new BrowserEvent(overviewUrl, repository) });
     } catch (error) {
       console.warn('TrendingViewModel', 'URL转换失败，使用原始URL', error);
-      this.updateUiState({ openBrowserEvent: new BrowserEvent(repository.url) });
+      this.updateUiState({ openBrowserEvent: new BrowserEvent(repository.url, repository) });
+    }
+  }
+
+  // 保存到浏览历史
+  private saveToBrowseHistory(repository: Repository): void {
+    try {
+      const historyData = AppStorage.Get<string>('browse_history') || '[]';
+      const history: Repository[] = JSON.parse(historyData) as Repository[];
+      
+      // 检查是否已存在
+      const existingIndex = history.findIndex(item => item.id === repository.id);
+      if (existingIndex >= 0) {
+        // 如果已存在，移动到最前面
+        history.splice(existingIndex, 1);
+      }
+      
+      // 添加到最前面
+      history.unshift(repository);
+      
+      // 限制历史记录数量
+      if (history.length > 50) {
+        history.splice(50);
+      }
+      
+      // 保存到本地存储
+      AppStorage.Set('browse_history', JSON.stringify(history));
+    } catch (error) {
+      console.error('TrendingViewModel', '保存浏览历史失败', error);
     }
   }
 
@@ -214,9 +247,13 @@ export class TrendingUiState {
 export class BrowserEvent {
   url: string;
   timestamp: number;
+  repository: Repository | null = null;
 
-  constructor(url: string) {
+  constructor(url: string, repository?: Repository) {
     this.url = url;
     this.timestamp = Date.now();
+    if (repository) {
+      this.repository = repository;
+    }
   }
 }

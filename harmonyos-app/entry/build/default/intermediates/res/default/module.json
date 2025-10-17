@@ -17,7 +17,7 @@
 		"appEnvironments":	[],
 		"bundleType":	"app",
 		"buildMode":	"debug",
-		"iconId":	16777256,
+		"iconId":	16777261,
 		"labelId":	16777219,
 		"descriptionId":	16777218
 	},
@@ -44,10 +44,10 @@
 						"actions":	["action.system.home"]
 					}],
 				"descriptionId":	16777216,
-				"iconId":	16777259,
+				"iconId":	16777268,
 				"labelId":	16777217,
-				"startWindowIconId":	16777260,
-				"startWindowBackgroundId":	16777251
+				"startWindowIconId":	16777269,
+				"startWindowBackgroundId":	16777255
 			}],
 		"requestPermissions":	[{
 				"name":	"ohos.permission.INTERNET",
@@ -56,7 +56,7 @@
 					"abilities":	["EntryAbility"],
 					"when":	"inuse"
 				},
-				"reasonId":	16777223
+				"reasonId":	16777224
 			}, {
 				"name":	"ohos.permission.SYSTEM_FLOAT_WINDOW",
 				"reason":	"$string:float_window_permission_reason",
@@ -64,7 +64,7 @@
 					"abilities":	["EntryAbility"],
 					"when":	"inuse"
 				},
-				"reasonId":	16777262
+				"reasonId":	16777223
 			}, {
 				"name":	"ohos.permission.RUNNING_LOCK",
 				"reason":	"$string:running_lock_permission_reason",
@@ -72,12 +72,12 @@
 					"abilities":	["EntryAbility"],
 					"when":	"inuse"
 				},
-				"reasonId":	16777263
+				"reasonId":	16777229
 			}],
 		"packageName":	"entry",
 		"virtualMachine":	"ark11.0.2.0",
 		"compileMode":	"esmodule",
 		"dependencies":	[],
-		"descriptionId":	16777225
+		"descriptionId":	16777226
 	}
 }

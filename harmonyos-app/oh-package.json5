@@ -1,8 +1,8 @@
 {
   "modelVersion": "5.1.1",
   "name": "github-trending-harmonyos",
-  "version": "1.0.0",
-  "description": "GitHub热门仓库展示的鸿蒙应用",
+  "version": "1.1.0",
+  "description": "GitHub热门仓库展示的鸿蒙应用，支持多数据源和本地收藏",
   "main": "",
   "author": "",
   "license": "MIT",
